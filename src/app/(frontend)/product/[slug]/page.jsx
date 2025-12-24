@@ -1,5 +1,9 @@
-const Page = () => {
-  return <section>Muhammad Rashed! Wellcome to Page Components</section>;
+const ProductDetailsPage = ({ params }) => {
+  return (
+    <section>
+      <h1>Product: {params.slug}</h1>
+    </section>
+  );
 };
 
-export default Page;
+export default ProductDetailsPage;

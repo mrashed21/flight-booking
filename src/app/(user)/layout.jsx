@@ -1,5 +1,10 @@
 const UserLayout = ({ children }) => {
-  return <section> {children}</section>;
+  return (
+    <main className="flex">
+      <aside>User Sidebar</aside>
+      <section>{children}</section>
+    </main>
+  );
 };
 
 export default UserLayout;
