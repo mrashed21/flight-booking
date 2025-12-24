@@ -1,5 +1,11 @@
+import Container from "@/components/common/Container/Container";
+
 const HomePage = () => {
-  return <section>Muhammad Rashed! Wellcome to HomePage Components</section>;
+  return (
+    <section>
+      <Container>Muhammad Rashed! Wellcome to HomePage Components</Container>
+    </section>
+  );
 };
 
 export default HomePage;
