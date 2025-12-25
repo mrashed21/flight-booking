@@ -1,9 +1,10 @@
 import Container from "@/components/common/Container/Container";
+import Hero from "@/components/home/hero/Hero";
 
 const HomePage = () => {
   return (
     <section>
-      <Container>Muhammad Rashed! Wellcome to HomePage Components</Container>
+      <Hero/>
     </section>
   );
 };
