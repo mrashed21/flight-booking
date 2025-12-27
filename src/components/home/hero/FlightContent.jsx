@@ -1,5 +1,6 @@
 "use client";
 
+import CommonButton from "@/components/UI/CommonButton";
 import DateSelecet from "@/components/UI/DateSelecet";
 import PillButton from "@/components/UI/PillButton";
 import Select from "@/components/UI/Select";
@@ -192,13 +193,13 @@ const FlightContent = () => {
       </div>
 
       {/* select */}
-      <div className="mt-4 flex justify-between gap-3 ">
+      <div className="mt-4 ">
         {/* airport */}
         <div
           ref={containerRef}
-          className="flex space-x-2.5 items-center relative col-span-4"
+          className="flex space-x-2.5 items-center relative"
         >
-          <div ref={fromWrapRef} className="">
+          <div ref={fromWrapRef} className=" w-full">
             <Select
               name="From"
               options={options}
@@ -222,7 +223,7 @@ const FlightContent = () => {
             </span>
           </button>
 
-          <div ref={toWrapRef} className="">
+          <div ref={toWrapRef} className=" w-full">
             <Select
               name="To"
               options={options}
@@ -234,22 +235,23 @@ const FlightContent = () => {
               getOptionValue={(x) => x._id}
             />
           </div>
-        </div>
 
-        <div className="mt-auto">
-          <DateSelecet
-            tripType={"One Way"}
-            // tripType={"Round Trip"}
-            fromDate={fromDate}
-            setFromDate={setFromDate}
-            toDate={toDate}
-            setToDate={setToDate}
-            name={"Select Date"}
-          />
+          <div className="mt-auto">
+            <DateSelecet
+              // tripType={"One Way"}
+              tripType={"Round Trip"}
+              fromDate={fromDate}
+              setFromDate={setFromDate}
+              toDate={toDate}
+              setToDate={setToDate}
+              name={"Select Date"}
+            />
+          </div>
         </div>
-        <div className="">
-          <button>Search Button</button>
+        <div className=" flex justify-end mt-5">
+          <CommonButton>Search</CommonButton>
         </div>
+        {/* date */}
       </div>
     </section>
   );

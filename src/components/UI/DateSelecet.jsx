@@ -109,7 +109,7 @@ const DateSelecet = ({
   };
 
   return (
-    <div ref={wrapperRef} className="relative w-[220px]">
+    <div ref={wrapperRef} className="relative w-55">
       <label htmlFor="" className="text-muted">
         {name}
       </label>
@@ -133,7 +133,7 @@ const DateSelecet = ({
       {open && (
         <div
           ref={panelRef}
-          className="absolute right-0 z-50 bottom-full mb-2 rounded-xl border border-muted bg-white p-4 shadow-xl w-[400px]"
+          className="absolute right-0 top-18 z-50 mb-2 rounded-xl border border-muted bg-white p-4 shadow-xl w-100"
         >
           {/* search */}
           <input

@@ -69,3 +69,49 @@ color9:#417DA8
 color10:#F8FAFC
 color11:#E4F2FF
 */
+
+.common-btn {
+  position: relative;
+  padding: 12px 44px;
+  border-radius: 8px;
+  background: var(--color-primary-dark);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* Right diagonal shape */
+.common-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-primary-mid);
+  clip-path: polygon(90% 0, 100% 0, 100% 100%, 75% 100%);
+}
+
+/* Text above shape */
+.common-btn {
+  isolation: isolate;
+}
+
+.common-btn::after {
+  z-index: 0;
+}
+
+.common-btn > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hover & active */
+.common-btn:hover {
+  filter: brightness(1.08);
+}
+
+.common-btn:active {
+  transform: scale(0.97);
+}
