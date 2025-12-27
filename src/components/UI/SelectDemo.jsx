@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const Select = ({
+const SelectDemo = ({
   id,
   name,
   options = [],
@@ -229,17 +229,13 @@ const Select = ({
           <span
             key={getOptionValue(item)}
             className={`px-2 py-1 rounded text-sm flex items-center gap-1
-      ${
-        isMulti && index === selectedHighlightIndex
-          ? "bg-gray-300"
-          : "bg-primary-bg"
-      }`}
+              ${
+                isMulti && index === selectedHighlightIndex
+                  ? "bg-gray-300"
+                  : "bg-primary-bg"
+              }`}
           >
-            {/* 👇 city + code */}
-            <span className="font-medium">
-              {item.city} , {item._id}
-            </span>
-
+            {getOptionLabel(item)}
             {isClearable && (
               <button
                 onClick={(e) => {
@@ -285,16 +281,7 @@ const Select = ({
                   : "hover:bg-primary-bg"
               }`}
             >
-              {/* Top row: city + code */}
-              <div className="flex justify-between items-center font-medium">
-                <span>
-                  {opt.city}, {opt.country}
-                </span>
-                <span className="text-xs font-semibold">{opt._id}</span>
-              </div>
-
-              {/* Bottom row: airport name */}
-              <div className="text-xs text-muted">{opt.airport_name}</div>
+              {getOptionLabel(opt)}
             </div>
           ))}
         </div>
@@ -303,4 +290,4 @@ const Select = ({
   );
 };
 
-export default Select;
+export default SelectDemo;

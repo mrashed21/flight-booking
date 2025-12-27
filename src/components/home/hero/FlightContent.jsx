@@ -1,5 +1,6 @@
 "use client";
 
+import DateSelecet from "@/components/UI/DateSelecet";
 import PillButton from "@/components/UI/PillButton";
 import Select from "@/components/UI/Select";
 import gsap from "gsap";
@@ -9,25 +10,37 @@ import { useRef, useState } from "react";
 const options = [
   {
     _id: "DAC",
-    airport_name: "Hazrat Shahjalal International Airport (DAC)",
+    city: "Dhaka",
+    country: "Bangladesh",
+    airport_name: "Hazrat Shahjalal International Airport",
   },
-  { _id: "DEL", airport_name: "Indira Gandhi International Airport (DEL)" },
-  { _id: "DXB", airport_name: "Dubai International Airport (DXB)" },
-  { _id: "DOH", airport_name: "Hamad International Airport (DOH)" },
-  { _id: "LHR", airport_name: "London Heathrow Airport (LHR)" },
-  { _id: "JFK", airport_name: "John F. Kennedy International Airport (JFK)" },
-  { _id: "SIN", airport_name: "Singapore Changi Airport (SIN)" },
-  { _id: "KUL", airport_name: "Kuala Lumpur International Airport (KUL)" },
-  { _id: "HKG", airport_name: "Hong Kong International Airport (HKG)" },
-  { _id: "BKK", airport_name: "Suvarnabhumi Airport (BKK)" },
-  { _id: "CDG", airport_name: "Charles de Gaulle Airport (CDG)" },
-  { _id: "AMS", airport_name: "Amsterdam Schiphol Airport (AMS)" },
-  { _id: "FRA", airport_name: "Frankfurt Airport (FRA)" },
-  { _id: "IST", airport_name: "Istanbul Airport (IST)" },
-  { _id: "SYD", airport_name: "Sydney Kingsford Smith Airport (SYD)" },
+  {
+    _id: "DEL",
+    city: "Delhi",
+    country: "India",
+    airport_name: "Indira Gandhi International Airport",
+  },
+  {
+    _id: "DXB",
+    city: "Dubai",
+    country: "UAE",
+    airport_name: "Dubai International Airport",
+  },
+  {
+    _id: "DOH",
+    city: "Doha",
+    country: "Qatar",
+    airport_name: "Hamad International Airport",
+  },
 ];
+
 const FlightContent = () => {
   const [selectedType, setSelectedType] = useState("One Way");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+
+  console.log("fromDate :", fromDate);
+  console.log("toDate :", toDate);
   const fromWrapRef = useRef(null);
   const toWrapRef = useRef(null);
   const containerRef = useRef(null);
@@ -38,7 +51,7 @@ const FlightContent = () => {
     const ghost = document.createElement("div");
     ghost.innerText = text;
     ghost.className =
-      "absolute z-50 px-3 py-2 bg-white rounded-md shadow text-sm pointer-events-none mt-[26px]";
+      "fixed z-50 px-3 py-2 bg-white rounded-md shadow text-sm pointer-events-none mt-[26px]";
 
     ghost.style.left = `${rect.left}px`;
     ghost.style.top = `${rect.top}px`;
@@ -55,34 +68,47 @@ const FlightContent = () => {
 
   const [selectedFormAirPort, setSelectedFormAirPort] = useState(options[0]);
   const [selectedToAirPort, setSelectedToAirPort] = useState(options[3]);
- 
+
   const handleSwapAirport = () => {
+    if (!fromWrapRef.current || !toWrapRef.current) return;
+
     const fromRect = fromWrapRef.current.getBoundingClientRect();
     const toRect = toWrapRef.current.getBoundingClientRect();
 
-    const fromGhost = createGhost(selectedFormAirPort.airport_name, fromRect);
-    const toGhost = createGhost(selectedToAirPort.airport_name, toRect);
+    const fromGhost = createGhost(
+      `${selectedFormAirPort.city} ${selectedFormAirPort._id}`,
+      fromRect
+    );
+
+    const toGhost = createGhost(
+      `${selectedToAirPort.city} ${selectedToAirPort._id}`,
+      toRect
+    );
+
+    const dx = toRect.left - fromRect.left;
+    const dy = toRect.top - fromRect.top;
 
     const tl = gsap.timeline({
+      defaults: { ease: "power3.inOut" },
       onComplete: () => {
         fromGhost.remove();
         toGhost.remove();
       },
     });
 
-    // fade real selects
+    // hide real selects
     tl.to([fromWrapRef.current, toWrapRef.current], {
       opacity: 0,
-      duration: 0.3,
+      duration: 0.2,
     });
 
-    // cross move ghosts
+    // move ghosts
     tl.to(
       fromGhost,
       {
-        x: toRect.left - fromRect.left,
+        x: dx,
+        y: dy,
         duration: 0.6,
-        ease: "power3.inOut",
       },
       "<"
     );
@@ -90,31 +116,29 @@ const FlightContent = () => {
     tl.to(
       toGhost,
       {
-        x: fromRect.left - toRect.left,
+        x: -dx,
+        y: -dy,
         duration: 0.6,
-        ease: "power3.inOut",
       },
       "<"
     );
 
-    // swap state mid-way
+    // swap state AFTER animation
     tl.call(() => {
-      setSelectedFormAirPort((prev) => {
-        setSelectedToAirPort(prev);
-        return selectedToAirPort;
-      });
+      setSelectedFormAirPort(selectedToAirPort);
+      setSelectedToAirPort(selectedFormAirPort);
     });
 
     // show real selects back
     tl.to([fromWrapRef.current, toWrapRef.current], {
       opacity: 1,
-      duration: 0.5,
+      duration: 0.25,
     });
   };
 
   const handleHoverIn = () => {
     gsap.to(swapBtnRef.current, {
-      y: -3,
+      // y: -3,
       scale: 1.05,
       boxShadow: "0 8px 20px rgba(0,0,0,0.18)",
       duration: 0.25,
@@ -168,12 +192,13 @@ const FlightContent = () => {
       </div>
 
       {/* select */}
-      <div className="mt-4">
+      <div className="mt-4 flex justify-between gap-3 ">
+        {/* airport */}
         <div
           ref={containerRef}
-          className="flex space-x-2.5 items-center relative"
+          className="flex space-x-2.5 items-center relative col-span-4"
         >
-          <div ref={fromWrapRef} className="max-w-md w-full">
+          <div ref={fromWrapRef} className="">
             <Select
               name="From"
               options={options}
@@ -185,7 +210,7 @@ const FlightContent = () => {
           </div>
 
           <button
-            // ref={swapBtnRef}
+            ref={swapBtnRef}
             type="button"
             onClick={handleSwapAirport}
             onMouseEnter={handleHoverIn}
@@ -197,16 +222,33 @@ const FlightContent = () => {
             </span>
           </button>
 
-          <div ref={toWrapRef} className="max-w-md w-full">
+          <div ref={toWrapRef} className="">
             <Select
               name="To"
               options={options}
               value={selectedToAirPort}
+              // isMulti
+              // isClearable
               onChange={setSelectedToAirPort}
               getOptionLabel={(x) => x.airport_name}
               getOptionValue={(x) => x._id}
             />
           </div>
+        </div>
+
+        <div className="mt-auto">
+          <DateSelecet
+            tripType={"One Way"}
+            // tripType={"Round Trip"}
+            fromDate={fromDate}
+            setFromDate={setFromDate}
+            toDate={toDate}
+            setToDate={setToDate}
+            name={"Select Date"}
+          />
+        </div>
+        <div className="">
+          <button>Search Button</button>
         </div>
       </div>
     </section>
