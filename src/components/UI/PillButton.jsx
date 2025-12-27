@@ -5,7 +5,7 @@ const PillButton = ({ action, type, name }) => {
       onClick={() => {
         action();
       }}
-      className={`px-4 py-1 rounded-full cursor-pointer transition-all duration-300 font-medium ${
+      className={`px-2.5 lg:px-4 py-0.5 lg:py-1 text-sm lg:text-base rounded-full cursor-pointer transition-all duration-300 font-medium ${
         type ? "bg-info text-white" : "bg-white text-muted border border-muted"
       } `}
     >
