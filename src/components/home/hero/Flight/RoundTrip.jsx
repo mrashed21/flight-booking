@@ -105,7 +105,6 @@ const RoundTrip = ({ options }) => {
 
   const handleHoverIn = () => {
     gsap.to(swapBtnRef.current, {
-      // y: -3,
       scale: 1.05,
       boxShadow: "0 8px 20px rgba(0,0,0,0.18)",
       duration: 0.25,
@@ -138,14 +137,14 @@ const RoundTrip = ({ options }) => {
   };
 
   return (
-    <section>
-      <div className="mt-4 ">
+    <section className="w-full">
+      <div className="mt-4">
         {/* airport */}
         <div
           ref={containerRef}
-          className="flex space-x-2.5 items-center relative"
+          className="flex flex-col sm:flex-row sm:gap-2.5 items-stretch sm:items-center relative"
         >
-          <div ref={fromWrapRef} className=" w-full min-w-3xs">
+          <div ref={fromWrapRef} className="w-full sm:flex-1 sm:min-w-0">
             <Select
               name="From"
               options={options}
@@ -162,42 +161,43 @@ const RoundTrip = ({ options }) => {
             onClick={handleSwapAirport}
             onMouseEnter={handleHoverIn}
             onMouseLeave={handleHoverOut}
-            className="mt-5 p-2 rounded-full bg-primary text-white text-xs cursor-pointer flex items-center justify-center shrink-0"
+            className="self-center sm:self-auto sm:mt-5 p-2 rounded-full bg-primary text-white text-xs cursor-pointer flex items-center justify-center shrink-0 my-2 sm:my-0"
           >
             <span ref={swapIconRef} className="inline-block">
               <ArrowRightLeft size={16} />
             </span>
           </button>
 
-          <div ref={toWrapRef} className=" w-full min-w-3xs">
+          <div ref={toWrapRef} className="-mt-6 md:mt-0 w-full sm:flex-1">
             <Select
               name="To"
               options={options}
               value={selectedToAirPort}
-              // isMulti
-              // isClearable
               onChange={setSelectedToAirPort}
               getOptionLabel={(x) => x.airport_name}
               getOptionValue={(x) => x._id}
             />
           </div>
 
-          <div className="mt-auto flex space-x-2">
-            <DepartureDateSelect
-              value={departureDate}
-              setValue={setDepartureDate}
-            />
-            <ReturnDateSelect
-              value={returnDate}
-              setValue={setReturnDate}
-              departureDate={departureDate}
-            />
+          <div className="w-full sm:w-auto sm:mt-auto flex flex-col sm:flex-row gap-2 sm:space-x-2 mt-3 md:mt-0">
+            <div className="w-full sm:w-auto">
+              <DepartureDateSelect
+                value={departureDate}
+                setValue={setDepartureDate}
+              />
+            </div>
+            <div className="w-full sm:w-auto">
+              <ReturnDateSelect
+                value={returnDate}
+                setValue={setReturnDate}
+                departureDate={departureDate}
+              />
+            </div>
           </div>
         </div>
-        <div className=" flex justify-end mt-5">
+        <div className="flex justify-end mt-5">
           <CommonButton>Search</CommonButton>
         </div>
-        {/* date */}
       </div>
     </section>
   );

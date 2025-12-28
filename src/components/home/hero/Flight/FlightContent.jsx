@@ -68,7 +68,7 @@ const FlightContent = () => {
   }, [selectedType]);
 
   return (
-    <section className="bg-white h-80 rounded-xl rounded-tl-none shadow-md w-full lg:w-260 p-4 lg:p-8 -mt-1">
+    <section className="bg-white rounded-xl rounded-tl-none shadow-md w-full lg:w-260 p-4 lg:p-8 -mt-1">
       {/* pill button */}
       <div className="flex space-x-1.5">
         <PillButton
