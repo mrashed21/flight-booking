@@ -3,9 +3,9 @@ import Container from "@/components/common/Container/Container";
 import HeroButton from "@/components/UI/HeroButton";
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
-import FlightContent from "./FlightContent";
-import TourContent from "./TourContent";
-import VisaContent from "./VisaContent";
+import FlightContent from "./Flight/FlightContent";
+import TourContent from "./Tour/TourContent";
+import VisaContent from "./Visa/VisaContent";
 
 const Hero = () => {
   const [selectedService, setSelectedService] = useState("Flight");

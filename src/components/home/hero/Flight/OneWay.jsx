@@ -1,47 +1,15 @@
-"use client";
-
 import CommonButton from "@/components/UI/CommonButton";
-import DateSelecet from "@/components/UI/DateSelecet";
-import PillButton from "@/components/UI/PillButton";
+import DepartureDateSelect from "@/components/UI/DepartureDateSelect";
 import Select from "@/components/UI/Select";
 import gsap from "gsap";
+
 import { ArrowRightLeft } from "lucide-react";
 import { useRef, useState } from "react";
 
-const options = [
-  {
-    _id: "DAC",
-    city: "Dhaka",
-    country: "Bangladesh",
-    airport_name: "Hazrat Shahjalal International Airport",
-  },
-  {
-    _id: "DEL",
-    city: "Delhi",
-    country: "India",
-    airport_name: "Indira Gandhi International Airport",
-  },
-  {
-    _id: "DXB",
-    city: "Dubai",
-    country: "UAE",
-    airport_name: "Dubai International Airport",
-  },
-  {
-    _id: "DOH",
-    city: "Doha",
-    country: "Qatar",
-    airport_name: "Hamad International Airport",
-  },
-];
+const OneWay = ({ options }) => {
+  const [departureTime, setDepartureTime] = useState();
 
-const FlightContent = () => {
-  const [selectedType, setSelectedType] = useState("One Way");
-  const [fromDate, setFromDate] = useState("");
-  const [toDate, setToDate] = useState("");
-
-  console.log("fromDate :", fromDate);
-  console.log("toDate :", toDate);
+  console.log("departureTime :", departureTime);
   const fromWrapRef = useRef(null);
   const toWrapRef = useRef(null);
   const containerRef = useRef(null);
@@ -60,11 +28,6 @@ const FlightContent = () => {
 
     document.body.appendChild(ghost);
     return ghost;
-  };
-
-  const handleTypeeClick = (type) => {
-    if (type === selectedType) return;
-    setSelectedType(type);
   };
 
   const [selectedFormAirPort, setSelectedFormAirPort] = useState(options[0]);
@@ -172,27 +135,7 @@ const FlightContent = () => {
   };
 
   return (
-    <section className="bg-white h-80 rounded-xl rounded-tl-none shadow-md w-full lg:w-220 p-4 lg:p-8 -mt-1">
-      {/* pill button */}
-      <div className="flex space-x-1.5">
-        <PillButton
-          action={() => handleTypeeClick("One Way")}
-          type={selectedType === "One Way"}
-          name="One Way"
-        />
-        <PillButton
-          action={() => handleTypeeClick("Round Trip")}
-          type={selectedType === "Round Trip"}
-          name="Round Trip"
-        />
-        <PillButton
-          action={() => handleTypeeClick("Multi-City")}
-          type={selectedType === "Multi-City"}
-          name="Multi-City"
-        />
-      </div>
-
-      {/* select */}
+    <section>
       <div className="mt-4 ">
         {/* airport */}
         <div
@@ -237,24 +180,18 @@ const FlightContent = () => {
           </div>
 
           <div className="mt-auto">
-            <DateSelecet
-              // tripType={"One Way"}
-              tripType={"Round Trip"}
-              fromDate={fromDate}
-              setFromDate={setFromDate}
-              toDate={toDate}
-              setToDate={setToDate}
-              name={"Select Date"}
+            <DepartureDateSelect
+              value={departureTime}
+              setValue={setDepartureTime}
             />
           </div>
         </div>
         <div className=" flex justify-end mt-5">
           <CommonButton>Search</CommonButton>
         </div>
-        {/* date */}
       </div>
     </section>
   );
 };
 
-export default FlightContent;
+export default OneWay;
