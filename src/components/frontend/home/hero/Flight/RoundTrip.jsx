@@ -1,7 +1,7 @@
+import AirPortSelect from "@/components/UI/AirPortSelect";
 import CommonButton from "@/components/UI/CommonButton";
 import DepartureDateSelect from "@/components/UI/DepartureDateSelect";
 import ReturnDateSelect from "@/components/UI/ReturnDateSelect";
-import Select from "@/components/UI/Select";
 import gsap from "gsap";
 
 import { ArrowRightLeft } from "lucide-react";
@@ -145,7 +145,7 @@ const RoundTrip = ({ options }) => {
           className="flex flex-col sm:flex-row sm:gap-2.5 items-stretch sm:items-center relative"
         >
           <div ref={fromWrapRef} className="w-full sm:flex-1 sm:min-w-0">
-            <Select
+            <AirPortSelect
               name="From"
               options={options}
               value={selectedFormAirPort}
@@ -169,7 +169,7 @@ const RoundTrip = ({ options }) => {
           </button>
 
           <div ref={toWrapRef} className="-mt-6 md:mt-0 w-full sm:flex-1">
-            <Select
+            <AirPortSelect
               name="To"
               options={options}
               value={selectedToAirPort}

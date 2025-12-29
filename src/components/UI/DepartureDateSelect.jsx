@@ -135,7 +135,7 @@ const DepartureDateSelect = ({ value, setValue }) => {
       <button
         type="button"
         onClick={() => setOpen((p) => !p)}
-        className="w-full flex items-center gap-2 px-4 py-2.5 rounded-lg border bg-white text-sm shadow-sm hover:shadow transition border-muted cursor-pointer"
+        className="w-full flex items-center gap-2 px-4 py-2.5 rounded-lg border bg-white text-sm shadow-sm hover:shadow transition border-muted cursor-pointer font-medium"
       >
         <CalendarDays size={16} className="text-primary" />
         <span className={selectedDate ? "text-black" : "text-muted"}>

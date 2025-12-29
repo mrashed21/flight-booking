@@ -47,7 +47,7 @@ const TravelSection = () => {
       <Container>
         {/* HEADER */}
         <div className="text-center mb-12 mt-10">
-          <h2 ref={titleRef} className="text-3xl font-bold text-gray-800">
+          <h2 className="text-3xl font-bold text-gray-800 ">
             Still Interested in Traveling to Sydney?
           </h2>
           <p className="text-gray-500 mt-2">
@@ -58,7 +58,7 @@ const TravelSection = () => {
 
         {/* SWIPER */}
         <Swiper
-          modules={[EffectCoverflow, Autoplay, Mousewheel]} // ❌ Pagination removed
+          modules={[EffectCoverflow, Autoplay, Mousewheel]} 
           effect="coverflow"
           centeredSlides
           loop={true}

@@ -1,9 +1,9 @@
-import CommonButton from "@/components/UI/CommonButton";
+import AirPortSelect from "@/components/UI/AirPortSelect";
 import DepartureDateSelect from "@/components/UI/DepartureDateSelect";
 import Select from "@/components/UI/Select";
 import gsap from "gsap";
 import { ArrowRightLeft } from "lucide-react";
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const SearchOneWay = ({ options, classOptions }) => {
   const fromWrapRef = useRef(null);
@@ -14,9 +14,7 @@ const SearchOneWay = ({ options, classOptions }) => {
 
   const [selectedFormAirPort, setSelectedFormAirPort] = useState(options[0]);
   const [selectedToAirPort, setSelectedToAirPort] = useState(options[3]);
-  const [selectedClassOptions, setSeletedClassOptions] = useState(
-    classOptions[0],
-  );
+  const [selectedClassOptions, setSeletedClassOptions] = useState("");
   const [departureTime, setDepartureTime] = useState();
 
   const createGhost = (text, rect) => {
@@ -142,7 +140,7 @@ const SearchOneWay = ({ options, classOptions }) => {
           className="relative flex flex-col items-stretch sm:flex-row sm:items-center sm:gap-2.5"
         >
           <div ref={fromWrapRef} className="w-full sm:flex-1">
-            <Select
+            <AirPortSelect
               name="From"
               options={options}
               value={selectedFormAirPort}
@@ -166,7 +164,7 @@ const SearchOneWay = ({ options, classOptions }) => {
           </button>
 
           <div ref={toWrapRef} className="-mt-6 w-full sm:flex-1 md:mt-0">
-            <Select
+            <AirPortSelect
               name="To"
               options={options}
               value={selectedToAirPort}
@@ -188,6 +186,8 @@ const SearchOneWay = ({ options, classOptions }) => {
               options={classOptions}
               value={selectedClassOptions}
               onChange={setSeletedClassOptions}
+              placeholder="Select Cabin"
+              isSearchable={true}
               getOptionLabel={(x) => x.name}
               getOptionValue={(x) => x._id}
             />
