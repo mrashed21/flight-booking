@@ -1,13 +1,13 @@
-const PillButton = ({ action, type, name }) => {
+const PillButton = ({ action, type, name, className="" }) => {
   return (
     <button
       type="button"
       onClick={() => {
         action();
       }}
-      className={`px-2.5 lg:px-4 py-0.5 lg:py-1 text-sm lg:text-base rounded-full cursor-pointer transition-all duration-300 font-medium ${
-        type ? "bg-info text-white" : "bg-white text-muted border border-muted"
-      } `}
+      className={`cursor-pointer rounded-full px-2.5 py-0.5 text-sm font-medium transition-all duration-300 lg:px-4 lg:py-1 lg:text-base ${
+        type ? "bg-info text-white" : "text-muted border-muted border"
+      } ${className}`}
     >
       {name}
     </button>
