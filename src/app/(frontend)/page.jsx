@@ -1,5 +1,5 @@
-import Hero from "@/components/home/hero/Hero";
-import TravelSection from "@/components/home/travel/TravelSection";
+import Hero from "@/components/frontend/home/hero/Hero";
+import TravelSection from "@/components/frontend/home/travel/TravelSection";
 
 const HomePage = () => {
   return (
