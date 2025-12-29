@@ -2,19 +2,22 @@ import CommonButton from "@/components/UI/CommonButton";
 import DepartureDateSelect from "@/components/UI/DepartureDateSelect";
 import Select from "@/components/UI/Select";
 import gsap from "gsap";
-
 import { ArrowRightLeft } from "lucide-react";
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
-const OneWay = ({ options }) => {
-  const [departureTime, setDepartureTime] = useState();
-
-  console.log("departureTime :", departureTime);
+const SearchOneWay = ({ options, classOptions }) => {
   const fromWrapRef = useRef(null);
   const toWrapRef = useRef(null);
   const containerRef = useRef(null);
   const swapBtnRef = useRef(null);
   const swapIconRef = useRef(null);
+
+  const [selectedFormAirPort, setSelectedFormAirPort] = useState(options[0]);
+  const [selectedToAirPort, setSelectedToAirPort] = useState(options[3]);
+  const [selectedClassOptions, setSeletedClassOptions] = useState(
+    classOptions[0],
+  );
+  const [departureTime, setDepartureTime] = useState();
 
   const createGhost = (text, rect) => {
     const ghost = document.createElement("div");
@@ -30,9 +33,6 @@ const OneWay = ({ options }) => {
     return ghost;
   };
 
-  const [selectedFormAirPort, setSelectedFormAirPort] = useState(options[0]);
-  const [selectedToAirPort, setSelectedToAirPort] = useState(options[3]);
-
   const handleSwapAirport = () => {
     if (!fromWrapRef.current || !toWrapRef.current) return;
 
@@ -41,12 +41,12 @@ const OneWay = ({ options }) => {
 
     const fromGhost = createGhost(
       `${selectedFormAirPort.city} ${selectedFormAirPort._id}`,
-      fromRect
+      fromRect,
     );
 
     const toGhost = createGhost(
       `${selectedToAirPort.city} ${selectedToAirPort._id}`,
-      toRect
+      toRect,
     );
 
     const dx = toRect.left - fromRect.left;
@@ -74,7 +74,7 @@ const OneWay = ({ options }) => {
         y: dy,
         duration: 0.6,
       },
-      "<"
+      "<",
     );
 
     tl.to(
@@ -84,7 +84,7 @@ const OneWay = ({ options }) => {
         y: -dy,
         duration: 0.6,
       },
-      "<"
+      "<",
     );
 
     // swap state AFTER animation
@@ -135,11 +135,11 @@ const OneWay = ({ options }) => {
 
   return (
     <section className="w-full">
-      <div className="mt-4">
+      <div className="mt-8">
         {/* airport */}
         <div
           ref={containerRef}
-          className="flex flex-col sm:flex-row sm:gap-2.5 items-stretch sm:items-center relative"
+          className="relative flex flex-col items-stretch sm:flex-row sm:items-center sm:gap-2.5"
         >
           <div ref={fromWrapRef} className="w-full sm:flex-1">
             <Select
@@ -158,14 +158,14 @@ const OneWay = ({ options }) => {
             onClick={handleSwapAirport}
             onMouseEnter={handleHoverIn}
             onMouseLeave={handleHoverOut}
-            className="self-center sm:self-auto sm:mt-5 p-2 rounded-full bg-primary text-white text-xs cursor-pointer flex items-center justify-center shrink-0 my-2 sm:my-0"
+            className="bg-primary my-2 flex shrink-0 cursor-pointer items-center justify-center self-center rounded-full p-2 text-xs text-white sm:my-0 sm:mt-5 sm:self-auto"
           >
             <span ref={swapIconRef} className="inline-block">
               <ArrowRightLeft size={16} />
             </span>
           </button>
 
-          <div ref={toWrapRef} className="-mt-6 md:mt-0 w-full sm:flex-1">
+          <div ref={toWrapRef} className="-mt-6 w-full sm:flex-1 md:mt-0">
             <Select
               name="To"
               options={options}
@@ -176,19 +176,26 @@ const OneWay = ({ options }) => {
             />
           </div>
 
-          <div className="w-full sm:w-auto sm:mt-auto mt-3 md:mt-0 relative">
+          <div className="mt-3 w-full sm:mt-auto sm:w-auto md:mt-0">
             <DepartureDateSelect
               value={departureTime}
               setValue={setDepartureTime}
             />
           </div>
-        </div>
-        <div className="flex justify-end mt-5">
-          <CommonButton>Search</CommonButton>
+          <div className="w-10 sm:flex-1">
+            <Select
+              name="Cabin Class"
+              options={classOptions}
+              value={selectedClassOptions}
+              onChange={setSeletedClassOptions}
+              getOptionLabel={(x) => x.name}
+              getOptionValue={(x) => x._id}
+            />
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default OneWay;
+export default SearchOneWay;
