@@ -34,12 +34,12 @@ const Hero = () => {
   }, [selectedService]);
 
   return (
-    <section className="bg-[url(https://i.ibb.co.com/kVK09VVw/john-cameron-WRQix-Jtep3-A-unsplash.jpg)] h-180 bg-cover bg-center flex items-end justify-center pb-10">
+    <section className="bg-[url(https://i.ibb.co.com/kVK09VVw/john-cameron-WRQix-Jtep3-A-unsplash.jpg)] h-182 bg-cover bg-center flex items-end justify-center pb-16">
       <Container>
-        <h1 className="text-center text-3xl lg:text-7xl font-bold text-white">
+        <h1 className="text-center text-3xl lg:text-7xl font-bold text-white leading-tight lg:leading-snug">
           Discover the Beauty of the World with Every Tour
         </h1>
-        <p className="text-center text-white max-w-lg mx-auto">
+        <p className="text-center text-white max-w-lg mx-auto hidden md:flex md:mt-5">
           From breathtaking landscapes to hidden gems — explore curated tours
           designed to create memories that last a lifetime.
         </p>

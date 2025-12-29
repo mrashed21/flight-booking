@@ -176,7 +176,7 @@ const OneWay = ({ options }) => {
             />
           </div>
 
-          <div className="w-full sm:w-auto sm:mt-auto mt-3 md:mt-0">
+          <div className="w-full sm:w-auto sm:mt-auto mt-3 md:mt-0 relative">
             <DepartureDateSelect
               value={departureTime}
               setValue={setDepartureTime}
