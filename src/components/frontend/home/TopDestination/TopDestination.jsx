@@ -4,6 +4,7 @@ import Container from "@/components/common/Container/Container";
 import useFadeUpOnView from "@/helpers/useFadeUpOnView";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 import { useRef } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -75,15 +76,15 @@ const TopDestination = () => {
     <section className="bg-surface py-20">
       <Container>
         {/* HEADER */}
-        <div className="text-center mb-14">
+        <div className="mb-14 text-center">
           <h2
             ref={titleRef}
-            className="text-3xl lg:text-4xl font-bold text-gray-800"
+            className="text-3xl font-bold text-gray-800 lg:text-4xl"
           >
             Top Destination
           </h2>
 
-          <p className="mt-3 text-muted max-w-xl mx-auto">
+          <p className="text-muted mx-auto mt-3 max-w-xl">
             From breathtaking landscapes to hidden gems – explore curated tours
             designed to create memories that last a lifetime.
           </p>
@@ -107,12 +108,14 @@ const TopDestination = () => {
           >
             {destinations.map((item, i) => (
               <SwiperSlide key={i}>
-                <div className="relative h-65 rounded-2xl overflow-hidden group cursor-pointer">
+                <div className="group relative h-65 cursor-pointer overflow-hidden rounded-2xl">
                   {/* IMAGE */}
-                  <img
+                  <Image
+                    width={200}
+                    height={200}
                     src={item.image}
                     alt={item.city}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
 
                   {/* OVERLAY */}
@@ -122,7 +125,7 @@ const TopDestination = () => {
                   <div className="absolute bottom-0 p-4 text-white">
                     <h3 className="text-lg font-semibold">{item.city}</h3>
                     <p className="text-sm text-white/80">{item.date}</p>
-                    <p className="text-sm mt-1">
+                    <p className="mt-1 text-sm">
                       Economy from{" "}
                       <span className="font-semibold">{item.price}</span>
                     </p>
@@ -133,11 +136,11 @@ const TopDestination = () => {
           </Swiper>
 
           {/* NAVIGATION */}
-          <div className="flex justify-center gap-4 mt-10">
-            <button className="dest-prev w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:border-primary transition cursor-pointer">
+          <div className="mt-10 flex justify-center gap-4">
+            <button className="dest-prev hover:border-primary flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-gray-300 transition">
               <ChevronLeft className="text-gray-500" />
             </button>
-            <button className="dest-next w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:border-primary transition cursor-pointer">
+            <button className="dest-next hover:border-primary flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-gray-300 transition">
               <ChevronRight className="text-primary" />
             </button>
           </div>

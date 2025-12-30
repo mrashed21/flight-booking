@@ -5,6 +5,7 @@ import { Autoplay, EffectCoverflow, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import useFadeUpOnView from "@/helpers/useFadeUpOnView";
+import Image from "next/image";
 import { useRef } from "react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -43,14 +44,14 @@ const TravelSection = () => {
 
   useFadeUpOnView(titleRef);
   return (
-    <section className="bg-[#f8fafc] py-20  ">
+    <section className="bg-[#f8fafc] py-20">
       <Container>
         {/* HEADER */}
-        <div className="text-center mb-12 mt-10">
-          <h2 className="text-3xl font-bold text-gray-800 ">
+        <div className="mt-10 mb-12 text-center">
+          <h2 className="text-3xl font-bold text-gray-800">
             Still Interested in Traveling to Sydney?
           </h2>
-          <p className="text-gray-500 mt-2">
+          <p className="mt-2 text-gray-500">
             There is a limited number of seats available. Complete your booking
             to secure yours.
           </p>
@@ -58,7 +59,7 @@ const TravelSection = () => {
 
         {/* SWIPER */}
         <Swiper
-          modules={[EffectCoverflow, Autoplay, Mousewheel]} 
+          modules={[EffectCoverflow, Autoplay, Mousewheel]}
           effect="coverflow"
           centeredSlides
           loop={true}
@@ -80,15 +81,17 @@ const TravelSection = () => {
             modifier: 1,
             slideShadows: false,
           }}
-          className="pb-12 -z-10"
+          className="-z-10 pb-12"
         >
           {banners.map((item, i) => (
             <SwiperSlide key={i}>
-              <div className="bg-white rounded-2xl shadow-xl h-60 overflow-hidden">
-                <img
+              <div className="h-60 overflow-hidden rounded-2xl bg-white shadow-xl">
+                <Image
+                  width={200}
+                  height={200}
                   src={item.image}
                   alt="travel"
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover"
                 />
               </div>
             </SwiperSlide>

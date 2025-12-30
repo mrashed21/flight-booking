@@ -3,6 +3,7 @@
 import Container from "@/components/common/Container/Container";
 import useFadeUpOnView from "@/helpers/useFadeUpOnView";
 import { ChevronRight } from "lucide-react";
+import Image from "next/image";
 import { useRef } from "react";
 
 /* ---------- DEMO DATA ---------- */
@@ -89,7 +90,9 @@ const PopularAirlines = () => {
               <div className="flex items-center gap-3">
                 {/* LOGO */}
                 <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white">
-                  <img
+                  <Image
+                    width={200}
+                    height={200}
                     src={airline.logo}
                     alt={airline.name}
                     className="h-7 w-7 object-contain"

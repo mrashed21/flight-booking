@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const HeroButton = ({ action, type, activeImage, inActiveImage, name }) => {
   return (
     <button
@@ -5,14 +7,26 @@ const HeroButton = ({ action, type, activeImage, inActiveImage, name }) => {
       onClick={() => {
         action();
       }}
-      className={`px-2 lg:px-5 py-1 lg:py-1.5 rounded-t-md text-lg font-medium flex items-center justify-center gap-1 cursor-pointer transition-all duration-300 ${
-        type ? "bg-white text-warning" : "bg-warning text-white "
+      className={`flex cursor-pointer items-center justify-center gap-1 rounded-t-md px-2 py-1 text-lg font-medium transition-all duration-300 lg:px-5 lg:py-1.5 ${
+        type ? "text-warning bg-white" : "bg-warning text-white"
       } `}
     >
       {type ? (
-        <img src={activeImage} alt={name} className="w-7 h-5 lg:w-8 lg:h-6" />
+        <Image
+          width={200}
+          height={200}
+          src={activeImage}
+          alt={name}
+          className="h-5 w-7 lg:h-6 lg:w-8"
+        />
       ) : (
-        <img src={inActiveImage} alt={name} className="w-7 h-5 lg:w-8 lg:h-6" />
+        <Image
+          width={200}
+          height={200}
+          src={inActiveImage}
+          alt={name}
+          className="h-5 w-7 lg:h-6 lg:w-8"
+        />
       )}{" "}
       {name}
     </button>

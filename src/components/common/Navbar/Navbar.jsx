@@ -1,6 +1,7 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Container from "../Container/Container";
@@ -88,14 +89,15 @@ const Navbar = () => {
         <Container>
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
-            <img
+            <Image
+              width={200}
+              height={200}
               src="https://i.ibb.co.com/Q317RSjR/Group-1597883383.png"
               alt="logo"
-              className="h-10 cursor-pointer"
             />
 
             {/* Desktop Nav */}
-            <div className="hidden md:flex gap-6">
+            <div className="hidden gap-6 md:flex">
               {navItems.map((item) => (
                 <Link
                   key={item.link}
@@ -110,13 +112,13 @@ const Navbar = () => {
             {/* Right */}
             <div className="flex items-center gap-3">
               {!user && (
-                <div className="hidden md:flex gap-3">
-                  <Link href="/login" className="px-4 py-1.5 border rounded-md">
+                <div className="hidden gap-3 md:flex">
+                  <Link href="/login" className="rounded-md border px-4 py-1.5">
                     Login
                   </Link>
                   <Link
                     href="/register"
-                    className="px-4 py-1.5 bg-primary text-white rounded-md"
+                    className="bg-primary rounded-md px-4 py-1.5 text-white"
                   >
                     Sign Up
                   </Link>
@@ -125,9 +127,11 @@ const Navbar = () => {
 
               {user && (
                 <button onClick={toggleProfile}>
-                  <img
+                  <Image
+                    width={200}
+                    height={200}
                     src="https://i.ibb.co.com/NZk0ctZ/cat.jpg"
-                    className="w-10 h-10 rounded-full border cursor-pointer"
+                    className="h-10 w-10 cursor-pointer rounded-full border"
                     alt="user "
                   />
                 </button>
