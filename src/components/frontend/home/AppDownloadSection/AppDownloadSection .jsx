@@ -137,7 +137,6 @@ const AppDownloadSection = () => {
     return () => ctx.revert();
   }, []);
 
-
   return (
     <section
       ref={sectionRef}
@@ -181,19 +180,20 @@ const AppDownloadSection = () => {
               <div className="relative w-full max-w-md lg:max-w-lg">
                 {/* Phone 1 - Main */}
                 <div className="relative z-20 mx-auto w-44 transform transition-transform duration-300 hover:scale-105 sm:w-52 md:w-56 lg:mx-0">
-                  <div className="relative rounded-[2.5rem] bg-gray-900 p-2 shadow-2xl">
+                  <div className="relative rounded-3xl bg-gray-900 p-2 shadow-2xl">
                     {/* Notch */}
-                    <div className="absolute top-0 left-1/2 z-30 h-5 w-28 -translate-x-1/2 rounded-b-3xl bg-gray-900"></div>
+                    <div className="absolute top-0 left-1/2 z-30 h-4 w-18 -translate-x-1/2 rounded-b-3xl bg-gray-900"></div>
 
                     {/* Screen */}
-                    <div className="from-primary-bg relative aspect-9/19 overflow-hidden rounded-4xl bg-linear-to-br to-white shadow-inner">
+                    <div className="relative aspect-9/19 overflow-hidden rounded-[20px] bg-white shadow-inner">
                       {/* Status Bar */}
-                      <div className="bg-primary-dark absolute top-0 right-0 left-0 z-10 flex h-8 items-center justify-between px-4 text-[10px] text-white">
-                        <span>9:41</span>
-                        <div className="flex gap-1">
-                          <div className="h-3 w-3 rounded-sm bg-white"></div>
-                          <div className="h-3 w-3 rounded-sm bg-white"></div>
-                          <div className="h-3 w-3 rounded-sm bg-white"></div>
+                      <div className="bg-primary absolute top-0 right-0 left-0 z-10 flex h-6 items-center justify-between px-4 text-[10px] text-white">
+                        <LiveClock />
+
+                        <div className="-mt-2 flex gap-1">
+                          <SignalHigh size={12} />
+                          <BatteryMedium size={12} />
+                          <Wifi size={12} />
                         </div>
                       </div>
 
