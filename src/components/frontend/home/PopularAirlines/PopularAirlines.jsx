@@ -79,13 +79,12 @@ const PopularAirlines = () => {
             designed to create memories that last a lifetime.
           </p>
         </div>
-
         {/* GRID */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {airlines.map((airline, i) => (
             <div
               key={i}
-              className="border-primary-soft bg-warning/14 flex cursor-pointer items-center justify-between gap-4 rounded-xl border px-5 py-4 transition hover:shadow-md"
+              className={`border-primary-soft bg-warning/14 flex cursor-pointer items-center justify-between gap-4 rounded-xl border px-5 py-4 transition hover:shadow-md ${i >= 5 ? "hidden md:flex" : "flex"} `}
             >
               <div className="flex items-center gap-3">
                 {/* LOGO */}

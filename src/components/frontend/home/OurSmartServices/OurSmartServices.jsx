@@ -40,7 +40,7 @@ const OurSmartServices = () => {
   useFadeUpStagger(cardsRef, { y: 60 });
 
   return (
-    <section className="bg-[var(--color-surface)] py-24">
+    <section className="bg-surface py-24">
       <Container>
         {/* HEADER */}
         <div className="mb-16 text-center">
@@ -53,7 +53,7 @@ const OurSmartServices = () => {
 
           <p
             ref={subtitleRef}
-            className="mx-auto mt-3 max-w-xl text-[var(--color-muted)]"
+            className="text-muted mx-auto mt-3 max-w-xl"
           >
             From breathtaking landscapes to hidden gems – explore curated tours
             designed to create memories that last a lifetime.
@@ -69,10 +69,10 @@ const OurSmartServices = () => {
               <div
                 key={i}
                 // ref={(el) => (cardsRef.current[i] = el)}
-                className="group rounded-2xl bg-[var(--color-primary-dark)] px-8 py-10 text-center text-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl"
+                className="group bg-primary-dark rounded-2xl px-8 py-10 text-center text-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl"
               >
                 {/* ICON */}
-                <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-[var(--color-warning)] transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+                <div className="bg-warning mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
                   <Icon className="h-7 w-7 text-white" />
                 </div>
 
