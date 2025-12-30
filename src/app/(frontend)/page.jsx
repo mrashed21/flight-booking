@@ -1,3 +1,4 @@
+import AppDownloadSection from "@/components/frontend/home/AppDownloadSection/AppDownloadSection ";
 import Hero from "@/components/frontend/home/hero/Hero";
 import OurSmartServices from "@/components/frontend/home/OurSmartServices/OurSmartServices";
 import PopularAirlines from "@/components/frontend/home/PopularAirlines/PopularAirlines";
@@ -14,6 +15,7 @@ const HomePage = () => {
       <PopularAirlines />
       <OurSmartServices />
       <SuitableRoutes />
+      <AppDownloadSection />
     </section>
   );
 };
