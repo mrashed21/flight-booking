@@ -1,7 +1,7 @@
 "use client";
 
 import PillButton from "@/components/UI/PillButton";
-import { AIRPORTS } from "@/demo/data/AIRPORTS";
+import { airpotsData } from "@/demo/data/AirPorts";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import MultiCity from "./MultiCity";
@@ -65,9 +65,9 @@ const FlightContent = () => {
 
       {/* select */}
       <div ref={contentRef}>
-        {selectedType === "One Way" && <OneWay options={AIRPORTS} />}
-        {selectedType === "Round Trip" && <RoundTrip options={AIRPORTS} />}
-        {selectedType === "Multi-City" && <MultiCity options={AIRPORTS} />}
+        {selectedType === "One Way" && <OneWay options={airpotsData} />}
+        {selectedType === "Round Trip" && <RoundTrip options={airpotsData} />}
+        {selectedType === "Multi-City" && <MultiCity options={airpotsData} />}
       </div>
     </section>
   );

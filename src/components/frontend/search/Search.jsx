@@ -1,7 +1,8 @@
 "use client";
 
 import PillButton from "@/components/UI/PillButton";
-import { AIRPORTS } from "@/demo/data/AIRPORTS";
+
+import { airpotsData } from "@/demo/data/AirPorts";
 import { CLASS_OPTIONS } from "@/demo/data/ClassType";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
@@ -74,13 +75,13 @@ const Search = () => {
       {/* select */}
       <div ref={contentRef}>
         {selectedType === "One Way" && (
-          <SearchOneWay options={AIRPORTS} classOptions={CLASS_OPTIONS} />
+          <SearchOneWay options={airpotsData} classOptions={CLASS_OPTIONS} />
         )}
         {selectedType === "Round Trip" && (
-          <SearchRoundTrip options={AIRPORTS} classOptions={CLASS_OPTIONS} />
+          <SearchRoundTrip options={airpotsData} classOptions={CLASS_OPTIONS} />
         )}
         {selectedType === "Multi-City" && (
-          <SearchMultiCity options={AIRPORTS} classOptions={CLASS_OPTIONS} />
+          <SearchMultiCity options={airpotsData} classOptions={CLASS_OPTIONS} />
         )}
 
         {/* //todo search result */}
