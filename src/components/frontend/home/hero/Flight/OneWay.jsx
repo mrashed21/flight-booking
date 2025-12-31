@@ -158,9 +158,9 @@ const OneWay = ({ options }) => {
             onClick={handleSwapAirport}
             onMouseEnter={handleHoverIn}
             onMouseLeave={handleHoverOut}
-            className="self-center sm:self-auto sm:mt-5 p-2 rounded-full bg-primary text-white text-xs cursor-pointer flex items-center justify-center shrink-0 my-2 sm:my-0"
+            className="self-center sm:self-auto sm:mt-5 p-2 rounded-full bg-primary text-white text-xs cursor-pointer flex items-center justify-center shrink-0 my-2 sm:my-0 -rotate-90 lg:rotate-0"
           >
-            <span ref={swapIconRef} className="inline-block">
+            <span ref={swapIconRef} className=" inline-block">
               <ArrowRightLeft size={16} />
             </span>
           </button>

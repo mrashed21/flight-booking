@@ -44,7 +44,7 @@ const TravelSection = () => {
 
   useFadeUpOnView(titleRef);
   return (
-    <section className="bg-[#f8fafc] py-20">
+    <section className="bg-surface py-20">
       <Container>
         {/* HEADER */}
         <div className="mt-10 mb-12 text-center">
@@ -85,7 +85,7 @@ const TravelSection = () => {
         >
           {banners.map((item, i) => (
             <SwiperSlide key={i}>
-              <div className="h-60 overflow-hidden rounded-2xl bg-white shadow-xl">
+              <div className="h-60 overflow-hidden rounded-2xl ">
                 <Image
                   width={200}
                   height={200}

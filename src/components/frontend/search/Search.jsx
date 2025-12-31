@@ -1,43 +1,15 @@
 "use client";
 
 import PillButton from "@/components/UI/PillButton";
+import { AIRPORTS } from "@/demo/data/AIRPORTS";
+import { CLASS_OPTIONS } from "@/demo/data/ClassType";
 import gsap from "gsap";
-import React, { useEffect, useRef, useState } from "react";
-import SearchOneWay from "./searchPage/SearchOneWay";
-import CommonButton from "@/components/UI/CommonButton";
-
-const options = [
-  {
-    _id: "DAC",
-    city: "Dhaka",
-    country: "Bangladesh",
-    airport_name: "Hazrat Shahjalal International Airport",
-  },
-  {
-    _id: "DEL",
-    city: "Delhi",
-    country: "India",
-    airport_name: "Indira Gandhi International Airport",
-  },
-  {
-    _id: "DXB",
-    city: "Dubai",
-    country: "UAE",
-    airport_name: "Dubai International Airport",
-  },
-  {
-    _id: "DOH",
-    city: "Doha",
-    country: "Qatar",
-    airport_name: "Hamad International Airport",
-  },
-];
-
-const classOptions = [
-  { _id: 1, name: "Economy Class" },
-  { _id: 2, name: "Business Class" },
-  { _id: 3, name: "First Class" },
-];
+import { useEffect, useRef, useState } from "react";
+import SearchContent from "./searchContent/SearchContent";
+import SearchSidebar from "./searchContent/SearchSidebar";
+import SearchMultiCity from "./searchType/SearchMultiCity";
+import SearchOneWay from "./searchType/SearchOneWay";
+import SearchRoundTrip from "./searchType/SearchRoundTrip";
 
 const Search = () => {
   const [selectedType, setSelectedType] = useState("One Way");
@@ -102,10 +74,26 @@ const Search = () => {
       {/* select */}
       <div ref={contentRef}>
         {selectedType === "One Way" && (
-          <SearchOneWay options={options} classOptions={classOptions} />
+          <SearchOneWay options={AIRPORTS} classOptions={CLASS_OPTIONS} />
         )}
-        {/* {selectedType === "Round Trip" && <RoundTrip options={options} />}
-        {selectedType === "Multi-City" && <MultiCity options={options} />} */}
+        {selectedType === "Round Trip" && (
+          <SearchRoundTrip options={AIRPORTS} classOptions={CLASS_OPTIONS} />
+        )}
+        {selectedType === "Multi-City" && (
+          <SearchMultiCity options={AIRPORTS} classOptions={CLASS_OPTIONS} />
+        )}
+
+        {/* //todo search result */}
+        <div className="mt-5 grid min-h-screen grid-cols-12 gap-2">
+          {/* sidebar */}
+          <div className="col-span-2">
+            <SearchSidebar />
+          </div>
+          {/* search content */}
+          <div className="col-span-10">
+            <SearchContent />
+          </div>
+        </div>
       </div>
     </section>
   );

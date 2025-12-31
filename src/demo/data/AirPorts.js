@@ -1,0 +1,92 @@
+export const AIRPORTS = [
+  {
+    _id: "DAC",
+    city: "Dhaka",
+    country: "Bangladesh",
+    airport_name: "Hazrat Shahjalal International Airport",
+  },
+  {
+    _id: "CXB",
+    city: "Cox's Bazar",
+    country: "Bangladesh",
+    airport_name: "Cox's Bazar Airport",
+  },
+  {
+    _id: "DEL",
+    city: "Delhi",
+    country: "India",
+    airport_name: "Indira Gandhi International Airport",
+  },
+  {
+    _id: "BOM",
+    city: "Mumbai",
+    country: "India",
+    airport_name: "Chhatrapati Shivaji Maharaj International Airport",
+  },
+  {
+    _id: "CCU",
+    city: "Kolkata",
+    country: "India",
+    airport_name: "Netaji Subhas Chandra Bose Airport",
+  },
+  {
+    _id: "DXB",
+    city: "Dubai",
+    country: "UAE",
+    airport_name: "Dubai International Airport",
+  },
+  {
+    _id: "AUH",
+    city: "Abu Dhabi",
+    country: "UAE",
+    airport_name: "Abu Dhabi International Airport",
+  },
+  {
+    _id: "DOH",
+    city: "Doha",
+    country: "Qatar",
+    airport_name: "Hamad International Airport",
+  },
+  {
+    _id: "SIN",
+    city: "Singapore",
+    country: "Singapore",
+    airport_name: "Changi International Airport",
+  },
+  {
+    _id: "KUL",
+    city: "Kuala Lumpur",
+    country: "Malaysia",
+    airport_name: "Kuala Lumpur International Airport",
+  },
+  {
+    _id: "BKK",
+    city: "Bangkok",
+    country: "Thailand",
+    airport_name: "Suvarnabhumi Airport",
+  },
+  {
+    _id: "LHR",
+    city: "London",
+    country: "UK",
+    airport_name: "Heathrow Airport",
+  },
+  {
+    _id: "JFK",
+    city: "New York",
+    country: "USA",
+    airport_name: "John F. Kennedy International Airport",
+  },
+  {
+    _id: "IST",
+    city: "Istanbul",
+    country: "Turkey",
+    airport_name: "Istanbul Airport",
+  },
+  {
+    _id: "HKG",
+    city: "Hong Kong",
+    country: "Hong Kong",
+    airport_name: "Hong Kong International Airport",
+  },
+];

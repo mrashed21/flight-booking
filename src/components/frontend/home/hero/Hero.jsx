@@ -29,24 +29,24 @@ const Hero = () => {
     gsap.fromTo(
       contentRef.current,
       { opacity: 0.8, scaleX: 0.5, transformOrigin: "left center" },
-      { opacity: 1, scaleX: 1, duration: 0.4, ease: "power1.inOut" }
+      { opacity: 1, scaleX: 1, duration: 0.4, ease: "power1.inOut" },
     );
   }, [selectedService]);
 
   return (
-    <section className="bg-[url(https://i.ibb.co.com/kVK09VVw/john-cameron-WRQix-Jtep3-A-unsplash.jpg)] h-182 bg-cover bg-center flex items-end justify-center pb-16">
-      <Container>
-        <h1 className="text-center text-3xl lg:text-7xl font-bold text-white leading-tight lg:leading-snug">
-          Discover the Beauty of the World with Every Tour
+    <section className="flex h-170 items-end justify-center bg-[url(https://i.ibb.co.com/gbvkb90c/Whats-App-Image-2025-12-31-at-11-31-37-AM.jpg)] bg-cover bg-center pb-16 lg:h-182">
+      <Container className="flex flex-col items-center justify-center">
+        <h1 className="text-center text-3xl leading-tight font-bold text-white lg:text-7xl lg:leading-snug">
+          Discover the Beauty of the World <br /> with Every Tour
         </h1>
-        <p className="text-center text-white max-w-lg mx-auto hidden md:flex md:mt-5">
+        <p className="mx-auto mb-3 hidden max-w-xl text-center text-lg text-white md:mt-5 md:flex">
           From breathtaking landscapes to hidden gems — explore curated tours
           designed to create memories that last a lifetime.
         </p>
 
         <div className="">
           {/* button */}
-          <div className="flex items-center justify-start gap-1 mt-5">
+          <div className="mt-5 flex items-center justify-center gap-1 lg:justify-start">
             <HeroButton
               action={() => handleServiceClick("Flight")}
               type={selectedService === "Flight"}
