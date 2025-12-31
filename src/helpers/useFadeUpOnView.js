@@ -14,7 +14,7 @@ const useFadeUpOnView = (
     ease = "power3.out",
     start = "top 80%",
     end = "top 0%",
-  } = {},
+  } = {}
 ) => {
   useEffect(() => {
     if (!ref.current) return;
@@ -34,7 +34,7 @@ const useFadeUpOnView = (
             end,
             toggleActions: "play reset play reset",
           },
-        },
+        }
       );
     }, ref);
 
