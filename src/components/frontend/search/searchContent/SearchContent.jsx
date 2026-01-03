@@ -1,8 +1,10 @@
 "use client";
 
-import { ChevronDown, Clock } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import MultiCityResult from "../SearchResult/MultiCity/MultiCityResult";
+import OneWayResult from "../SearchResult/OneWay/OneWayResult";
+import RoundTripResult from "../SearchResult/RoundTrip/RoundTripResult";
 
 /* ---------- DEMO DATA ---------- */
 const flights = [
@@ -50,24 +52,66 @@ const flights = [
   },
 ];
 
-const SearchContent = () => {
-  const [openId, setOpenId] = useState(null);
+const SearchContent = ({ selectedType }) => {
+  const [openFlightDetails, setOpenFlightDetails] = useState(null);
+  const [selectedFilter, setSelecttedFilter] = useState("cheapest");
 
   return (
     <div className="space-y-4">
       {/* ---------- RESULT HEADER ---------- */}
-      <div className="flex items-center justify-between rounded-xl bg-white p-4 shadow-sm">
-        <p className="text-sm text-gray-600">
-          <span className="font-semibold text-gray-800">{flights.length}</span>{" "}
-          Available Flights
+      <div className="flex items-center justify-between p-3">
+        <p className="text-3xl">
+          <span className="font-semibold">{flights.length}</span> Available
+          Flights
         </p>
 
         <div className="flex gap-2">
-          <button className="border-primary text-primary bg-primary-soft rounded-md border px-3 py-1.5 text-xs">
-            Cheapest
+          {/* CHEAPEST */}
+          <button
+            onClick={() => setSelecttedFilter("cheapest")}
+            className={`text-primary cursor-pointer rounded-md border px-3 py-1 transition ${
+              selectedFilter === "cheapest"
+                ? "border-primary bg-primary-soft"
+                : "border-muted hover:border-primary"
+            } `}
+          >
+            <div className="flex items-center gap-2">
+              <Image
+                src="/icons/cheapest.svg"
+                alt="cheapest"
+                width={18}
+                height={18}
+                className="h-4 w-4"
+              />
+              <span className="font-medium">Cheapest</span>
+            </div>
+            <span className="text-muted block text-[10px] leading-tight">
+              From BDT 4,999
+            </span>
           </button>
-          <button className="rounded-md border px-3 py-1.5 text-xs text-gray-500">
-            Fastest
+
+          {/* FASTEST */}
+          <button
+            onClick={() => setSelecttedFilter("fastest")}
+            className={`text-primary cursor-pointer rounded-md border px-3 py-1 transition ${
+              selectedFilter === "fastest"
+                ? "border-primary bg-primary-soft"
+                : "border-muted hover:border-primary"
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <Image
+                src="/icons/fastest.svg"
+                alt="fastest"
+                width={18}
+                height={18}
+                className="h-4 w-4"
+              />
+              <span className="font-medium">Fastest</span>
+            </div>
+            <span className="text-muted block text-[10px] leading-tight">
+              From BDT 8,999
+            </span>
           </button>
         </div>
       </div>
@@ -76,101 +120,28 @@ const SearchContent = () => {
       {flights.map((flight) => (
         <div
           key={flight.id}
-          className="overflow-hidden rounded-xl bg-white shadow-sm"
+          className="-mt-3 overflow-hidden rounded-xl bg-white shadow-sm mb-7"
         >
-          {/* MAIN ROW */}
-          <div className="grid grid-cols-12 items-center gap-3 p-4">
-            {/* Airline */}
-            <div className="col-span-12 flex items-center gap-3 lg:col-span-3">
-              <Image
-                src={flight.logo}
-                alt={flight.airline}
-                className="h-8 w-auto"
-                width={300}
-                height={300}
-              />
-              <p className="text-sm font-medium text-gray-700">
-                {flight.airline}
-              </p>
-            </div>
-
-            {/* Time */}
-            <div className="col-span-12 flex items-center justify-between lg:col-span-5">
-              <div className="text-center">
-                <p className="text-sm font-semibold">{flight.departure}</p>
-                <p className="text-xs text-gray-500">{flight.from}</p>
-              </div>
-
-              <div className="flex flex-col items-center text-xs text-gray-500">
-                <Clock size={14} />
-                <span>{flight.duration}</span>
-                <span>{flight.stop}</span>
-              </div>
-
-              <div className="text-center">
-                <p className="text-sm font-semibold">{flight.arrival}</p>
-                <p className="text-xs text-gray-500">{flight.to}</p>
-              </div>
-            </div>
-
-            {/* Price */}
-            <div className="col-span-6 text-right lg:col-span-2">
-              <p className="text-primary text-sm font-semibold">
-                BDT {flight.price.toLocaleString()}
-              </p>
-              <p className="text-xs text-gray-500">Starting from</p>
-            </div>
-
-            {/* Action */}
-            <div className="col-span-6 text-right lg:col-span-2">
-              <button className="bg-primary rounded-md px-4 py-1.5 text-sm text-white">
-                Select
-              </button>
-            </div>
-          </div>
-
-          {/* EXPAND */}
-          <div className="flex items-center justify-between border-t px-4 py-2">
-            <p className="text-xs text-pink-500">
-              Up to 9% discount with bKash during payment
-            </p>
-
-            <button
-              onClick={() => setOpenId(openId === flight.id ? null : flight.id)}
-              className="text-primary flex items-center gap-1 text-xs"
-            >
-              Flight Details
-              <ChevronDown
-                size={14}
-                className={`transition ${
-                  openId === flight.id ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-          </div>
-
-          {/* DETAILS */}
-          {openId === flight.id && (
-            <div className="grid grid-cols-2 gap-4 bg-gray-50 px-4 py-3 text-sm text-gray-600">
-              <div>
-                <p>
-                  <span className="font-medium">Baggage:</span> {flight.baggage}
-                </p>
-                <p>
-                  <span className="font-medium">Refundable:</span>{" "}
-                  {flight.refundable ? "Yes" : "No"}
-                </p>
-              </div>
-              <div>
-                <p>
-                  <span className="font-medium">Route:</span> {flight.from} →{" "}
-                  {flight.to}
-                </p>
-                <p>
-                  <span className="font-medium">Stops:</span> {flight.stop}
-                </p>
-              </div>
-            </div>
+          {selectedType === "One Way" && (
+            <OneWayResult
+              flight={flight}
+              openFlightDetails={openFlightDetails}
+              setOpenFlightDetails={setOpenFlightDetails}
+            />
+          )}
+          {selectedType === "Round Trip" && (
+            <RoundTripResult
+              flight={flight}
+              openFlightDetails={openFlightDetails}
+              setOpenFlightDetails={setOpenFlightDetails}
+            />
+          )}
+          {selectedType === "Multi-City" && (
+            <MultiCityResult
+              flight={flight}
+              openFlightDetails={openFlightDetails}
+              setOpenFlightDetails={setOpenFlightDetails}
+            />
           )}
         </div>
       ))}

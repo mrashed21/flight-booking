@@ -1,16 +1,7 @@
-// import React from 'react'
-
-// const SearchSidebar = () => {
-//   return (
-//     <div>SearchSidebar</div>
-//   )
-// }
-
-// export default SearchSidebar
-
 "use client";
 
-import { useState } from "react";
+import { Clock } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const airlines = [
   "US Bangla Airlines",
@@ -21,121 +12,171 @@ const airlines = [
 
 const SearchSidebar = () => {
   const [price, setPrice] = useState(9999);
+  const MAX_SECONDS = 29 * 60 * 60 + 59 * 60 + 59;
+  const [secondsLeft, setSecondsLeft] = useState(MAX_SECONDS);
 
+  const formatTime = (totalSeconds) => {
+    const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
+    const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(
+      2,
+      "0",
+    );
+    const seconds = String(totalSeconds % 60).padStart(2, "0");
+    return `${hours}:${minutes}:${seconds}`;
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+
+      // Reset exactly at 12:00:00 AM
+      if (
+        now.getHours() === 0 &&
+        now.getMinutes() === 0 &&
+        now.getSeconds() === 0
+      ) {
+        setSecondsLeft(MAX_SECONDS);
+        return;
+      }
+
+      setSecondsLeft((prev) => {
+        if (prev <= 0) return 0;
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const [hh, mm, ss] = formatTime(secondsLeft).split(":");
   return (
-    <div className="space-y-6 rounded-xl bg-white p-4 shadow-sm">
-      {/* ---------- HEADER ---------- */}
-      <h3 className="text-base font-semibold text-gray-800">Filter</h3>
-
-      {/* ---------- PRICE RANGE ---------- */}
-      <div>
-        <p className="mb-2 text-sm font-medium text-gray-700">Price Range</p>
-
-        <input
-          type="range"
-          min={4999}
-          max={19500}
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          className="accent-primary w-full"
-        />
-
-        <div className="mt-1 flex justify-between text-xs text-gray-500">
-          <span>BDT 4,999</span>
-          <span>BDT {price}</span>
-        </div>
-      </div>
-
-      {/* ---------- AIRLINES ---------- */}
-      <div>
-        <p className="mb-2 text-sm font-medium text-gray-700">Airlines</p>
-
-        <div className="space-y-2">
-          {airlines.map((airline) => (
-            <label
-              key={airline}
-              className="flex cursor-pointer items-center gap-2 text-sm text-gray-600"
-            >
-              <input
-                type="checkbox"
-                className="text-primary focus:ring-primary rounded border-gray-300"
-              />
-              {airline}
-            </label>
-          ))}
-        </div>
-      </div>
-
-      {/* ---------- FLIGHT SCHEDULE ---------- */}
-      <div>
-        <p className="mb-2 text-sm font-medium text-gray-700">
-          Flight Schedules
+    <>
+      <div className="border-surface mb-5 flex items-center gap-2 rounded-xl border p-4 shadow-sm">
+        <p className="flex items-center gap-2">
+          <Clock size={16} className="text-primary" />
+          <span className="text-muted text-sm font-medium">Time Remaining</span>
         </p>
+        <span className="text-primary text-sm font-medium">
+          {" "}
+          {hh}:{mm}:{ss}
+        </span>
+      </div>
+      <div className="space-y-6 rounded-xl bg-white p-4 shadow-sm">
+        {/* ---------- HEADER ---------- */}
+        <h3 className="text-base font-semibold text-gray-800">Filter</h3>
 
-        <div className="flex gap-2">
-          <button className="border-primary text-primary bg-primary-soft flex-1 rounded-md border py-1.5 text-xs">
-            Departure
-          </button>
-          <button className="flex-1 rounded-md border py-1.5 text-xs text-gray-500">
-            Arrival
-          </button>
+        {/* ---------- PRICE RANGE ---------- */}
+        <div>
+          <p className="mb-2 text-sm font-medium text-gray-700">Price Range</p>
+
+          <input
+            type="range"
+            min={4999}
+            max={19500}
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            className="accent-primary w-full"
+          />
+
+          <div className="mt-1 flex justify-between text-xs text-gray-500">
+            <span>BDT 4,999</span>
+            <span>BDT {price}</span>
+          </div>
         </div>
 
-        <div className="mt-3 space-y-2 text-sm text-gray-600">
-          <label className="flex items-center gap-2">
-            <input type="checkbox" />
-            12 AM – 06 AM
-          </label>
-          <label className="flex items-center gap-2">
-            <input type="checkbox" />
-            06 AM – 12 PM
-          </label>
-          <label className="flex items-center gap-2">
-            <input type="checkbox" />
-            12 PM – 06 PM
-          </label>
-          <label className="flex items-center gap-2">
-            <input type="checkbox" />
-            06 PM – 12 AM
-          </label>
+        {/* ---------- AIRLINES ---------- */}
+        <div>
+          <p className="mb-2 text-sm font-medium text-gray-700">Airlines</p>
+
+          <div className="space-y-2">
+            {airlines.map((airline) => (
+              <label
+                key={airline}
+                className="flex cursor-pointer items-center gap-2 text-sm text-gray-600"
+              >
+                <input
+                  type="checkbox"
+                  className="text-primary focus:ring-primary rounded border-gray-300"
+                />
+                {airline}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* ---------- FLIGHT SCHEDULE ---------- */}
+        <div>
+          <p className="mb-2 text-sm font-medium text-gray-700">
+            Flight Schedules
+          </p>
+
+          <div className="flex gap-2">
+            <button className="border-primary text-primary bg-primary-soft flex-1 rounded-md border py-1.5 text-xs">
+              Departure
+            </button>
+            <button className="flex-1 rounded-md border py-1.5 text-xs text-gray-500">
+              Arrival
+            </button>
+          </div>
+
+          <div className="mt-3 space-y-2 text-sm text-gray-600">
+            <label className="flex items-center gap-2">
+              <input type="checkbox" />
+              12 AM – 06 AM
+            </label>
+            <label className="flex items-center gap-2">
+              <input type="checkbox" />
+              06 AM – 12 PM
+            </label>
+            <label className="flex items-center gap-2">
+              <input type="checkbox" />
+              12 PM – 06 PM
+            </label>
+            <label className="flex items-center gap-2">
+              <input type="checkbox" />
+              06 PM – 12 AM
+            </label>
+          </div>
+        </div>
+
+        {/* ---------- STOPS ---------- */}
+        <div>
+          <p className="mb-2 text-sm font-medium text-gray-700">Stops</p>
+
+          <div className="space-y-2 text-sm text-gray-600">
+            <label className="flex items-center gap-2">
+              <input type="checkbox" />
+              Non-stop
+            </label>
+            <label className="flex items-center gap-2">
+              <input type="checkbox" />1 Stop
+            </label>
+            <label className="flex items-center gap-2">
+              <input type="checkbox" />
+              2+ Stops
+            </label>
+          </div>
+        </div>
+
+        {/* ---------- BAGGAGE ---------- */}
+        <div>
+          <p className="mb-2 text-sm font-medium text-gray-700">
+            Baggage Policy
+          </p>
+
+          <div className="space-y-2 text-sm text-gray-600">
+            <label className="flex items-center gap-2">
+              <input type="checkbox" />
+              20 KG
+            </label>
+            <label className="flex items-center gap-2">
+              <input type="checkbox" />
+              30 KG
+            </label>
+          </div>
         </div>
       </div>
-
-      {/* ---------- STOPS ---------- */}
-      <div>
-        <p className="mb-2 text-sm font-medium text-gray-700">Stops</p>
-
-        <div className="space-y-2 text-sm text-gray-600">
-          <label className="flex items-center gap-2">
-            <input type="checkbox" />
-            Non-stop
-          </label>
-          <label className="flex items-center gap-2">
-            <input type="checkbox" />1 Stop
-          </label>
-          <label className="flex items-center gap-2">
-            <input type="checkbox" />
-            2+ Stops
-          </label>
-        </div>
-      </div>
-
-      {/* ---------- BAGGAGE ---------- */}
-      <div>
-        <p className="mb-2 text-sm font-medium text-gray-700">Baggage Policy</p>
-
-        <div className="space-y-2 text-sm text-gray-600">
-          <label className="flex items-center gap-2">
-            <input type="checkbox" />
-            20 KG
-          </label>
-          <label className="flex items-center gap-2">
-            <input type="checkbox" />
-            30 KG
-          </label>
-        </div>
-      </div>
-    </div>
+    </>
   );
 };
 

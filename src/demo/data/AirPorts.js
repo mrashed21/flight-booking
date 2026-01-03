@@ -1,4 +1,4 @@
- export const  airpotsData = [
+export const airPortsData = [
   {
     _id: "DAC",
     city: "Dhaka",

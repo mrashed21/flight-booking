@@ -1,13 +1,13 @@
 "use client";
 
 import PillButton from "@/components/UI/PillButton";
-import { airpotsData } from "@/demo/data/AirPorts";
+
+import { airPortsData } from "@/demo/data/AirPorts";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import MultiCity from "./MultiCity";
 import OneWay from "./OneWay";
 import RoundTrip from "./RoundTrip";
-
 
 const FlightContent = () => {
   const [selectedType, setSelectedType] = useState("One Way");
@@ -65,9 +65,9 @@ const FlightContent = () => {
 
       {/* select */}
       <div ref={contentRef}>
-        {selectedType === "One Way" && <OneWay options={airpotsData} />}
-        {selectedType === "Round Trip" && <RoundTrip options={airpotsData} />}
-        {selectedType === "Multi-City" && <MultiCity options={airpotsData} />}
+        {selectedType === "One Way" && <OneWay options={airPortsData} />}
+        {selectedType === "Round Trip" && <RoundTrip options={airPortsData} />}
+        {selectedType === "Multi-City" && <MultiCity options={airPortsData} />}
       </div>
     </section>
   );
