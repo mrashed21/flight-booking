@@ -1,7 +1,7 @@
 "use client";
 
 import Container from "@/components/common/Container/Container";
-import useFadeUpOnView from "@/helpers/useFadeUpOnView";
+import useFadeUpOnView from "@/helpers/gsapAnimation/useFadeUpOnView";
 import { gsap } from "gsap";
 import { Plane } from "lucide-react";
 import { useRef, useState } from "react";
@@ -186,10 +186,10 @@ const SuitableRoutes = () => {
   };
 
   return (
-    <section className="bg-surface py-8 sm:py-12 md:py-16">
+    <section className="bg-surface py-8 sm:py-12 lg:py-16">
       <Container>
         {/* Header */}
-        <div className="mb-6 text-center sm:mb-8 md:mb-10">
+        <div className="mb-6 text-center sm:mb-8 lg:mb-10">
           <h2
             ref={titleRef}
             className="px-4 text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl"
@@ -203,7 +203,7 @@ const SuitableRoutes = () => {
         </div>
 
         {/* Tabs */}
-        <div className="mb-8 flex justify-center gap-2 px-4 sm:mb-10 sm:gap-3 md:mb-12">
+        <div className="mb-8 flex justify-center gap-2 px-4 sm:mb-10 sm:gap-3 lg:mb-12">
           {["International", "Domestic"].map((tab) => (
             <button
               key={tab}
@@ -223,12 +223,12 @@ const SuitableRoutes = () => {
         {/* Routes Grid */}
         <div
           ref={gridRef}
-          className="grid grid-cols-1 gap-3 px-4 sm:grid-cols-2 sm:gap-4 md:gap-5 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-3 px-4 sm:grid-cols-2 sm:gap-4 lg:gap-5 lg:grid-cols-3"
         >
           {ROUTES[activeTab].map((route, index) => (
             <div
               key={index}
-              className="bg-warning/14 flex cursor-pointer items-center justify-between rounded-lg px-3 py-3 sm:px-4 sm:py-4 md:px-5"
+              className="bg-warning/14 flex cursor-pointer items-center justify-between rounded-lg px-3 py-3 sm:px-4 sm:py-4 lg:px-5"
             >
               {/* From */}
               <div className="min-w-0 flex-1 pr-2">

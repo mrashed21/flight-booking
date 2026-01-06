@@ -3,7 +3,7 @@ import DepartureDateSelect from "@/components/UI/DepartureDateSelect";
 import Select from "@/components/UI/Select";
 import { ArrowRightLeft } from "lucide-react";
 
-const SearchOneWay = ({
+const OneWayModify = ({
   options,
   classOptions,
   isDisabled = false,
@@ -29,9 +29,9 @@ const SearchOneWay = ({
         {/* airport */}
         <div
           ref={containerRef}
-          className="relative hidden flex-col items-stretch sm:flex-row sm:items-center sm:gap-2.5 lg:flex"
+          className="relative flex flex-col items-stretch"
         >
-          <div ref={fromWrapRef} className="w-full sm:flex-1">
+          <div ref={fromWrapRef} className="w-full">
             <AirPortSelect
               name="From"
               isDisabled={isDisabled}
@@ -50,14 +50,14 @@ const SearchOneWay = ({
             onClick={handleSwapAirport}
             onMouseEnter={() => hoverAnim?.hoverIn()}
             onMouseLeave={() => hoverAnim?.hoverOut()}
-            className={`my-2 flex shrink-0 -rotate-90 items-center justify-center self-center rounded-full p-2 text-xs text-white sm:my-0 sm:mt-5 sm:self-auto lg:rotate-0 ${isDisabled ? "bg-primary/70 cursor-not-allowed" : "bg-primary cursor-pointer"}`}
+            className={`my-2 flex shrink-0 -rotate-90 items-center justify-center self-center rounded-full p-2 text-xs text-white ${isDisabled ? "bg-primary/70 cursor-not-allowed" : "bg-primary cursor-pointer"}`}
           >
             <span ref={swapIconRef} className="inline-block">
               <ArrowRightLeft size={16} />
             </span>
           </button>
 
-          <div ref={toWrapRef} className="-mt-6 w-full sm:flex-1 lg:mt-0">
+          <div ref={toWrapRef} className="-mt-6 w-full">
             <AirPortSelect
               name="To"
               isDisabled={isDisabled}
@@ -68,25 +68,29 @@ const SearchOneWay = ({
               getOptionValue={(x) => x._id}
             />
           </div>
-          <div className="mt-3 w-full sm:mt-auto sm:w-auto lg:mt-0">
-            <DepartureDateSelect
-              isDisabled={isDisabled}
-              value={departureTime}
-              setValue={setDepartureTime}
-            />
-          </div>
-          <div className="w-10 sm:flex-1">
-            <Select
-              name="Cabin Class"
-              options={classOptions}
-              value={selectedClassOptions}
-              onChange={setSeletedClassOptions}
-              placeholder="Select Cabin"
-              isSearchable={true}
-              isDisabled={isDisabled}
-              getOptionLabel={(x) => x.name}
-              getOptionValue={(x) => x._id}
-            />
+
+          <div className="mt-5 flex flex-col items-center justify-between gap-5 lg:flex-row">
+            <div className="w-full">
+              <DepartureDateSelect
+                isDisabled={isDisabled}
+                value={departureTime}
+                setValue={setDepartureTime}
+                className="left-0"
+              />
+            </div>
+            <div className="w-full">
+              <Select
+                name="Cabin Class"
+                options={classOptions}
+                value={selectedClassOptions}
+                onChange={setSeletedClassOptions}
+                placeholder="Select Cabin"
+                isSearchable={true}
+                isDisabled={isDisabled}
+                getOptionLabel={(x) => x.name}
+                getOptionValue={(x) => x._id}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -94,4 +98,4 @@ const SearchOneWay = ({
   );
 };
 
-export default SearchOneWay;
+export default OneWayModify;

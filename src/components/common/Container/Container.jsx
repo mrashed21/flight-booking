@@ -1,6 +1,6 @@
 const Container = ({ children, className }) => {
   return (
-    <section className={`max-w-400 w-[95%]  mx-auto  ${className}`}>
+    <section className={`mx-auto w-[98%] max-w-400 lg:w-[95%] ${className}`}>
       {children}
     </section>
   );

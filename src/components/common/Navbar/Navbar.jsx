@@ -27,6 +27,25 @@ const Navbar = () => {
   const [showOverlay, setShowOverlay] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
+  // Fixed: Separate effect for handling body scroll
+  useEffect(() => {
+    if (mobileOpen || profileOpen) {
+      // Prevent scrolling
+      document.body.style.overflow = "hidden";
+      document.body.style.height = "100vh";
+    } else {
+      // Re-enable scrolling
+      document.body.style.overflow = "auto";
+      document.body.style.height = "auto";
+    }
+
+    // Cleanup function
+    return () => {
+      document.body.style.overflow = "auto";
+      document.body.style.height = "auto";
+    };
+  }, [mobileOpen, profileOpen]);
+
   useEffect(() => {
     if (mobileOpen || profileOpen) {
       setShowOverlay(true);
@@ -84,9 +103,9 @@ const Navbar = () => {
 
       <nav
         ref={navbarRef}
-        className="relative z-50 bg-white/70 backdrop-blur-lg"
+        className="sticky top-0 z-50 h-17 bg-white/70 backdrop-blur-2xl"
       >
-        <Container>
+        <Container className={"relative"}>
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
             <Image
@@ -97,7 +116,7 @@ const Navbar = () => {
             />
 
             {/* Desktop Nav */}
-            <div className="hidden gap-6 md:flex">
+            <div className="hidden gap-6 lg:flex">
               {navItems.map((item) => (
                 <Link
                   key={item.link}
@@ -112,7 +131,7 @@ const Navbar = () => {
             {/* Right */}
             <div className="flex items-center gap-3">
               {!user && (
-                <div className="hidden gap-3 md:flex">
+                <div className="hidden gap-3 lg:flex">
                   <Link href="/login" className="rounded-md border px-4 py-1.5">
                     Login
                   </Link>
@@ -137,7 +156,7 @@ const Navbar = () => {
                 </button>
               )}
 
-              <button className="md:hidden" onClick={toggleMenu}>
+              <button className="lg:hidden" onClick={toggleMenu}>
                 {mobileOpen ? <X /> : <Menu />}
               </button>
             </div>

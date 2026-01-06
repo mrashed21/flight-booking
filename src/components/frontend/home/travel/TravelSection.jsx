@@ -4,7 +4,7 @@ import Container from "@/components/common/Container/Container";
 import { Autoplay, EffectCoverflow, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import useFadeUpOnView from "@/helpers/useFadeUpOnView";
+import useFadeUpOnView from "@/helpers/gsapAnimation/useFadeUpOnView";
 import Image from "next/image";
 import { useRef } from "react";
 import "swiper/css";
@@ -85,7 +85,7 @@ const TravelSection = () => {
         >
           {banners.map((item, i) => (
             <SwiperSlide key={i}>
-              <div className="h-60 overflow-hidden rounded-2xl ">
+              <div className="h-60 overflow-hidden rounded-2xl">
                 <Image
                   width={200}
                   height={200}

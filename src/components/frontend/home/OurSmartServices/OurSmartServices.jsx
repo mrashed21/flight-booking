@@ -1,8 +1,8 @@
 "use client";
 
 import Container from "@/components/common/Container/Container";
-import useFadeUpOnView from "@/helpers/useFadeUpOnView";
-import useFadeUpStagger from "@/helpers/useFadeUpStagger";
+import useFadeUpOnView from "@/helpers/gsapAnimation/useFadeUpOnView";
+import useFadeUpStagger from "@/helpers/gsapAnimation/useFadeUpStagger";
 import { CalendarDays, FileText, Plane } from "lucide-react";
 import { useRef } from "react";
 
@@ -61,7 +61,7 @@ const OurSmartServices = () => {
         </div>
 
         {/* SERVICES */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {services.map((service, i) => {
             const Icon = service.icon;
 

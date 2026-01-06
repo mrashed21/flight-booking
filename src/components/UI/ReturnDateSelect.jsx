@@ -115,7 +115,7 @@ const ReturnDateSelect = ({ value, setValue, departureDate }) => {
     gsap.fromTo(
       panelRef.current,
       { opacity: 0, y: 10, scale: 0.97 },
-      { opacity: 1, y: 0, scale: 1, duration: 0.25, ease: "power3.out" }
+      { opacity: 1, y: 0, scale: 1, duration: 0.25, ease: "power3.out" },
     );
   }, [open]);
 
@@ -163,7 +163,7 @@ const ReturnDateSelect = ({ value, setValue, departureDate }) => {
 
   return (
     <div ref={wrapperRef} className="relative min-w-40">
-      <label className="text-sm font-medium text-muted block mb-1">
+      <label className="text-muted mb-1 block text-sm font-medium">
         Return
       </label>
 
@@ -171,7 +171,7 @@ const ReturnDateSelect = ({ value, setValue, departureDate }) => {
       <button
         type="button"
         onClick={() => setOpen((p) => !p)}
-        className="w-full flex items-center gap-2 px-4 py-2.5 rounded-lg border bg-white text-sm shadow-sm hover:shadow transition border-muted cursor-pointer font-bold"
+        className="border-muted flex w-full cursor-pointer items-center gap-2 rounded-lg border bg-white px-4 py-2.5 text-sm font-medium shadow-sm transition hover:shadow"
       >
         <CalendarDays size={16} className="text-primary" />
         <span className={selectedDate ? "text-black" : "text-muted"}>
@@ -183,29 +183,29 @@ const ReturnDateSelect = ({ value, setValue, departureDate }) => {
       {open && (
         <div
           ref={panelRef}
-          className="absolute right-0 top-full mt-1 z-50 rounded-xl border border-muted bg-white p-4 shadow-xl w-80"
+          className="border-muted absolute top-full right-0 z-50 mt-1 w-80 rounded-xl border bg-white p-4 shadow-xl"
         >
           {/* search */}
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder={`Search (e.g. Dec ${currentYear}, Dec ${currentYear})`}
-            className="mb-3 w-full rounded-md border border-muted px-3 py-2 text-sm focus:outline-none "
+            className="border-muted mb-3 w-full rounded-md border px-3 py-2 text-sm focus:outline-none"
           />
 
           {/* header */}
-          <div className="flex items-center justify-between mb-3">
+          <div className="mb-3 flex items-center justify-between">
             <button
               onClick={() =>
                 setCursorDate(
                   new Date(
                     cursorDate.getFullYear(),
                     cursorDate.getMonth() - 1,
-                    1
-                  )
+                    1,
+                  ),
                 )
               }
-              className="p-1 hover:bg-muted/20 cursor-pointer rounded"
+              className="hover:bg-muted/20 cursor-pointer rounded p-1"
             >
               <ChevronLeft size={20} />
             </button>
@@ -223,22 +223,22 @@ const ReturnDateSelect = ({ value, setValue, departureDate }) => {
                   new Date(
                     cursorDate.getFullYear(),
                     cursorDate.getMonth() + 1,
-                    1
-                  )
+                    1,
+                  ),
                 )
               }
-              className="p-1 hover:bg-muted/20 cursor-pointer rounded"
+              className="hover:bg-muted/20 cursor-pointer rounded p-1"
             >
               <ChevronRight size={20} />
             </button>
           </div>
 
           {/* weekday headers */}
-          <div className="grid grid-cols-7 gap-1 mb-2">
+          <div className="mb-2 grid grid-cols-7 gap-1">
             {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
               <div
                 key={day}
-                className="h-9 flex items-center justify-center text-xs font-medium text-muted"
+                className="text-muted flex h-9 items-center justify-center text-xs font-medium"
               >
                 {day}
               </div>
@@ -253,22 +253,21 @@ const ReturnDateSelect = ({ value, setValue, departureDate }) => {
                   key={i}
                   disabled={d < minDate}
                   onClick={() => handleSelect(d)}
-                  className={`h-9 rounded-md text-sm font-medium transition
-                    ${
-                      d < minDate
-                        ? "text-muted cursor-not-allowed"
-                        : isSameDay(d, selectedDate)
-                        ? "bg-primary text-white cursor-pointer"
+                  className={`h-9 rounded-md text-sm font-medium transition ${
+                    d < minDate
+                      ? "text-muted cursor-not-allowed"
+                      : isSameDay(d, selectedDate)
+                        ? "bg-primary cursor-pointer text-white"
                         : isSameDay(d, displayDate) && !selectedDate
-                        ? "bg-primary-bg text-info hover:bg-gray-light cursor-pointer"
-                        : "hover:bg-gray-light cursor-pointer"
-                    }`}
+                          ? "bg-primary-bg text-info hover:bg-gray-light cursor-pointer"
+                          : "hover:bg-gray-light cursor-pointer"
+                  }`}
                 >
                   {d.getDate()}
                 </button>
               ) : (
                 <span key={i} />
-              )
+              ),
             )}
           </div>
         </div>

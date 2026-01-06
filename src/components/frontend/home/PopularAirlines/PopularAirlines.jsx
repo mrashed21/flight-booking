@@ -1,7 +1,7 @@
 "use client";
 
 import Container from "@/components/common/Container/Container";
-import useFadeUpOnView from "@/helpers/useFadeUpOnView";
+import useFadeUpOnView from "@/helpers/gsapAnimation/useFadeUpOnView";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
@@ -85,7 +85,7 @@ const PopularAirlines = () => {
           {airlines.map((airline, i) => (
             <div
               key={i}
-              className={`border-primary-soft bg-warning/14 flex cursor-pointer items-center justify-between gap-4 rounded-xl border px-5 py-4 transition hover:shadow-md ${i >= 5 ? "hidden md:flex" : "flex"} `}
+              className={`border-primary-soft bg-warning/14 flex cursor-pointer items-center justify-between gap-4 rounded-xl border px-5 py-4 transition hover:shadow-md ${i >= 5 ? "hidden lg:flex" : "flex"} `}
             >
               <div className="flex items-center gap-3">
                 {/* LOGO */}

@@ -2,9 +2,11 @@ import AirPortSelect from "@/components/UI/AirPortSelect";
 import CommonButton from "@/components/UI/CommonButton";
 import DepartureDateSelect from "@/components/UI/DepartureDateSelect";
 import ReturnDateSelect from "@/components/UI/ReturnDateSelect";
-import gsap from "gsap";
+import { swapGhostAnimation } from "@/helpers/gsapAnimation/swapGhostAnimation";
+import { swapHoverAnimation } from "@/helpers/gsapAnimation/swapHoverAnimation";
 
 import { ArrowRightLeft } from "lucide-react";
+import Link from "next/link";
 import { useRef, useState } from "react";
 
 const RoundTrip = ({ options }) => {
@@ -13,128 +15,34 @@ const RoundTrip = ({ options }) => {
 
   console.log("departureDate :", departureDate);
   console.log("returnDate :", returnDate);
+
   const fromWrapRef = useRef(null);
   const toWrapRef = useRef(null);
   const containerRef = useRef(null);
   const swapBtnRef = useRef(null);
   const swapIconRef = useRef(null);
 
-  const createGhost = (text, rect) => {
-    const ghost = document.createElement("div");
-    ghost.innerText = text;
-    ghost.className =
-      "fixed z-50 px-3 py-2 bg-white rounded-md shadow text-sm pointer-events-none mt-[26px]";
-
-    ghost.style.left = `${rect.left}px`;
-    ghost.style.top = `${rect.top}px`;
-    ghost.style.width = `${rect.width}px`;
-
-    document.body.appendChild(ghost);
-    return ghost;
-  };
-
   const [selectedFormAirPort, setSelectedFormAirPort] = useState(options[0]);
   const [selectedToAirPort, setSelectedToAirPort] = useState(options[3]);
 
+  // animation for swap airpot
   const handleSwapAirport = () => {
-    if (!fromWrapRef.current || !toWrapRef.current) return;
-
-    const fromRect = fromWrapRef.current.getBoundingClientRect();
-    const toRect = toWrapRef.current.getBoundingClientRect();
-
-    const fromGhost = createGhost(
-      `${selectedFormAirPort.city} ${selectedFormAirPort._id}`,
-      fromRect
-    );
-
-    const toGhost = createGhost(
-      `${selectedToAirPort.city} ${selectedToAirPort._id}`,
-      toRect
-    );
-
-    const dx = toRect.left - fromRect.left;
-    const dy = toRect.top - fromRect.top;
-
-    const tl = gsap.timeline({
-      defaults: { ease: "power3.inOut" },
-      onComplete: () => {
-        fromGhost.remove();
-        toGhost.remove();
+    swapGhostAnimation({
+      fromEl: fromWrapRef.current,
+      toEl: toWrapRef.current,
+      fromText: `${selectedFormAirPort.city} ${selectedFormAirPort._id}`,
+      toText: `${selectedToAirPort.city} ${selectedToAirPort._id}`,
+      onSwap: () => {
+        setSelectedFormAirPort(selectedToAirPort);
+        setSelectedToAirPort(selectedFormAirPort);
       },
     });
-
-    // hide real selects
-    tl.to([fromWrapRef.current, toWrapRef.current], {
-      opacity: 0,
-      duration: 0.2,
-    });
-
-    // move ghosts
-    tl.to(
-      fromGhost,
-      {
-        x: dx,
-        y: dy,
-        duration: 0.6,
-      },
-      "<"
-    );
-
-    tl.to(
-      toGhost,
-      {
-        x: -dx,
-        y: -dy,
-        duration: 0.6,
-      },
-      "<"
-    );
-
-    // swap state AFTER animation
-    tl.call(() => {
-      setSelectedFormAirPort(selectedToAirPort);
-      setSelectedToAirPort(selectedFormAirPort);
-    });
-
-    // show real selects back
-    tl.to([fromWrapRef.current, toWrapRef.current], {
-      opacity: 1,
-      duration: 0.25,
-    });
   };
-
-  const handleHoverIn = () => {
-    gsap.to(swapBtnRef.current, {
-      scale: 1.05,
-      boxShadow: "0 8px 20px rgba(0,0,0,0.18)",
-      duration: 0.25,
-      ease: "power3.out",
-    });
-
-    gsap.to(swapIconRef.current, {
-      rotate: 180,
-      scale: 1.15,
-      duration: 0.35,
-      ease: "power3.out",
-    });
-  };
-
-  const handleHoverOut = () => {
-    gsap.to(swapBtnRef.current, {
-      y: 0,
-      scale: 1,
-      boxShadow: "0 0 0 rgba(0,0,0,0)",
-      duration: 0.25,
-      ease: "power3.inOut",
-    });
-
-    gsap.to(swapIconRef.current, {
-      rotate: 0,
-      scale: 1,
-      duration: 0.25,
-      ease: "power3.inOut",
-    });
-  };
+  // animation for swap button
+  const hoverAnim = swapHoverAnimation({
+    buttonEl: swapBtnRef.current,
+    iconEl: swapIconRef.current,
+  });
 
   return (
     <section className="w-full">
@@ -142,9 +50,9 @@ const RoundTrip = ({ options }) => {
         {/* airport */}
         <div
           ref={containerRef}
-          className="flex flex-col sm:flex-row sm:gap-2.5 items-stretch sm:items-center relative"
+          className="relative flex flex-col items-stretch sm:flex-row sm:items-center sm:gap-2.5"
         >
-          <div ref={fromWrapRef} className="w-full sm:flex-1 sm:min-w-0">
+          <div ref={fromWrapRef} className="w-full sm:min-w-0 sm:flex-1">
             <AirPortSelect
               name="From"
               options={options}
@@ -159,16 +67,16 @@ const RoundTrip = ({ options }) => {
             ref={swapBtnRef}
             type="button"
             onClick={handleSwapAirport}
-            onMouseEnter={handleHoverIn}
-            onMouseLeave={handleHoverOut}
-            className="self-center sm:self-auto sm:mt-5 p-2 rounded-full bg-primary text-white text-xs cursor-pointer flex items-center justify-center shrink-0 my-2 sm:my-0"
+            onMouseEnter={() => hoverAnim?.hoverIn()}
+            onMouseLeave={() => hoverAnim?.hoverOut()}
+            className="bg-primary my-2 flex shrink-0 -rotate-90 cursor-pointer items-center justify-center self-center rounded-full p-2 text-xs text-white sm:my-0 sm:mt-5 sm:self-auto lg:rotate-0"
           >
             <span ref={swapIconRef} className="inline-block">
               <ArrowRightLeft size={16} />
             </span>
           </button>
 
-          <div ref={toWrapRef} className="-mt-6 md:mt-0 w-full sm:flex-1">
+          <div ref={toWrapRef} className="-mt-6 w-full sm:flex-1 lg:mt-0">
             <AirPortSelect
               name="To"
               options={options}
@@ -179,7 +87,7 @@ const RoundTrip = ({ options }) => {
             />
           </div>
 
-          <div className="w-full sm:w-auto sm:mt-auto flex flex-col sm:flex-row gap-2 sm:space-x-2 mt-3 md:mt-0">
+          <div className="mt-3 flex w-full flex-col gap-2 sm:mt-auto sm:w-auto sm:flex-row sm:space-x-2 lg:mt-0">
             <div className="w-full sm:w-auto">
               <DepartureDateSelect
                 value={departureDate}
@@ -195,9 +103,9 @@ const RoundTrip = ({ options }) => {
             </div>
           </div>
         </div>
-        <div className="flex justify-end mt-5">
+        <Link href={"/search"} className="mt-5 flex justify-end">
           <CommonButton>Search</CommonButton>
-        </div>
+        </Link>
       </div>
     </section>
   );

@@ -39,7 +39,7 @@ const Hero = () => {
         <h1 className="text-center text-3xl leading-tight font-bold text-white lg:text-7xl lg:leading-snug">
           Discover the Beauty of the World <br /> with Every Tour
         </h1>
-        <p className="mx-auto mb-3 hidden max-w-xl text-center text-lg text-white md:mt-5 md:flex">
+        <p className="mx-auto mb-3 hidden max-w-xl text-center text-lg text-white lg:mt-5 lg:flex">
           From breathtaking landscapes to hidden gems — explore curated tours
           designed to create memories that last a lifetime.
         </p>

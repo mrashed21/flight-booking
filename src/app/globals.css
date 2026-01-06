@@ -81,7 +81,9 @@ color11:#E4F2FF
   border: none;
   cursor: pointer;
   overflow: hidden;
-  transition: transform 0.2s ease, filter 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
 }
 
 /* Right diagonal shape */
@@ -94,9 +96,9 @@ color11:#E4F2FF
 }
 
 /* Text above shape */
-.common-btn {
+/* .common-btn {
   isolation: isolate;
-}
+} */
 
 .common-btn::after {
   z-index: 0;
@@ -114,4 +116,111 @@ color11:#E4F2FF
 
 .common-btn:active {
   transform: scale(0.97);
+}
+
+/* z-index class */
+.cz-2 {
+  z-index: 2;
+}
+.cz-11 {
+  z-index: 11;
+}
+.cz-22 {
+  z-index: 22;
+}
+.cz-33 {
+  z-index: 33;
+}
+.cz-44 {
+  z-index: 44;
+}
+.cz-55 {
+  z-index: 55;
+}
+.cz-66 {
+  z-index: 66;
+}
+.cz-77 {
+  z-index: 77;
+}
+.cz-99 {
+  z-index: 99;
+}
+
+.cz-150 {
+  z-index: 150;
+}
+
+.cz-200 {
+  z-index: 200;
+}
+
+.cz-250 {
+  z-index: 250;
+}
+
+.cz-500 {
+  z-index: 500;
+}
+
+.cz-700 {
+  z-index: 700;
+}
+.cz-max {
+  z-index: 999;
+}
+
+
+
+
+/* -z-index class */
+.-cz-2 {
+  z-index: -2;
+}
+.-cz-11 {
+  z-index: -11;
+}
+.-cz-22 {
+  z-index: -22;
+}
+.-cz-33 {
+  z-index: -33;
+}
+.-cz-44 {
+  z-index: -44;
+}
+.-cz-55 {
+  z-index: -55;
+}
+.-cz-66 {
+  z-index: -66;
+}
+.-cz-77 {
+  z-index: -77;
+}
+.-cz-99 {
+  z-index: -99;
+}
+
+.-cz-150 {
+  z-index: -150;
+}
+
+.-cz-200 {
+  z-index: -200;
+}
+
+.-cz-250 {
+  z-index: -250;
+}
+
+.-cz-500 {
+  z-index: -500;
+}
+
+.-cz-700 {
+  z-index: -700;
+}
+.-cz-max {
+  z-index: -999;
 }

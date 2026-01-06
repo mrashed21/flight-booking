@@ -27,7 +27,7 @@ const ProfileMenu = ({ open, offsetTop }) => {
           y: 0,
           duration: 0.3,
           ease: "power2.out",
-        }
+        },
       );
 
       gsap.fromTo(
@@ -43,7 +43,7 @@ const ProfileMenu = ({ open, offsetTop }) => {
           scale: 1,
           duration: 0.4,
           ease: "back.out(1.7)",
-        }
+        },
       );
     } else if (render) {
       gsap.to(contentRef.current, {
@@ -90,7 +90,7 @@ const ProfileMenu = ({ open, offsetTop }) => {
           opacity: 1,
           duration: 0.3,
           ease: "power2.inOut",
-        }
+        },
       );
     }
   };
@@ -101,12 +101,12 @@ const ProfileMenu = ({ open, offsetTop }) => {
     <div
       ref={containerRef}
       style={{ top: offsetTop }}
-      className="absolute right-6 mt-2 w-56 rounded-xl bg-white/80 backdrop-blur-lg shadow-lg p-3 z-50"
+      className="absolute right-6 z-50 mt-2 w-56 rounded-xl bg-white/80 p-3 shadow-lg backdrop-blur-lg"
     >
       <div ref={contentRef}>
         <Link
           href="/user/profile"
-          className="block py-2 hover:bg-muted/20 rounded px-2"
+          className="hover:bg-muted/20 block rounded px-2 py-2"
         >
           My Profile
         </Link>
@@ -115,11 +115,11 @@ const ProfileMenu = ({ open, offsetTop }) => {
         <div>
           <button
             onClick={toggleBookings}
-            className="flex items-center justify-between w-full py-2 hover:bg-muted/20 rounded px-2 cursor-pointer"
+            className="hover:bg-muted/20 flex w-full cursor-pointer items-center justify-between rounded px-2 py-2"
           >
             <span>My Bookings</span>
             <ChevronDown
-              className={`w-4 h-4 transition-transform duration-300 ${
+              className={`h-4 w-4 transition-transform duration-300 ${
                 expandedBookings ? "rotate-180" : ""
               }`}
             />
@@ -130,22 +130,22 @@ const ProfileMenu = ({ open, offsetTop }) => {
             className="overflow-hidden"
             style={{ height: 0, opacity: 0 }}
           >
-            <div className="pl-4 flex flex-col">
+            <div className="flex flex-col pl-4">
               <Link
                 href="/user/bookings/flights"
-                className="block py-2 text-sm hover:hover:bg-muted/20 rounded px-2"
+                className="hover:hover:bg-muted/20 block rounded px-2 py-2 text-sm"
               >
                 Flight Bookings
               </Link>
               <Link
                 href="/user/bookings/tours"
-                className="block py-2 text-sm hover:hover:bg-muted/20 rounded px-2"
+                className="hover:hover:bg-muted/20 block rounded px-2 py-2 text-sm"
               >
                 Tour Bookings
               </Link>
               <Link
                 href="/user/bookings/visa"
-                className="block py-2 text-sm hover:hover:bg-muted/20 rounded px-2"
+                className="hover:hover:bg-muted/20 block rounded px-2 py-2 text-sm"
               >
                 Visa Applications
               </Link>
@@ -155,11 +155,11 @@ const ProfileMenu = ({ open, offsetTop }) => {
 
         <Link
           href="/user/settings"
-          className="block py-2 hover:hover:bg-muted/20 rounded px-2"
+          className="hover:hover:bg-muted/20 block rounded px-2 py-2"
         >
           Settings
         </Link>
-        <button className="block w-full text-left py-2 text-red-500 hover:bg-red-100 rounded px-2 cursor-pointer">
+        <button className="block w-full cursor-pointer rounded px-2 py-2 text-left text-red-500 hover:bg-red-100">
           Logout
         </button>
       </div>

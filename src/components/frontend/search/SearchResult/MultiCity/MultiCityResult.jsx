@@ -1,6 +1,6 @@
 "use client";
 import CommonButton from "@/components/UI/CommonButton";
-import useGsapCollapse from "@/helpers/useGsapCollapse";
+import useGsapCollapse from "@/helpers/gsapAnimation/useGsapCollapse";
 import { ChevronDown, Clock, MapPin, Plane } from "lucide-react";
 import Image from "next/image";
 

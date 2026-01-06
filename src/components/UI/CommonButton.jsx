@@ -16,8 +16,8 @@ const CommonButton = ({
       disabled={disabled}
       className={clsx(
         "common-btn",
-        disabled && "opacity-60 cursor-not-allowed",
-        className
+        disabled && "cursor-not-allowed opacity-60",
+        className,
       )}
     >
       {children}

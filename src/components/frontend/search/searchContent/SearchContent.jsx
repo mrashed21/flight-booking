@@ -1,71 +1,63 @@
 "use client";
 
+import RemainingTime from "@/components/UI/RemainingTime";
+import gsap from "gsap";
+import { Settings2 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import MultiCityResult from "../SearchResult/MultiCity/MultiCityResult";
 import OneWayResult from "../SearchResult/OneWay/OneWayResult";
 import RoundTripResult from "../SearchResult/RoundTrip/RoundTripResult";
+import { flights } from "./flightdata";
 
-/* ---------- DEMO DATA ---------- */
-const flights = [
-  {
-    id: 1,
-    airline: "Biman Bangladesh Airlines",
-    logo: "https://1000logos.net/wp-content/uploads/2023/05/Biman-Bangladesh-Airlines-Logo.png",
-    from: "DAC",
-    to: "CXB",
-    departure: "08:30 AM",
-    arrival: "09:30 AM",
-    duration: "1h 15m",
-    stop: "Non Stop",
-    price: 9999,
-    baggage: "30 KG",
-    refundable: true,
-  },
-  {
-    id: 2,
-    airline: "Biman Bangladesh Airlines",
-    logo: "https://1000logos.net/wp-content/uploads/2023/05/Biman-Bangladesh-Airlines-Logo.png",
-    from: "DAC",
-    to: "CXB",
-    departure: "11:00 AM",
-    arrival: "12:10 PM",
-    duration: "1h 10m",
-    stop: "Non Stop",
-    price: 10500,
-    baggage: "30 KG",
-    refundable: false,
-  },
-  {
-    id: 3,
-    airline: "US Bangla Airlines",
-    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmbTS0Ke1BYPm9zPFhzQ6fCAb3DjkDMqZ3uw&s",
-    from: "DAC",
-    to: "CXB",
-    departure: "06:45 PM",
-    arrival: "07:55 PM",
-    duration: "1h 10m",
-    stop: "Non Stop",
-    price: 11200,
-    baggage: "20 KG",
-    refundable: true,
-  },
-];
+import PillButton from "@/components/UI/PillButton";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const SearchContent = ({ selectedType }) => {
+gsap.registerPlugin(ScrollTrigger);
+
+const SearchContent = ({
+  selectedType,
+  setFilterDrowerOpen,
+  filterDrowerOpen,
+  setSelecttedFilter,
+  selectedFilter,
+  isScrolled,
+  setOpenModifyModal,
+  handleSearch,
+}) => {
   const [openFlightDetails, setOpenFlightDetails] = useState(null);
-  const [selectedFilter, setSelecttedFilter] = useState("cheapest");
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {/* ---------- RESULT HEADER ---------- */}
-      <div className="flex items-center justify-between p-3">
-        <p className="text-3xl">
-          <span className="font-semibold">{flights.length}</span> Available
-          Flights
-        </p>
+      <div
+        className={`sticky top-16 flex items-center justify-between backdrop-blur-lg transition-all duration-300 ${
+          isScrolled ? "cz-11 rounded-b-lg bg-white p-3 shadow-sm" : "px-3"
+        } ${filterDrowerOpen ? "-z-10" : ""}`}
+      >
+        {isScrolled && (
+          <>
+            <PillButton
+              name="Modify"
+              action={() => {
+                setOpenModifyModal(true);
+              }}
+              className={`bg-primary-dark/20 text-primary-dark flex h-8 max-h-12 shrink-0 items-center border-none lg:hidden ${isScrolled ? "order-2 lg:order-1" : ""}`}
+            />
+            <p className="hidden lg:flex lg:text-3xl">
+              <span className="mr-1 font-semibold">{flights.length}</span>{" "}
+              Available Flights
+            </p>
+          </>
+        )}
 
-        <div className="flex gap-2">
+        {!isScrolled && (
+          <p className="lg:text-3xl">
+            <span className="mr-1 font-semibold">{flights.length} </span>{" "}
+            Available Flights
+          </p>
+        )}
+        <div className="hidden gap-2 lg:flex">
           {/* CHEAPEST */}
           <button
             onClick={() => setSelecttedFilter("cheapest")}
@@ -114,19 +106,36 @@ const SearchContent = ({ selectedType }) => {
             </span>
           </button>
         </div>
+        <div className="lg:hidden">
+          <button
+            onClick={() => {
+              setFilterDrowerOpen(true);
+            }}
+            className={`flex cursor-pointer items-center gap-1.5 rounded-md bg-white px-4 py-1.5 ${isScrolled ? "order-1" : "order-2"}`}
+          >
+            <Settings2 size={16} /> Filter
+          </button>
+        </div>
       </div>
-
+      <div className="flex w-full items-center justify-center lg:hidden">
+        <RemainingTime />
+      </div>
       {/* ---------- FLIGHT LIST ---------- */}
+
       {flights.map((flight) => (
         <div
           key={flight.id}
-          className="-mt-3 overflow-hidden rounded-xl bg-white shadow-sm mb-7"
+          className={`flight-card mb-3 overflow-hidden rounded-xl bg-white shadow-sm ${
+            isScrolled ? " " : "lg:mt-7"
+          }`}
         >
           {selectedType === "One Way" && (
             <OneWayResult
               flight={flight}
               openFlightDetails={openFlightDetails}
               setOpenFlightDetails={setOpenFlightDetails}
+              filterDrowerOpen={filterDrowerOpen}
+              handleSearch={handleSearch}
             />
           )}
           {selectedType === "Round Trip" && (

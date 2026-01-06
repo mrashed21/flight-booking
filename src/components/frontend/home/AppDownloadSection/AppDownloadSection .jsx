@@ -140,7 +140,7 @@ const AppDownloadSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="from-primary via-primary-mid to-primary-dark relative overflow-hidden bg-linear-to-br py-12 sm:py-14 md:py-16"
+      className="from-primary via-primary-mid to-primary-dark relative overflow-hidden bg-linear-to-br py-12 sm:py-14 lg:py-16"
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 opacity-10">
@@ -179,7 +179,7 @@ const AppDownloadSection = () => {
             >
               <div className="relative w-full max-w-md lg:max-w-lg">
                 {/* Phone 1 - Main */}
-                <div className="relative z-20 mx-auto w-44 transform transition-transform duration-300 hover:scale-105 sm:w-52 md:w-56 lg:mx-0">
+                <div className="relative z-20 mx-auto w-44 transform transition-transform duration-300 hover:scale-105 sm:w-52 lg:w-56 lg:mx-0">
                   <div className="relative rounded-3xl bg-gray-900 p-2 shadow-2xl">
                     {/* Notch */}
                     <div className="absolute top-0 left-1/2 z-30 h-4 w-18 -translate-x-1/2 rounded-b-3xl bg-gray-900"></div>
@@ -243,7 +243,7 @@ const AppDownloadSection = () => {
                 </div>
 
                 {/* Phone 2 - Overlay */}
-                <div className="absolute top-8 -right-4 z-10 w-44 transform transition-transform duration-300 hover:scale-105 sm:-right-8 sm:w-52 md:-right-12 md:w-56">
+                <div className="absolute top-8 -right-4 z-10 w-44 transform transition-transform duration-300 hover:scale-105 sm:-right-8 sm:w-52 lg:-right-12 lg:w-56">
                   <div className="relative rounded-3xl bg-gray-900 p-2 shadow-2xl">
                     {/* Notch */}
                     <div className="absolute top-0 left-1/2 z-30 h-4 w-16 -translate-x-1/2 rounded-b-3xl bg-gray-900"></div>

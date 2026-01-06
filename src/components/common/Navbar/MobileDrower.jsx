@@ -19,7 +19,7 @@ const MobileDrawer = ({ open, navItems, offsetTop, user, onClose }) => {
           x: 0,
           duration: 0.5,
           ease: "power3.out",
-        }
+        },
       );
       const validItems = itemsRef.current.filter(Boolean);
       if (validItems.length) {
@@ -33,7 +33,7 @@ const MobileDrawer = ({ open, navItems, offsetTop, user, onClose }) => {
             stagger: 0.06,
             delay: 0.15,
             ease: "power2.out",
-          }
+          },
         );
       }
     } else if (render) {
@@ -64,39 +64,39 @@ const MobileDrawer = ({ open, navItems, offsetTop, user, onClose }) => {
       ref={containerRef}
       style={{
         top: offsetTop,
-        height: `calc(100vh - ${offsetTop}px)`,
+        // height: `calc(105vh - ${offsetTop}px)`,
       }}
-      className="fixed right-0 z-50 w-72 bg-white/90 backdrop-blur-xl shadow-xl p-6 overflow-hidden"
+      className="fixed right-0 z-50 h-[110vh] w-72 overflow-hidden bg-white/90 p-6 shadow-xl backdrop-blur-xl"
     >
       <nav className="flex flex-col gap-4">
         {navItems.map((item, index) => (
-          <a
+          <Link
             key={item.link}
             href={item.link}
             onClick={onClose}
             ref={(el) => (itemsRef.current[index] = el)}
-            className="hover:text-blue-600 transition-colors"
+            className="transition-colors hover:text-blue-600"
           >
             {item.name}
-          </a>
+          </Link>
         ))}
 
         {!user && (
           <div
-            className="pt-6 flex flex-col gap-3 border-t"
+            className="flex flex-col gap-3 border-t pt-6"
             ref={(el) => (itemsRef.current[navItems.length] = el)}
           >
             <Link
               href="/login"
               onClick={onClose}
-              className="border px-4 py-2 rounded-md text-center"
+              className="rounded-md border px-4 py-2 text-center"
             >
               Login
             </Link>
             <Link
               href="/register"
               onClick={onClose}
-              className="bg-blue-600 text-white px-4 py-2 rounded-md text-center"
+              className="rounded-md bg-blue-600 px-4 py-2 text-center text-white"
             >
               Sign Up
             </Link>

@@ -1,7 +1,7 @@
 "use client";
 
 import Container from "@/components/common/Container/Container";
-import useFadeUpOnView from "@/helpers/useFadeUpOnView";
+import useFadeUpOnView from "@/helpers/gsapAnimation/useFadeUpOnView";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
