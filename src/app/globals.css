@@ -1,5 +1,26 @@
 @import "tailwindcss";
 
+/* responsive breakdown for all screen if need use custom */
+/* @theme {
+  // ! Small Phones /
+  --breakpoint-smp: (min-width: 320px) and (max-width: 374px);
+  --breakpoint-stp: (min-width: 375px) and (max-width: 428px);
+  --breakpoint-lgp: (min-width: 429px) and (max-width: 480px);
+
+  // ! Small Tablets (Portrait) /
+  --breakpoint-smt: (min-width: 481px) and (max-width: 768px);
+  --breakpoint-stt: (min-width: 769px) and (max-width: 834px);
+  --breakpoint-lgt: (min-width: 835px) and (max-width: 1024px);
+
+  // ! Laptops /
+  --breakpoint-sml: (min-width: 1025px) and (max-width: 1280px);
+  --breakpoint-stl: (min-width: 1281px) and (max-width: 1440px);
+
+  // ! Desktops /
+  --breakpoint-lgd: (min-width: 1441px) and (max-width: 1920px);
+  --breakpoint-xld: (min-width: 1921px);
+} */
+
 :root {
   /* Fonts */
   --font-poppins: "Poppins", sans-serif;
@@ -169,9 +190,6 @@ color11:#E4F2FF
 .cz-max {
   z-index: 999;
 }
-
-
-
 
 /* -z-index class */
 .-cz-2 {

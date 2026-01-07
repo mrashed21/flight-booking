@@ -39,13 +39,13 @@ const SearchMultiCity = ({ options, classOptions }) => {
 
   return (
     <section className="w-full">
-      <div className="mt-8">
+      <section className="mt-8">
         {/* airport */}
-        <div
+        <section
           ref={containerRef}
           className="relative flex flex-col items-stretch sm:flex-row sm:items-center sm:gap-2.5"
         >
-          <div ref={fromWrapRef} className="w-full sm:flex-1">
+          <section ref={fromWrapRef} className="w-full sm:flex-1">
             <AirPortSelect
               name="From"
               options={options}
@@ -54,7 +54,7 @@ const SearchMultiCity = ({ options, classOptions }) => {
               getOptionLabel={(x) => x.airport_name}
               getOptionValue={(x) => x._id}
             />
-          </div>
+          </section>
 
           <button
             ref={swapBtnRef}
@@ -98,8 +98,8 @@ const SearchMultiCity = ({ options, classOptions }) => {
               getOptionValue={(x) => x._id}
             />
           </div>
-        </div>
-      </div>
+        </section>
+      </section>
     </section>
   );
 };

@@ -2,7 +2,7 @@
 import { Clock } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const RemainingTime = () => {
+const RemainingTime = ({ className = "" }) => {
   const MAX_SECONDS = 29 * 60 * 60 + 59 * 60 + 59;
   const [secondsLeft, setSecondsLeft] = useState(MAX_SECONDS);
 
@@ -41,7 +41,9 @@ const RemainingTime = () => {
   const [hh, mm, ss] = formatTime(secondsLeft).split(":");
 
   return (
-    <div className="border-surface flex w-full items-center justify-center gap-2 rounded-xl border p-4 shadow-sm lg:mb-5">
+    <div
+      className={`border-surface lg:mb- flex w-full items-center justify-center gap-2 rounded-xl border p-4 shadow-sm ${className}`}
+    >
       <p className="flex items-center gap-2">
         <Clock size={16} className="text-primary" />
         <span className="text-muted text-sm font-medium">Time Remaining</span>

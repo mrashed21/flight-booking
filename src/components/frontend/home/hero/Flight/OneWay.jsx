@@ -43,13 +43,13 @@ const OneWay = ({ options }) => {
 
   return (
     <section className="w-full">
-      <div className="mt-4">
+      <section className="mt-4">
         {/* airport */}
-        <div
+        <section
           ref={containerRef}
           className="relative flex flex-col items-stretch sm:flex-row sm:items-center sm:gap-2.5"
         >
-          <div ref={fromWrapRef} className="w-full sm:flex-1">
+          <section ref={fromWrapRef} className="w-full sm:flex-1">
             <AirPortSelect
               name="From"
               options={options}
@@ -58,7 +58,7 @@ const OneWay = ({ options }) => {
               getOptionLabel={(x) => x.airport_name}
               getOptionValue={(x) => x._id}
             />
-          </div>
+          </section>
 
           <button
             ref={swapBtnRef}
@@ -73,7 +73,7 @@ const OneWay = ({ options }) => {
             </span>
           </button>
 
-          <div ref={toWrapRef} className="-mt-6 w-full sm:flex-1 lg:mt-0">
+          <section ref={toWrapRef} className="-mt-6 w-full sm:flex-1 lg:mt-0">
             <AirPortSelect
               name="To"
               options={options}
@@ -82,19 +82,19 @@ const OneWay = ({ options }) => {
               getOptionLabel={(x) => x.airport_name}
               getOptionValue={(x) => x._id}
             />
-          </div>
+          </section>
 
-          <div className="relative mt-3 w-full sm:mt-auto sm:w-auto lg:mt-0">
+          <section className="relative mt-3 w-full sm:mt-auto sm:w-auto lg:mt-0">
             <DepartureDateSelect
               value={departureTime}
               setValue={setDepartureTime}
             />
-          </div>
-        </div>
+          </section>
+        </section>
         <Link href={"/search"} className="mt-5 flex justify-end">
           <CommonButton>Search</CommonButton>
         </Link>
-      </div>
+      </section>
     </section>
   );
 };

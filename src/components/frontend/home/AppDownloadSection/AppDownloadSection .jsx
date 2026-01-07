@@ -170,16 +170,16 @@ const AppDownloadSection = () => {
       </div>
 
       <Container>
-        <div className="relative">
+        <section className="relative">
           <div className="flex flex-col items-center justify-between gap-8 lg:flex-row lg:gap-12">
             {/* Left Side - Phone Mockups */}
-            <div
+            <aside
               ref={phonesRef}
               className="order-2 flex flex-1 justify-center lg:order-1 lg:justify-start"
             >
               <div className="relative w-full max-w-md lg:max-w-lg">
                 {/* Phone 1 - Main */}
-                <div className="relative z-20 mx-auto w-44 transform transition-transform duration-300 hover:scale-105 sm:w-52 lg:w-56 lg:mx-0">
+                <div className="relative z-20 mx-auto w-44 transform transition-transform duration-300 hover:scale-105 sm:w-52 lg:mx-0 lg:w-56">
                   <div className="relative rounded-3xl bg-gray-900 p-2 shadow-2xl">
                     {/* Notch */}
                     <div className="absolute top-0 left-1/2 z-30 h-4 w-18 -translate-x-1/2 rounded-b-3xl bg-gray-900"></div>
@@ -344,10 +344,10 @@ const AppDownloadSection = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </aside>
 
             {/* Right Side - Text & Download Buttons */}
-            <div className="order-1 flex-1 px-4 text-center lg:order-2 lg:px-0 lg:text-left">
+            <aside className="order-1 flex-1 px-4 text-center lg:order-2 lg:px-0 lg:text-left">
               <div ref={textRef} className="mb-6 lg:mb-8">
                 {/* <div className="mb-3 inline-block">
                   <div className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 backdrop-blur-sm">
@@ -439,9 +439,9 @@ const AppDownloadSection = () => {
                   <div className="text-xs text-white/80">Reviews</div>
                 </div>
               </div>
-            </div>
+            </aside>
           </div>
-        </div>
+        </section>
       </Container>
     </section>
   );

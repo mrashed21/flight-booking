@@ -64,11 +64,11 @@ const FlightContent = () => {
       </div>
 
       {/* select */}
-      <div ref={contentRef}>
+      <section ref={contentRef}>
         {selectedType === "One Way" && <OneWay options={airPortsData} />}
         {selectedType === "Round Trip" && <RoundTrip options={airPortsData} />}
         {selectedType === "Multi-City" && <MultiCity options={airPortsData} />}
-      </div>
+      </section>
     </section>
   );
 };

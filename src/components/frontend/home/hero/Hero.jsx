@@ -44,9 +44,9 @@ const Hero = () => {
           designed to create memories that last a lifetime.
         </p>
 
-        <div className="">
+        <section className="">
           {/* button */}
-          <div className="mt-5 flex items-center justify-center gap-1 lg:justify-start">
+          <section className="mt-5 flex items-center justify-center gap-1 lg:justify-start">
             <HeroButton
               action={() => handleServiceClick("Flight")}
               type={selectedService === "Flight"}
@@ -73,14 +73,14 @@ const Hero = () => {
               inActiveImage="/icons/visa-inactive.svg"
               name="Visa"
             />
-          </div>
+          </section>
           {/* content */}
-          <div ref={contentRef}>
+          <section ref={contentRef}>
             {selectedService === "Flight" && <FlightContent />}
             {selectedService === "Tour" && <TourContent />}
             {selectedService === "Visa" && <VisaContent />}
-          </div>
-        </div>
+          </section>
+        </section>
       </Container>
     </section>
   );

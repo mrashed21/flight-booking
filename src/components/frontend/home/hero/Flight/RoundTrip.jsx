@@ -46,13 +46,13 @@ const RoundTrip = ({ options }) => {
 
   return (
     <section className="w-full">
-      <div className="mt-4">
+      <section className="mt-4">
         {/* airport */}
-        <div
+        <section
           ref={containerRef}
           className="relative flex flex-col items-stretch sm:flex-row sm:items-center sm:gap-2.5"
         >
-          <div ref={fromWrapRef} className="w-full sm:min-w-0 sm:flex-1">
+          <section ref={fromWrapRef} className="w-full sm:min-w-0 sm:flex-1">
             <AirPortSelect
               name="From"
               options={options}
@@ -61,7 +61,7 @@ const RoundTrip = ({ options }) => {
               getOptionLabel={(x) => x.airport_name}
               getOptionValue={(x) => x._id}
             />
-          </div>
+          </section>
 
           <button
             ref={swapBtnRef}
@@ -76,7 +76,7 @@ const RoundTrip = ({ options }) => {
             </span>
           </button>
 
-          <div ref={toWrapRef} className="-mt-6 w-full sm:flex-1 lg:mt-0">
+          <section ref={toWrapRef} className="-mt-6 w-full sm:flex-1 lg:mt-0">
             <AirPortSelect
               name="To"
               options={options}
@@ -85,28 +85,28 @@ const RoundTrip = ({ options }) => {
               getOptionLabel={(x) => x.airport_name}
               getOptionValue={(x) => x._id}
             />
-          </div>
+          </section>
 
-          <div className="mt-3 flex w-full flex-col gap-2 sm:mt-auto sm:w-auto sm:flex-row sm:space-x-2 lg:mt-0">
-            <div className="w-full sm:w-auto">
+          <section className="mt-3 flex w-full flex-col gap-2 sm:mt-auto sm:w-auto sm:flex-row sm:space-x-2 lg:mt-0">
+            <section className="w-full sm:w-auto">
               <DepartureDateSelect
                 value={departureDate}
                 setValue={setDepartureDate}
               />
-            </div>
-            <div className="w-full sm:w-auto">
+            </section>
+            <section className="w-full sm:w-auto">
               <ReturnDateSelect
                 value={returnDate}
                 setValue={setReturnDate}
                 departureDate={departureDate}
               />
-            </div>
-          </div>
-        </div>
+            </section>
+          </section>
+        </section>
         <Link href={"/search"} className="mt-5 flex justify-end">
           <CommonButton>Search</CommonButton>
         </Link>
-      </div>
+      </section>
     </section>
   );
 };

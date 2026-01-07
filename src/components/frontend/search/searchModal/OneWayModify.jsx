@@ -25,13 +25,13 @@ const OneWayModify = ({
 }) => {
   return (
     <section className="w-full">
-      <div className="mt-8">
+      <section className="mt-8">
         {/* airport */}
-        <div
+        <section
           ref={containerRef}
           className="relative flex flex-col items-stretch"
         >
-          <div ref={fromWrapRef} className="w-full">
+          <section ref={fromWrapRef} className="w-full">
             <AirPortSelect
               name="From"
               isDisabled={isDisabled}
@@ -41,7 +41,7 @@ const OneWayModify = ({
               getOptionLabel={(x) => x.airport_name}
               getOptionValue={(x) => x._id}
             />
-          </div>
+          </section>
 
           <button
             ref={swapBtnRef}
@@ -57,7 +57,7 @@ const OneWayModify = ({
             </span>
           </button>
 
-          <div ref={toWrapRef} className="-mt-6 w-full">
+          <section ref={toWrapRef} className="-mt-6 w-full">
             <AirPortSelect
               name="To"
               isDisabled={isDisabled}
@@ -67,18 +67,18 @@ const OneWayModify = ({
               getOptionLabel={(x) => x.airport_name}
               getOptionValue={(x) => x._id}
             />
-          </div>
+          </section>
 
-          <div className="mt-5 flex flex-col items-center justify-between gap-5 lg:flex-row">
-            <div className="w-full">
+          <section className="mt-5 flex flex-col items-center justify-between gap-5 lg:flex-row">
+            <section className="w-full">
               <DepartureDateSelect
                 isDisabled={isDisabled}
                 value={departureTime}
                 setValue={setDepartureTime}
                 className="left-0"
               />
-            </div>
-            <div className="w-full">
+            </section>
+            <section className="w-full">
               <Select
                 name="Cabin Class"
                 options={classOptions}
@@ -90,10 +90,10 @@ const OneWayModify = ({
                 getOptionLabel={(x) => x.name}
                 getOptionValue={(x) => x._id}
               />
-            </div>
-          </div>
-        </div>
-      </div>
+            </section>
+          </section>
+        </section>
+      </section>
     </section>
   );
 };

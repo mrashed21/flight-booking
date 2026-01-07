@@ -51,17 +51,14 @@ const OurSmartServices = () => {
             Our Smart Services
           </h2>
 
-          <p
-            ref={subtitleRef}
-            className="text-muted mx-auto mt-3 max-w-xl"
-          >
+          <p ref={subtitleRef} className="text-muted mx-auto mt-3 max-w-xl">
             From breathtaking landscapes to hidden gems – explore curated tours
             designed to create memories that last a lifetime.
           </p>
         </div>
 
         {/* SERVICES */}
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <section className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {services.map((service, i) => {
             const Icon = service.icon;
 
@@ -84,7 +81,7 @@ const OurSmartServices = () => {
               </div>
             );
           })}
-        </div>
+        </section>
       </Container>
     </section>
   );

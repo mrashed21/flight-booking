@@ -160,7 +160,7 @@ const RoundTripResult = ({
                               </div>
                               <div className="">
                                 <h2 className="text-lg font-medium"> Class</h2>
-                                <p className="text-muted text-xs">Bussiness </p>
+                                <p className="text-muted text-xs">Business </p>
                               </div>
                             </div>
                           </div>

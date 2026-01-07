@@ -2,7 +2,7 @@ import PassengerDetails from "@/components/frontend/PassengerDetails/PassengerDe
 
 const PassengerDetailsPage = () => {
   return (
-    <section>
+    <section className="bg-surface pb-10">
       <PassengerDetails />
     </section>
   );

@@ -185,7 +185,7 @@ const SearchSidebar = ({
         {/* Overlay */}
         <div
           ref={overlayRef}
-          className="pointer-events-none fixed inset-0 -top-[95px] z-40 bg-white/20 backdrop-blur-xs"
+          className="pointer-events-none fixed inset-0 -top-23.75 z-40 bg-white/20 backdrop-blur-xs"
           style={{ pointerEvents: filterDrowerOpen ? "auto" : "none" }}
           onClick={handleClose}
         />

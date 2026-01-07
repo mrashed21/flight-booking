@@ -188,7 +188,7 @@ const OneWayResult = ({
                                   Class
                                 </h2>
                                 <p className="text-muted text-[6px] lg:text-xs">
-                                  Bussiness{" "}
+                                  Business{" "}
                                 </p>
                               </div>
                             </div>

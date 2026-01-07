@@ -28,7 +28,7 @@ const SearchContent = ({
   const [openFlightDetails, setOpenFlightDetails] = useState(null);
 
   return (
-    <div className="space-y-3">
+    <section className="space-y-3">
       {/* ---------- RESULT HEADER ---------- */}
       <div
         className={`sticky top-16 flex items-center justify-between backdrop-blur-lg transition-all duration-300 ${
@@ -123,7 +123,7 @@ const SearchContent = ({
       {/* ---------- FLIGHT LIST ---------- */}
 
       {flights.map((flight) => (
-        <div
+        <section
           key={flight.id}
           className={`flight-card mb-3 overflow-hidden rounded-xl bg-white shadow-sm ${
             isScrolled ? " " : "lg:mt-7"
@@ -152,9 +152,9 @@ const SearchContent = ({
               setOpenFlightDetails={setOpenFlightDetails}
             />
           )}
-        </div>
+        </section>
       ))}
-    </div>
+    </section>
   );
 };
 
