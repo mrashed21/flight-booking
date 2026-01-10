@@ -6,6 +6,7 @@ import SuitableRoutes from "@/components/frontend/Home/SuitableRoutes/SuitableRo
 import TopDestination from "@/components/frontend/Home/TopDestination/TopDestination";
 import TravelSection from "@/components/frontend/Home/Travel/TravelSection";
 
+
 const HomePage = () => {
   return (
     <section>
