@@ -4,6 +4,7 @@ import Container from "@/components/common/Container/Container";
 import useFadeUpOnView from "@/helpers/gsapAnimation/useFadeUpOnView";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
 
 /* ---------- DEMO DATA ---------- */
@@ -59,13 +60,13 @@ const airlines = [
   },
 ];
 
-const PopularAirlines = () => {
+const PopularAirlines = ({ className = "" }) => {
   const titleRef = useRef(null);
 
   useFadeUpOnView(titleRef);
 
   return (
-    <section className="bg-warning/8 py-20">
+    <section className={`bg-warning/8 py-20 ${className}`}>
       <Container>
         {/* HEADER */}
         <div className="mb-14 text-center">
@@ -83,7 +84,8 @@ const PopularAirlines = () => {
         {/* GRID */}
         <section className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {airlines.map((airline, i) => (
-            <div
+            <Link
+              href={`/air-line/${airline.name}`}
               key={i}
               className={`border-primary-soft bg-warning/14 flex cursor-pointer items-center justify-between gap-4 rounded-xl border px-5 py-4 transition hover:shadow-md ${i >= 5 ? "hidden lg:flex" : "flex"} `}
             >
@@ -107,7 +109,7 @@ const PopularAirlines = () => {
 
               {/* ICON */}
               <ChevronRight className="text-muted" />
-            </div>
+            </Link>
           ))}
         </section>
       </Container>

@@ -2,10 +2,12 @@
 import Container from "@/components/common/Container/Container";
 import RemainingTime from "@/components/UI/RemainingTime";
 import useGsapCollapse from "@/helpers/gsapAnimation/useGsapCollapse";
+import { Country } from "country-state-city";
 import { ChevronRight, CircleCheck } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
-import { flights } from "../search/searchContent/flightdata";
+import { useMemo, useState } from "react";
+import { useForm } from "react-hook-form";
+import { flights } from "../Search/SearchContent/flightdata";
 import OneWayDetails from "./OneWayDetails";
 import PassengerInfo from "./PassengerInfo";
 
@@ -15,6 +17,33 @@ const PassengerDetails = () => {
   const [flight, setFlight] = useState(flights[0]);
   const isOpen = openFlightDetails === flight.id;
   const detailsRef = useGsapCollapse(isOpen);
+
+  // passenger details form
+  const form = useForm({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      dob: "",
+      gender: "male",
+      country: "",
+      passportNumber: "",
+      expireDate: "",
+    },
+  });
+
+  // country select
+  const countries = useMemo(() => {
+    return Country.getAllCountries().map((c) => ({
+      name: c.name,
+      isoCode: c.isoCode,
+    }));
+  }, []);
+
+  const [selected, setSelected] = useState({
+    name: "Bangladesh",
+    isoCode: "BD",
+  });
+  console.log(selected);
   return (
     <>
       {/* header section */}
@@ -53,7 +82,14 @@ const PassengerDetails = () => {
               />
             </section>
             {/* passenger info */}
-            {/* <PassengerInfo /> */}
+            <PassengerInfo
+              countries={countries}
+              label="Nationality"
+              placeholder="Select country"
+              value={selected}
+              onChange={setSelected}
+              form={form}
+            />
           </aside>
           {/* right section  */}
           <aside className="col-span-3">
@@ -64,6 +100,7 @@ const PassengerDetails = () => {
                   src={
                     "https://1000logos.net/wp-content/uploads/2023/05/Biman-Bangladesh-Airlines-Logo.png"
                   }
+                  alt="air line"
                   width={300}
                   height={300}
                   className="h-8 w-12 lg:h-15 lg:w-20"

@@ -1,99 +1,88 @@
 "use client";
 
 import Container from "@/components/common/Container/Container";
-import { Autoplay, EffectCoverflow, Mousewheel } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import useFadeUpOnView from "@/helpers/gsapAnimation/useFadeUpOnView";
 import Image from "next/image";
-import { useRef } from "react";
+import Link from "next/link";
 import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
+import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 /* ---------------- DATA ---------------- */
 const banners = [
   {
     image:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1400",
+      "https://i.ibb.co.com/vxvCQpFF/Black-and-Orange-Modern-Elegant-Black-Friday-Ticket.png",
+    url: "/offer/sydney",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=1400",
+      "https://i.ibb.co.com/vxBpdFmX/Black-and-Orange-Modern-Elegant-Black-Friday-Ticket-1.png",
+    url: "/offer/melbourne",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400",
+      "https://i.ibb.co.com/TMx2sK10/Black-and-Orange-Modern-Elegant-Black-Friday-Ticket-2.png",
+    url: "/offer/brisbane",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1400",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=1400",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400",
+      "https://i.ibb.co.com/6czqXkR5/Black-and-Orange-Modern-Elegant-Black-Friday-Ticket-3.png",
+    url: "/offer/perth",
   },
 ];
 
 const TravelSection = () => {
-  const titleRef = useRef(null);
-
-  useFadeUpOnView(titleRef);
   return (
-    <section className="bg-surface py-20">
+    <section className="bg-surface py-16">
       <Container>
         {/* HEADER */}
-        <div className="mt-10 mb-12 text-center">
-          <h2 className="text-3xl font-bold text-gray-800">
+        <div className="mx-auto mb-10 max-w-2xl text-center">
+          <h2 className="text-2xl font-semibold text-gray-800 md:text-3xl">
             Still Interested in Traveling to Sydney?
           </h2>
-          <p className="mt-2 text-gray-500">
-            There is a limited number of seats available. Complete your booking
-            to secure yours.
+          <p className="mt-2 text-sm text-gray-500">
+            Limited seats available. Complete your booking to secure yours.
           </p>
         </div>
 
         {/* SWIPER */}
         <Swiper
-          modules={[EffectCoverflow, Autoplay, Mousewheel]}
-          effect="coverflow"
+          modules={[Autoplay]}
+          loop
           centeredSlides
-          loop={true}
-          grabCursor
-          mousewheel={{ forceToAxis: true }}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
+          autoplay={{ delay: 3200, disableOnInteraction: false }}
+          spaceBetween={28}
           breakpoints={{
-            0: { slidesPerView: 1.3 },
+            0: { slidesPerView: 1.15 },
             640: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           }}
-          coverflowEffect={{
-            rotate: 30,
-            stretch: 0,
-            depth: 180,
-            modifier: 1,
-            slideShadows: false,
-          }}
-          className="-z-10 pb-12"
+          className="pb-6"
         >
           {banners.map((item, i) => (
             <SwiperSlide key={i}>
-              <div className="h-60 overflow-hidden rounded-2xl">
-                <Image
-                  width={200}
-                  height={200}
-                  src={item.image}
-                  alt="travel"
-                  className="h-full w-full object-cover"
-                />
-              </div>
+              {({ isActive }) => (
+                <Link href={item.url} className="block">
+                  <div
+                    className={`relative overflow-hidden rounded-2xl transition-all duration-500 ease-out ${
+                      isActive
+                        ? "-translate-y-2 scale-110 shadow-xl shadow-black/10"
+                        : "scale-95 opacity-70 blur-[0.3px]"
+                    } `}
+                  >
+                    <Image
+                      src={item.image}
+                      alt="Travel deal banner"
+                      width={600}
+                      height={400}
+                      className="h-60 w-full object-cover transition-transform duration-500 hover:scale-105"
+                    />
+
+                    {/* subtle overlay for depth */}
+                    <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/10 to-transparent" />
+                  </div>
+                </Link>
+              )}
             </SwiperSlide>
           ))}
         </Swiper>

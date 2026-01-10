@@ -11,12 +11,12 @@ import { ChevronLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import SearchContent from "./searchContent/SearchContent";
-import SearchSidebar from "./searchContent/SearchSidebar";
-import SearchModal from "./searchModal/SearchModal";
-import SearchMultiCity from "./searchType/SearchMultiCity";
-import SearchOneWay from "./searchType/SearchOneWay";
-import SearchRoundTrip from "./searchType/SearchRoundTrip";
+import SearchContent from "./SearchContent/SearchContent";
+import SearchSidebar from "./SearchContent/SearchSidebar";
+import SearchModal from "./SearchModal/SearchModal";
+import SearchMultiCity from "./SearchType/SearchMultiCity";
+import SearchOneWay from "./SearchType/SearchOneWay";
+import SearchRoundTrip from "./SearchType/SearchRoundTrip";
 
 const Search = () => {
   const dispatch = useDispatch();

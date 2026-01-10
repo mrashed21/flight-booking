@@ -54,6 +54,7 @@ const DepartureDateSelect = ({
   setValue,
   isDisabled = false,
   className = "",
+  label = "Departure",
 }) => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -133,7 +134,7 @@ const DepartureDateSelect = ({
   return (
     <div ref={wrapperRef} className="relative min-w-40">
       <label className="text-muted mb-1 block text-sm font-medium">
-        Departure
+        {label}
       </label>
 
       {/* trigger */}
@@ -141,11 +142,11 @@ const DepartureDateSelect = ({
         type="button"
         disabled={isDisabled}
         onClick={() => setOpen((p) => !p)}
-        className={`border-muted flex w-full items-center gap-2 rounded border bg-white px-4 py-2.5 text-sm font-medium shadow-sm transition hover:shadow ${isDisabled ? "cursor-not-allowed" : "cursor-pointer"}`}
+        className={`border-muted flex w-full items-center gap-2 rounded border bg-white px-4 py-2.5 text-sm font-medium shadow-sm transition hover:shadow ${isDisabled ? "cursor-not-allowed" : "cursor-pointer"} ${className}`}
       >
         <CalendarDays size={16} className="text-primary" />
         <span className={selectedDate ? "text-black" : "text-muted"}>
-          {selectedDate ? formatDate(selectedDate) : formatDate(today)}
+          {selectedDate ? formatDate(selectedDate) : "Select Date"}
         </span>
       </button>
 
@@ -153,14 +154,14 @@ const DepartureDateSelect = ({
       {open && (
         <div
           ref={panelRef}
-          className={`border-muted absolute top-full right-0 z-50 mt-1 w-80 rounded-xl border bg-white p-4 shadow-xl ${className}`}
+          className={`border-muted/20 absolute top-full right-0 z-50 mt-1 w-80 rounded-xl border bg-white p-4 shadow-xl`}
         >
           {/* search */}
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder={`Search (e.g. Dec ${currentYear}, Dec ${currentYear})`}
-            className="border-muted mb-3 w-full rounded-md border px-3 py-2 text-sm focus:outline-none"
+            className="border-muted/20 mb-3 w-full rounded-md border px-3 py-2 text-sm focus:outline-none"
           />
 
           {/* header */}

@@ -73,6 +73,29 @@ body {
   -webkit-backdrop-filter: blur(18px);
 }
 
+.form-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-muted);
+  margin-bottom: 4px;
+  display: block;
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--color-gray-light);
+  background: var(--color-surface);
+  font-size: 14px;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--color-primary);
+  background: var(--color-white);
+}
+
 html {
   overflow-x: hidden;
 }
