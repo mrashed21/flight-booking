@@ -1,6 +1,6 @@
 import AirPortSelect from "@/components/UI/AirPortSelect";
 import CommonButton from "@/components/UI/CommonButton";
-import DepartureDateSelect from "@/components/UI/DepartureDateSelect";
+import DepartureDateSelect from "@/components/UI/DateSelect";
 import ReturnDateSelect from "@/components/UI/ReturnDateSelect";
 import { swapGhostAnimation } from "@/helpers/gsapAnimation/swapGhostAnimation";
 import { swapHoverAnimation } from "@/helpers/gsapAnimation/swapHoverAnimation";

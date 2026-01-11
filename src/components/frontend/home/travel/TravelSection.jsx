@@ -58,11 +58,12 @@ const TravelSection = () => {
             1024: { slidesPerView: 3 },
           }}
           className="pb-6"
+          style={{ transform: "none" }}
         >
           {banners.map((item, i) => (
             <SwiperSlide key={i}>
               {({ isActive }) => (
-                <Link href={item.url} className="block">
+                <Link href={item.url} className="-cz-max block">
                   <div
                     className={`relative overflow-hidden rounded-2xl transition-all duration-500 ease-out ${
                       isActive

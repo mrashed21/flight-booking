@@ -27,12 +27,6 @@ const toISOWithOffset = (date) => {
   return `${year}-${month}-${day}T00:00:00+00:00`;
 };
 
-const addDays = (date, days) => {
-  const d = new Date(date);
-  d.setDate(d.getDate() + days);
-  return d;
-};
-
 /* smart search parser */
 const parseSearchDate = (input) => {
   if (!input) return null;
@@ -50,20 +44,18 @@ const parseSearchDate = (input) => {
 };
 
 /* ---------- component ---------- */
-const ReturnDateSelect = ({
+const DateSelect = ({
   value,
   setValue,
-  departureDate,
-  className = "",
   isDisabled = false,
+  className = "",
+  label = "Departure",
 }) => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const defaultReturnDate = addDays(today, 7);
-
   const [open, setOpen] = useState(false);
-  const [cursorDate, setCursorDate] = useState(defaultReturnDate);
+  const [cursorDate, setCursorDate] = useState(today);
   const [search, setSearch] = useState("");
   const [coords, setCoords] = useState(null);
 
@@ -71,34 +63,9 @@ const ReturnDateSelect = ({
 
   const panelRef = useRef(null);
   const wrapperRef = useRef(null);
-  const prevDepartureDateRef = useRef(departureDate);
 
   /* derived selected date from parent */
   const selectedDate = value ? new Date(value) : null;
-
-  /* minimum selectable date - departure date or today */
-  const minDate = useMemo(() => {
-    if (departureDate) {
-      const depDate = new Date(departureDate);
-      depDate.setHours(0, 0, 0, 0);
-      return depDate;
-    }
-    return today;
-  }, [departureDate]);
-
-  /* reset return date when departure date changes */
-  useEffect(() => {
-    if (departureDate !== prevDepartureDateRef.current) {
-      setValue(null); // reset return date
-      prevDepartureDateRef.current = departureDate;
-
-      // Update cursor to show month of new departure date
-      if (departureDate) {
-        const depDate = new Date(departureDate);
-        setCursorDate(addDays(depDate, 7));
-      }
-    }
-  }, [departureDate, setValue]);
 
   /* ---------- outside click ---------- */
   useEffect(() => {
@@ -183,22 +150,12 @@ const ReturnDateSelect = ({
 
   /* ---------- select ---------- */
   const handleSelect = (date) => {
-    if (date < minDate) return;
+    if (date < today) return;
 
     setValue(toISOWithOffset(date));
     setOpen(false);
     setSearch("");
   };
-
-  /* display date - 7 days from departure or today+7 */
-  const displayDate = useMemo(() => {
-    if (selectedDate) return selectedDate;
-    if (departureDate) {
-      const depDate = new Date(departureDate);
-      return addDays(depDate, 7);
-    }
-    return defaultReturnDate;
-  }, [selectedDate, departureDate, defaultReturnDate]);
 
   const toggle = () => {
     const pos = calculatePosition();
@@ -226,9 +183,9 @@ const ReturnDateSelect = ({
   };
 
   return (
-    <div ref={wrapperRef} className="relative min-w-40">
+    <div ref={wrapperRef} className="cz-max relative min-w-40">
       <label className="text-muted mb-1 block text-sm font-medium">
-        Return
+        {label}
       </label>
 
       {/* trigger */}
@@ -242,9 +199,7 @@ const ReturnDateSelect = ({
       >
         <CalendarDays size={16} className="text-primary" />
         <span className={selectedDate ? "text-black" : "text-muted"}>
-          {selectedDate ? formatDate(displayDate) : "Select Date"}
-          {/* {formatDate(displayDate)} */}
-          {/* formatDate(displayDate) */}
+          {selectedDate ? formatDate(selectedDate) : "Select Date"}
         </span>
       </button>
 
@@ -263,7 +218,7 @@ const ReturnDateSelect = ({
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder={`Search (e.g. Dec ${currentYear}, ${currentYear} 12)`}
+              placeholder={`Search (e.g. Dec ${currentYear},  ${currentYear} 12) `}
               className="border-muted/20 mb-3 w-full rounded-md border px-3 py-2 text-sm focus:outline-none"
             />
 
@@ -308,7 +263,7 @@ const ReturnDateSelect = ({
             </div>
 
             {/* weekday headers */}
-            <div className="mb-2 grid grid-cols-7 gap-1">
+            <div className="cz-max mb-2 grid grid-cols-7 gap-1">
               {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
                 <div
                   key={day}
@@ -325,14 +280,14 @@ const ReturnDateSelect = ({
                 d ? (
                   <button
                     key={i}
-                    disabled={d < minDate}
+                    disabled={d < today}
                     onClick={() => handleSelect(d)}
                     className={`h-9 rounded-md text-sm font-medium transition ${
-                      d < minDate
+                      d < today
                         ? "text-muted cursor-not-allowed"
                         : isSameDay(d, selectedDate)
                           ? "bg-primary cursor-pointer text-white"
-                          : isSameDay(d, displayDate) && !selectedDate
+                          : isSameDay(d, today)
                             ? "bg-primary-bg text-info hover:bg-gray-light cursor-pointer"
                             : "hover:bg-gray-light cursor-pointer"
                     }`}
@@ -351,4 +306,4 @@ const ReturnDateSelect = ({
   );
 };
 
-export default ReturnDateSelect;
+export default DateSelect;

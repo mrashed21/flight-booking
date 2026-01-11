@@ -1,5 +1,5 @@
 import AirPortSelect from "@/components/UI/AirPortSelect";
-import DepartureDateSelect from "@/components/UI/DepartureDateSelect";
+import DepartureDateSelect from "@/components/UI/DateSelect";
 import Select from "@/components/UI/Select";
 import { ArrowRightLeft } from "lucide-react";
 

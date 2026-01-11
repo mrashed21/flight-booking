@@ -211,7 +211,7 @@ color11:#E4F2FF
   z-index: 700;
 }
 .cz-max {
-  z-index: 999;
+  z-index: 999999;
 }
 
 /* -z-index class */
