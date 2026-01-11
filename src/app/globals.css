@@ -1,0 +1,267 @@
+@import "tailwindcss";
+
+/* responsive breakdown for all screen if need use custom */
+/* @theme {
+  // ! Small Phones /
+  --breakpoint-smp: (min-width: 320px) and (max-width: 374px);
+  --breakpoint-stp: (min-width: 375px) and (max-width: 428px);
+  --breakpoint-lgp: (min-width: 429px) and (max-width: 480px);
+
+  // ! Small Tablets (Portrait) /
+  --breakpoint-smt: (min-width: 481px) and (max-width: 768px);
+  --breakpoint-stt: (min-width: 769px) and (max-width: 834px);
+  --breakpoint-lgt: (min-width: 835px) and (max-width: 1024px);
+
+  // ! Laptops /
+  --breakpoint-sml: (min-width: 1025px) and (max-width: 1280px);
+  --breakpoint-stl: (min-width: 1281px) and (max-width: 1440px);
+
+  // ! Desktops /
+  --breakpoint-lgd: (min-width: 1441px) and (max-width: 1920px);
+  --breakpoint-xld: (min-width: 1921px);
+} */
+
+:root {
+  /* Fonts */
+  --font-poppins: "Poppins", sans-serif;
+
+  /* Color Variables */
+  --color-1: #ffffff;
+  --color-2: #1c74c0;
+  --color-3: #929292;
+  --color-4: #2773b51a;
+  --color-5: #f3f3f3;
+  --color-6: #e59a12;
+  --color-7: #007bff;
+  --color-8: #0b568e;
+  --color-9: #417da8;
+  --color-10: #f8fafc;
+  --color-11: #e4f2ff;
+}
+
+@theme inline {
+  --color-white: var(--color-1);
+  --color-primary: var(--color-2);
+  --color-muted: var(--color-3);
+  --color-primary-soft: var(--color-4);
+  --color-gray-light: var(--color-5);
+  --color-warning: var(--color-6);
+  --color-info: var(--color-7);
+  --color-primary-dark: var(--color-8);
+  --color-primary-mid: var(--color-9);
+  --color-surface: var(--color-10);
+  --color-primary-bg: var(--color-11);
+}
+
+body {
+  font-family: var(--font-poppins);
+}
+
+/* Hide scrollbar but keep scroll functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Glass / Blur Navbar */
+.glass-navbar {
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-muted);
+  margin-bottom: 4px;
+  display: block;
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--color-gray-light);
+  background: var(--color-surface);
+  font-size: 14px;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--color-primary);
+  background: var(--color-white);
+}
+
+html {
+  overflow-x: hidden;
+}
+
+/* 
+color1:#FFFFFF
+color2:#1C74C0
+color3:#929292
+color4:#2773B51A
+color5:#F3F3F3
+color6:#E59A12
+color7:#007BFF
+color8:#0B568E
+color9:#417DA8
+color10:#F8FAFC
+color11:#E4F2FF
+*/
+
+.common-btn {
+  position: relative;
+  padding: 12px 44px;
+  border-radius: 8px;
+  background: var(--color-primary-dark);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+/* Right diagonal shape */
+.common-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-primary-mid);
+  clip-path: polygon(90% 0, 100% 0, 100% 100%, 75% 100%);
+}
+
+/* Text above shape */
+/* .common-btn {
+  isolation: isolate;
+} */
+
+.common-btn::after {
+  z-index: 0;
+}
+
+.common-btn > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hover & active */
+.common-btn:hover {
+  filter: brightness(1.08);
+}
+
+.common-btn:active {
+  transform: scale(0.97);
+}
+
+/* z-index class */
+.cz-2 {
+  z-index: 2;
+}
+.cz-11 {
+  z-index: 11;
+}
+.cz-22 {
+  z-index: 22;
+}
+.cz-33 {
+  z-index: 33;
+}
+.cz-44 {
+  z-index: 44;
+}
+.cz-55 {
+  z-index: 55;
+}
+.cz-66 {
+  z-index: 66;
+}
+.cz-77 {
+  z-index: 77;
+}
+.cz-99 {
+  z-index: 99;
+}
+
+.cz-150 {
+  z-index: 150;
+}
+
+.cz-200 {
+  z-index: 200;
+}
+
+.cz-250 {
+  z-index: 250;
+}
+
+.cz-500 {
+  z-index: 500;
+}
+
+.cz-700 {
+  z-index: 700;
+}
+.cz-max {
+  z-index: 999999;
+}
+
+/* -z-index class */
+.-cz-2 {
+  z-index: -2;
+}
+.-cz-11 {
+  z-index: -11;
+}
+.-cz-22 {
+  z-index: -22;
+}
+.-cz-33 {
+  z-index: -33;
+}
+.-cz-44 {
+  z-index: -44;
+}
+.-cz-55 {
+  z-index: -55;
+}
+.-cz-66 {
+  z-index: -66;
+}
+.-cz-77 {
+  z-index: -77;
+}
+.-cz-99 {
+  z-index: -99;
+}
+
+.-cz-150 {
+  z-index: -150;
+}
+
+.-cz-200 {
+  z-index: -200;
+}
+
+.-cz-250 {
+  z-index: -250;
+}
+
+.-cz-500 {
+  z-index: -500;
+}
+
+.-cz-700 {
+  z-index: -700;
+}
+.-cz-max {
+  z-index: -999;
+}
