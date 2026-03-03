@@ -40,7 +40,7 @@ const OurSmartServices = () => {
   useFadeUpStagger(cardsRef, { y: 60 });
 
   return (
-    <section className="bg-surface py-24">
+    <section className="bg-surface py-4">
       <Container>
         {/* HEADER */}
         <div className="mb-16 text-center">
