@@ -73,7 +73,7 @@ const TopDestination = () => {
   useFadeUpOnView(titleRef);
 
   return (
-    <section className="bg-surface py-20">
+    <section className="bg-surface py-4">
       <Container>
         {/* HEADER */}
         <div className="mb-14 text-center">
