@@ -139,7 +139,13 @@ const Footer = () => {
                 <span className="text-xs text-white">©</span>
               </div>
               <p className="text-muted text-xs md:text-sm">
-                {currentYear} Classic It and Sky Mart Ltd. All rights reserved.
+                {currentYear} <a
+                  href="https://www.classicit.com.bd"   // 🔁 ekhane tomar actual URL diben
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline font-medium"
+                >
+                  Classic It  </a>{" "} All rights reserved.
               </p>
             </div>
           </div>
