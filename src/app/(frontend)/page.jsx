@@ -1,4 +1,5 @@
 import AppDownloadSection from "@/components/frontend/Home/AppDownloadSection/AppDownloadSection ";
+import BestHotel from "@/components/frontend/Home/BestHotel/BestHotel";
 import Hero from "@/components/frontend/Home/Hero/Hero";
 import OurSmartServices from "@/components/frontend/Home/OurSmartServices/OurSmartServices";
 import PopularAirlines from "@/components/frontend/Home/PopularAirlines/PopularAirlines";
@@ -12,7 +13,8 @@ const HomePage = () => {
       <Hero />
       <TravelSection />
       <TopDestination />
-      <PopularAirlines />
+      <BestHotel></BestHotel>
+      {/* <PopularAirlines /> */}
       <OurSmartServices />
       <SuitableRoutes />
       <AppDownloadSection />
