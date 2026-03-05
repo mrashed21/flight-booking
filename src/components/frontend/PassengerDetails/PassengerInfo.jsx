@@ -1,7 +1,7 @@
 "use client";
 import CommonButton from "@/components/UI/CommonButton";
 import CountrySelect from "@/components/UI/CountrySelect";
-import DepartureDateSelect from "@/components/UI/DateSelect";
+import DateSelect2 from "@/components/UI/DateSelect2";
 import { BDPhoneInput } from "bd-number-validator";
 import "bd-number-validator/react/style.css";
 import { ScanQrCode } from "lucide-react";
@@ -65,7 +65,8 @@ const PassengerInfo = ({ countries, form }) => {
               name="dob"
               control={control}
               render={({ field }) => (
-                <DepartureDateSelect
+                <DateSelect2
+                  allowPast
                   {...field}
                   label={"Date of birth"}
                   className="bg-surface! border-none shadow-none!"
@@ -127,7 +128,8 @@ const PassengerInfo = ({ countries, form }) => {
               name="expireDate"
               control={control}
               render={({ field }) => (
-                <DepartureDateSelect
+                <DateSelect2
+                  allowPast
                   label="Expire Date"
                   {...field}
                   className="bg-surface! border-none shadow-none!"
