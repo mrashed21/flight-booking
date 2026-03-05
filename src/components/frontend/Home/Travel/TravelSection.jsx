@@ -11,22 +11,22 @@ import { Swiper, SwiperSlide } from "swiper/react";
 const banners = [
   {
     image:
-      "https://i.ibb.co.com/vxvCQpFF/Black-and-Orange-Modern-Elegant-Black-Friday-Ticket.png",
+      "https://i.ibb.co.com/G47C9rS8/Screenshot-3.png",
     url: "/offer/sydney",
   },
   {
     image:
-      "https://i.ibb.co.com/vxBpdFmX/Black-and-Orange-Modern-Elegant-Black-Friday-Ticket-1.png",
+      "https://i.ibb.co.com/SwVVmzN7/Screenshot-4.png",
     url: "/offer/melbourne",
   },
   {
     image:
-      "https://i.ibb.co.com/TMx2sK10/Black-and-Orange-Modern-Elegant-Black-Friday-Ticket-2.png",
+      "https://i.ibb.co.com/pjs81nbr/Screenshot-1.png",
     url: "/offer/brisbane",
   },
   {
     image:
-      "https://i.ibb.co.com/6czqXkR5/Black-and-Orange-Modern-Elegant-Black-Friday-Ticket-3.png",
+      "https://i.ibb.co.com/gMN95mCJ/Screenshot-2.png",
     url: "/offer/perth",
   },
 ];
