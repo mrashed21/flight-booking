@@ -111,7 +111,7 @@ const Navbar = () => {
             <Image
               width={200}
               height={200}
-              src="https://i.ibb.co.com/Q317RSjR/Group-1597883383.png"
+              src="https://i.ibb.co.com/7xSTpscQ/FAST-FLIGHT-2.png"
               alt="logo"
             />
 
