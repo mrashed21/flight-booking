@@ -83,17 +83,27 @@ body {
 
 .form-input {
   width: 100%;
-  padding: 8px 12px;
+  padding: 10px 12px;
   border-radius: 6px;
   border: 1px solid var(--color-gray-light);
   background: var(--color-surface);
   font-size: 14px;
+  line-height: 1.5;
   outline: none;
 }
 
 .form-input:focus {
   border-color: var(--color-primary);
   background: var(--color-white);
+}
+
+/* Icon-prefixed input — use alongside form-input */
+.form-input-icon-left {
+  padding-left: 2.5rem; /* 40px — clears a 16px icon at left:12px */
+}
+
+.form-input-icon-right {
+  padding-right: 2.5rem;
 }
 
 html {

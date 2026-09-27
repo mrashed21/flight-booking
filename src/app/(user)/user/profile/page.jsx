@@ -1,6 +1,7 @@
 const UserProfilePage = () => {
   return (
     <div className="space-y-6">
+      {/* Page Header */}
       <div>
         <h1 className="text-xl font-bold text-gray-800 sm:text-2xl">
           My Profile
@@ -10,11 +11,12 @@ const UserProfilePage = () => {
         </p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-3">
-        {/* Profile Card */}
-        <div className="rounded-xl bg-white p-6 text-center shadow-sm">
+      {/* Top Grid — Avatar Card + Personal Info Form */}
+      <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-3">
+        {/* Profile Card — col 1 */}
+        <div className="flex flex-col items-center rounded-xl bg-white p-6 shadow-sm lg:col-span-1">
           {/* Avatar */}
-          <div className="bg-primary mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full text-3xl font-bold text-white">
+          <div className="bg-primary mb-4 flex h-20 w-20 items-center justify-center rounded-full text-2xl font-bold text-white">
             MR
           </div>
           <h2 className="text-base font-semibold text-gray-800">
@@ -23,7 +25,8 @@ const UserProfilePage = () => {
           <p className="text-muted text-sm">mrashed@example.com</p>
           <p className="text-muted mt-1 text-xs">Member since Jan 2024</p>
 
-          <div className="mt-4 space-y-2 text-left text-sm">
+          {/* Stats */}
+          <div className="mt-5 w-full space-y-2 text-sm">
             <div className="bg-surface flex items-center justify-between rounded-lg px-3 py-2">
               <span className="text-muted">Total Trips</span>
               <span className="text-primary font-semibold">12</span>
@@ -32,15 +35,27 @@ const UserProfilePage = () => {
               <span className="text-muted">Reward Points</span>
               <span className="text-primary font-semibold">1,480 pts</span>
             </div>
+            <div className="bg-surface flex items-center justify-between rounded-lg px-3 py-2">
+              <span className="text-muted">Account Status</span>
+              <span className="text-sm font-semibold text-green-500">
+                Verified ✓
+              </span>
+            </div>
           </div>
+
+          {/* Edit Avatar Button */}
+          <button className="border-primary text-primary mt-5 w-full rounded-lg border px-4 py-2 text-xs font-medium transition hover:bg-primary-bg">
+            Change Photo
+          </button>
         </div>
 
-        {/* Edit Form */}
+        {/* Personal Info Form — col 2-3 */}
         <div className="rounded-xl bg-white p-6 shadow-sm lg:col-span-2">
           <h2 className="mb-5 text-sm font-semibold text-gray-800">
             Personal Information
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2">
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label className="form-label">First Name</label>
               <input
@@ -90,7 +105,15 @@ const UserProfilePage = () => {
                 <option>Other</option>
               </select>
             </div>
-            <div className="sm:col-span-2">
+            <div>
+              <label className="form-label">Gender</label>
+              <select className="form-input">
+                <option>Male</option>
+                <option>Female</option>
+                <option>Prefer not to say</option>
+              </select>
+            </div>
+            <div>
               <label className="form-label">Passport Number</label>
               <input
                 type="text"
@@ -100,8 +123,11 @@ const UserProfilePage = () => {
             </div>
           </div>
 
-          <div className="mt-6 flex justify-end">
-            <button className="common-btn text-sm">
+          <div className="mt-6 flex items-center justify-between border-t border-gray-100 pt-5">
+            <p className="text-muted text-xs">
+              Last updated: 12 Sep, 2025
+            </p>
+            <button className="common-btn !px-6 !py-2.5 text-sm">
               <span>Save Changes</span>
             </button>
           </div>
@@ -113,22 +139,37 @@ const UserProfilePage = () => {
         <h2 className="mb-5 text-sm font-semibold text-gray-800">
           Change Password
         </h2>
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <div>
             <label className="form-label">Current Password</label>
-            <input type="password" placeholder="••••••••" className="form-input" />
+            <input
+              type="password"
+              placeholder="••••••••"
+              className="form-input"
+            />
           </div>
           <div>
             <label className="form-label">New Password</label>
-            <input type="password" placeholder="••••••••" className="form-input" />
+            <input
+              type="password"
+              placeholder="••••••••"
+              className="form-input"
+            />
           </div>
           <div>
             <label className="form-label">Confirm New Password</label>
-            <input type="password" placeholder="••••••••" className="form-input" />
+            <input
+              type="password"
+              placeholder="••••••••"
+              className="form-input"
+            />
           </div>
         </div>
-        <div className="mt-4 flex justify-end">
-          <button className="border-primary text-primary rounded-lg border px-6 py-2 text-sm font-medium transition hover:bg-primary-bg">
+        <div className="mt-5 flex items-center justify-between border-t border-gray-100 pt-4">
+          <p className="text-muted text-xs">
+            Use at least 8 characters with letters and numbers.
+          </p>
+          <button className="border-primary text-primary rounded-lg border px-5 py-2 text-sm font-medium transition hover:bg-primary-bg">
             Update Password
           </button>
         </div>

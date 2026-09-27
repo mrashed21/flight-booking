@@ -94,11 +94,11 @@ const MobileDrawer = ({ open, navItems, offsetTop, user, onClose }) => {
               Login
             </Link>
             <Link
-              href="/flight"
+              href="/register"
               onClick={onClose}
               className="common-btn text-center text-sm"
             >
-              <span>Book Flight</span>
+              <span>Get Started</span>
             </Link>
           </div>
         )}
