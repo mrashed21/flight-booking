@@ -33,14 +33,15 @@ const AboutUs = () => {
               </span>
 
               <h2 className="mb-6 text-2xl leading-snug font-semibold sm:text-3xl md:text-4xl">
-                Transforming Businesses with <br />
-                Flight, Hotel Booking & Visa Process
+                Your Trusted Travel Partner <br />
+                for Flights, Tours & Visa Services
               </h2>
 
               <p className="text-muted mb-8 max-w-xl">
-                A powerful, modern ERP solution built to automate operations,
-                boost productivity, and help your business scale with
-                confidence.
+                SkyWings has been helping Bangladeshi travelers explore the
+                world since 2018. From budget flights to luxury tour packages
+                and hassle-free visa processing — we handle it all so you can
+                focus on your journey.
               </p>
 
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -48,11 +49,11 @@ const AboutUs = () => {
                   <CheckCircle className="text-primary mt-1 shrink-0" />
                   <div>
                     <h4 className="mb-1 font-semibold text-gray-800">
-                      All-in-One Control
+                      Best Price Guarantee
                     </h4>
                     <p className="text-muted text-sm">
-                      A powerful, modern ERP solution built to automate
-                      operations and boost productivity.
+                      We compare hundreds of airlines to get you the lowest
+                      fares — no hidden charges.
                     </p>
                   </div>
                 </div>
@@ -61,11 +62,11 @@ const AboutUs = () => {
                   <CheckCircle className="text-primary mt-1 shrink-0" />
                   <div>
                     <h4 className="mb-1 font-semibold text-gray-800">
-                      Built for Bangladeshi Businesses
+                      Fast Visa Processing
                     </h4>
                     <p className="text-muted text-sm">
-                      Designed specifically to support local business workflows
-                      and growth.
+                      Expert visa consultants with a 98% approval rate across
+                      50+ countries.
                     </p>
                   </div>
                 </div>
@@ -74,9 +75,9 @@ const AboutUs = () => {
 
             {/* RIGHT IMAGE SECTION */}
             <div className="relative flex w-full justify-center lg:w-auto">
-              <div className="absolute top-4 left-4 z-10 flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow sm:top-6 sm:-left-26">
+              <div className="absolute top-4 right-4 z-10 flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow sm:top-6 sm:right-auto sm:-left-26">
                 <span className="text-muted text-sm font-medium">
-                  Trusted Clients
+                  Happy Travelers
                 </span>
                 <div className="flex -space-x-2">
                   <Image

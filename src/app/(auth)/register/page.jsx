@@ -66,7 +66,7 @@ const RegisterPage = () => {
       </div>
 
       {/* Right — Register Form */}
-      <div className="flex flex-1 items-center justify-center px-6 py-12">
+      <div className="flex flex-1 items-center justify-center overflow-y-auto px-5 py-10 sm:px-8">
         <div className="w-full max-w-md">
           {/* Mobile logo */}
           <div className="mb-8 flex items-center gap-2 lg:hidden">

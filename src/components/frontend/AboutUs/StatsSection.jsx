@@ -7,10 +7,10 @@ import { useEffect, useRef } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-  { value: 120, suffix: "+", label: "Active Businesses" },
-  { value: 50000, suffix: "+", label: "Invoice Generated" },
-  { value: 98, suffix: "%", label: "Client Satisfaction" },
-  { value: 24, suffix: "/7", label: "Customer Service" },
+  { value: 15000, suffix: "+", label: "Happy Travelers" },
+  { value: 98, suffix: "%", label: "Visa Approval Rate" },
+  { value: 120, suffix: "+", label: "Destinations" },
+  { value: 24, suffix: "/7", label: "Customer Support" },
 ];
 
 const StatsSection = () => {
@@ -46,7 +46,7 @@ const StatsSection = () => {
   return (
     <section className="py-16">
       <div className="px-4">
-        <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
           {stats.map((item, index) => (
             <div
               key={index}
