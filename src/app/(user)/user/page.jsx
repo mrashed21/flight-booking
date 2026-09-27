@@ -1,7 +1,7 @@
+import { redirect } from "next/navigation";
+
 const UserHomePage = () => {
-  return (
-    <section>Muhammad Rashed! Wellcome to UserHomePage Components</section>
-  );
+  redirect("/user/dashboard");
 };
 
 export default UserHomePage;
