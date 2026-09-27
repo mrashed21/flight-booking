@@ -20,6 +20,7 @@ const Navbar = () => {
     { name: "Flight", link: "/flight" },
     { name: "Tour Package", link: "/tour-package" },
     { name: "Visa", link: "/visa" },
+    { name: "Money Exchange", link: "/money-exchange" },
     { name: "About Us", link: "/about-us" },
     { name: "Contact Us", link: "/contact-us" },
   ];

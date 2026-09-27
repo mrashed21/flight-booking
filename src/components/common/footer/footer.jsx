@@ -24,6 +24,7 @@ const Footer = () => {
     { name: "Visa Information", href: "/visa" },
     { name: "Flight service", href: "/flight" },
     { name: "Tour Booking", href: "/tour-package" },
+    { name: "Money Exchange", href: "/money-exchange" },
   ];
 
   const socialLinks = [
