@@ -96,8 +96,8 @@ const BestHotel = () => {
             modules={[Navigation]}
             loop
             navigation={{
-              prevEl: ".dest-prev",
-              nextEl: ".dest-next",
+              prevEl: ".hotel-prev",
+              nextEl: ".hotel-next",
             }}
             spaceBetween={24}
             slidesPerView={1.1}
@@ -137,10 +137,10 @@ const BestHotel = () => {
 
           {/* NAVIGATION */}
           <div className="mt-10 flex justify-center gap-4">
-            <button className="dest-prev hover:border-primary flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-gray-300 transition">
+            <button className="hotel-prev hover:border-primary flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-gray-300 transition">
               <ChevronLeft className="text-gray-500" />
             </button>
-            <button className="dest-next hover:border-primary flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-gray-300 transition">
+            <button className="hotel-next hover:border-primary flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-gray-300 transition">
               <ChevronRight className="text-primary" />
             </button>
           </div>
