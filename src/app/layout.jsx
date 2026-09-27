@@ -21,16 +21,6 @@ const poppins = Poppins({
 export const metadata = {
   title: "Borkot Travels - Flight, Tour & Visa Booking",
   description: "Borkot Travels - Reliable Flight Booking, Tour Packages & Visa Processing in Bangladesh.",
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.svg", type: "image/svg+xml" },
-      { url: "/icon.png", type: "image/png", sizes: "512x512" },
-    ],
-    apple: [
-      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
-    ],
-  },
   manifest: "/site.webmanifest",
 };
 
