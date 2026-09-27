@@ -9,7 +9,7 @@ import MobileDrawer from "./MobileDrower";
 import ProfileMenu from "./ProfileMenu";
 
 const Navbar = () => {
-  const user = true;
+  const user = false;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const navbarRef = useRef(null);
@@ -131,15 +131,18 @@ const Navbar = () => {
             {/* Right */}
             <div className="flex items-center gap-3">
               {!user && (
-                <div className="hidden gap-3 lg:flex">
-                  <Link href="/login" className="rounded-md border px-4 py-1.5">
+                <div className="hidden gap-3 lg:flex items-center">
+                  <Link
+                    href="/login"
+                    className="border-primary text-primary rounded-lg border px-4 py-1.5 text-sm font-medium transition hover:bg-primary-bg"
+                  >
                     Login
                   </Link>
                   <Link
                     href="/register"
-                    className="bg-primary rounded-md px-4 py-1.5 text-white"
+                    className="common-btn !px-5 !py-2 !text-sm"
                   >
-                    Sign Up
+                    <span>Get Started</span>
                   </Link>
                 </div>
               )}

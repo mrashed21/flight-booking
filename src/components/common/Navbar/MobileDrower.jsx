@@ -89,16 +89,16 @@ const MobileDrawer = ({ open, navItems, offsetTop, user, onClose }) => {
             <Link
               href="/login"
               onClick={onClose}
-              className="rounded-md border px-4 py-2 text-center"
+              className="border-primary text-primary rounded-lg border px-4 py-2 text-center text-sm font-medium"
             >
               Login
             </Link>
             <Link
-              href="/register"
+              href="/flight"
               onClick={onClose}
-              className="rounded-md bg-blue-600 px-4 py-2 text-center text-white"
+              className="common-btn text-center text-sm"
             >
-              Sign Up
+              <span>Book Flight</span>
             </Link>
           </div>
         )}
