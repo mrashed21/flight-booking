@@ -6,19 +6,22 @@ import {
   CheckCircle2,
   Building2,
   Plane,
-  CreditCard,
   X,
   Send,
   Sparkles,
-  PhoneCall,
-  Calendar,
   User,
   ChevronDown,
   Search,
   Check,
+  ShieldCheck,
+  FileText,
 } from "lucide-react";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import DatePicker from "@/components/ui/date-picker";
 import FlagSvg from "@/components/ui/flag-svg";
 import { CURRENCIES, getCurrencyByCode, calculateExchange } from "./currencies-data";
+
 
 // Custom Accessible Currency Selector Dropdown with SVG flags
 function CurrencySelector({ value, onChange, label }) {
@@ -137,9 +140,11 @@ export default function CurrencyConverterCard({
     fullName: "",
     phone: "",
     email: "",
-    collectionMethod: "airport",
+    collectionMethod: "airport", // 'airport' | 'branch'
     pickupDate: "",
     branchLocation: "dhaka-motijheel",
+    idType: "passport",
+    idNumber: "",
     ticketPnr: "",
     notes: "",
   });
@@ -199,6 +204,8 @@ export default function CurrencyConverterCard({
         collectionMethod: "airport",
         pickupDate: "",
         branchLocation: "dhaka-motijheel",
+        idType: "passport",
+        idNumber: "",
         ticketPnr: "",
         notes: "",
       });
@@ -431,86 +438,103 @@ export default function CurrencyConverterCard({
                   </div>
 
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    {/* Phone / WhatsApp with react-phone-number-input */}
                     <div>
                       <label className="block text-xs font-bold text-gray-700 mb-1.5">
                         Phone / WhatsApp Number *
                       </label>
-                      <div className="relative">
-                        <input
-                          type="tel"
-                          required
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          placeholder="+880 1XXXXXXXXX"
-                          className="w-full rounded-xl border border-gray-200 p-3 pl-10 text-sm text-gray-900 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition"
-                        />
-                        <PhoneCall className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                      </div>
+                      <PhoneInput
+                        international
+                        defaultCountry="BD"
+                        value={formData.phone}
+                        onChange={(val) => setFormData({ ...formData, phone: val || "" })}
+                        placeholder="Enter phone number"
+                        className="phone-input-custom"
+                      />
                     </div>
 
+                    {/* Pickup Date with shadcn-style DatePicker */}
                     <div>
                       <label className="block text-xs font-bold text-gray-700 mb-1.5">
                         Preferred Pickup Date *
                       </label>
+                      <DatePicker
+                        value={formData.pickupDate}
+                        onChange={(date) => setFormData({ ...formData, pickupDate: date })}
+                        placeholder="Select pickup date"
+                        minDate={new Date()}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Passport or NID Identification */}
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div>
+                      <label className="block text-xs font-bold text-gray-700 mb-1.5">
+                        Identification Document *
+                      </label>
+                      <select
+                        value={formData.idType}
+                        onChange={(e) => setFormData({ ...formData, idType: e.target.value })}
+                        className="w-full rounded-xl border border-gray-200 bg-white p-3 text-sm text-gray-900 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition font-medium"
+                      >
+                        <option value="passport">Passport Number</option>
+                        <option value="nid">National ID (NID) Card</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-gray-700 mb-1.5">
+                        {formData.idType === "passport" ? "Passport Number *" : "National ID (NID) Number *"}
+                      </label>
                       <div className="relative">
                         <input
-                          type="date"
+                          type="text"
                           required
-                          value={formData.pickupDate}
-                          onChange={(e) => setFormData({ ...formData, pickupDate: e.target.value })}
-                          className="w-full rounded-xl border border-gray-200 p-3 pl-10 text-sm text-gray-900 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition"
+                          value={formData.idNumber}
+                          onChange={(e) => setFormData({ ...formData, idNumber: e.target.value })}
+                          placeholder={formData.idType === "passport" ? "e.g. A01234567" : "e.g. 1990123456789"}
+                          className="w-full rounded-xl border border-gray-200 p-3 pl-10 text-sm text-gray-900 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition uppercase font-medium placeholder:normal-case"
                         />
-                        <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                        <ShieldCheck className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                       </div>
                     </div>
                   </div>
 
-                  {/* Delivery / Collection Mode Selection */}
+                  {/* Collection Mode Selection - ONLY Airport and Branch */}
                   <div>
                     <label className="block text-xs font-bold text-gray-700 mb-1.5">
                       Collection Method *
                     </label>
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className="grid grid-cols-2 gap-3">
                       <button
                         type="button"
                         onClick={() => setFormData({ ...formData, collectionMethod: "airport" })}
-                        className={`flex flex-col items-center justify-center p-3 rounded-xl border text-center transition ${
+                        className={`flex items-center justify-center gap-2.5 p-3 rounded-xl border transition ${
                           formData.collectionMethod === "airport"
-                            ? "border-primary bg-primary/5 text-primary font-bold shadow-sm"
-                            : "border-gray-200 hover:bg-gray-50 text-gray-600"
+                            ? "border-primary bg-primary/5 text-primary font-bold shadow-sm ring-1 ring-primary/30"
+                            : "border-gray-200 hover:bg-gray-50 text-gray-600 font-medium"
                         }`}
                       >
-                        <Plane className="h-5 w-5 mb-1" />
-                        <span className="text-xs">Airport Booth</span>
+                        <Plane className="h-5 w-5" />
+                        <span className="text-xs sm:text-sm">Airport Booth</span>
                       </button>
 
                       <button
                         type="button"
                         onClick={() => setFormData({ ...formData, collectionMethod: "branch" })}
-                        className={`flex flex-col items-center justify-center p-3 rounded-xl border text-center transition ${
+                        className={`flex items-center justify-center gap-2.5 p-3 rounded-xl border transition ${
                           formData.collectionMethod === "branch"
-                            ? "border-primary bg-primary/5 text-primary font-bold shadow-sm"
-                            : "border-gray-200 hover:bg-gray-50 text-gray-600"
+                            ? "border-primary bg-primary/5 text-primary font-bold shadow-sm ring-1 ring-primary/30"
+                            : "border-gray-200 hover:bg-gray-50 text-gray-600 font-medium"
                         }`}
                       >
-                        <Building2 className="h-5 w-5 mb-1" />
-                        <span className="text-xs">City Branch</span>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => setFormData({ ...formData, collectionMethod: "bank" })}
-                        className={`flex flex-col items-center justify-center p-3 rounded-xl border text-center transition ${
-                          formData.collectionMethod === "bank"
-                            ? "border-primary bg-primary/5 text-primary font-bold shadow-sm"
-                            : "border-gray-200 hover:bg-gray-50 text-gray-600"
-                        }`}
-                      >
-                        <CreditCard className="h-5 w-5 mb-1" />
-                        <span className="text-xs">Bank Transfer</span>
+                        <Building2 className="h-5 w-5" />
+                        <span className="text-xs sm:text-sm">City Branch</span>
                       </button>
                     </div>
                   </div>
+
 
                   {/* Conditional Location Note */}
                   {formData.collectionMethod === "airport" && (
@@ -599,9 +623,23 @@ export default function CurrencyConverterCard({
                   <div className="flex justify-between">
                     <span className="text-gray-500">Collection Method:</span>
                     <strong className="capitalize text-gray-900 font-medium">
-                      {formData.collectionMethod === "airport" ? "Hazrat Shahjalal Airport Booth" : formData.collectionMethod === "branch" ? "City Branch Pickup" : "Bank Transfer"}
+                      {formData.collectionMethod === "airport" ? "Hazrat Shahjalal Airport Booth" : "City Branch Pickup"}
                     </strong>
                   </div>
+                  {formData.pickupDate && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Pickup Date:</span>
+                      <strong className="text-gray-900 font-medium">{formData.pickupDate}</strong>
+                    </div>
+                  )}
+                  {formData.idNumber && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Identity Document:</span>
+                      <strong className="text-gray-900 font-bold uppercase">
+                        {formData.idType === "passport" ? "Passport" : "NID"}: {formData.idNumber}
+                      </strong>
+                    </div>
+                  )}
                   <div className="flex justify-between">
                     <span className="text-gray-500">Customer Name & Contact:</span>
                     <span className="text-gray-800">{formData.fullName} ({formData.phone})</span>
