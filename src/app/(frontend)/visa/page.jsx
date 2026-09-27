@@ -1,12 +1,13 @@
 import Container from "@/components/common/Container/Container";
 import Image from "next/image";
 import Link from "next/link";
+import ReactCountryFlag from "react-country-flag";
 
 const visaTypes = [
   {
     id: 1,
     country: "United Arab Emirates",
-    flag: "🇦🇪",
+    isoCode: "AE",
     type: "Tourist Visa",
     duration: "30 Days",
     processing: "3–5 Working Days",
@@ -18,7 +19,7 @@ const visaTypes = [
   {
     id: 2,
     country: "Thailand",
-    flag: "🇹🇭",
+    isoCode: "TH",
     type: "Tourist Visa on Arrival",
     duration: "15 Days",
     processing: "On Arrival",
@@ -30,7 +31,7 @@ const visaTypes = [
   {
     id: 3,
     country: "Malaysia",
-    flag: "🇲🇾",
+    isoCode: "MY",
     type: "eVisa",
     duration: "30 Days",
     processing: "2–3 Working Days",
@@ -42,7 +43,7 @@ const visaTypes = [
   {
     id: 4,
     country: "United Kingdom",
-    flag: "🇬🇧",
+    isoCode: "GB",
     type: "Standard Visitor Visa",
     duration: "6 Months",
     processing: "15–20 Working Days",
@@ -59,7 +60,7 @@ const visaTypes = [
   {
     id: 5,
     country: "Schengen (Europe)",
-    flag: "🇪🇺",
+    isoCode: "EU",
     type: "Schengen Visa",
     duration: "90 Days",
     processing: "10–15 Working Days",
@@ -76,7 +77,7 @@ const visaTypes = [
   {
     id: 6,
     country: "Singapore",
-    flag: "🇸🇬",
+    isoCode: "SG",
     type: "Tourist Visa",
     duration: "30 Days",
     processing: "3–5 Working Days",
@@ -161,7 +162,12 @@ const VisaPage = () => {
                 {/* Header */}
                 <div className="mb-4 flex items-start justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-3xl">{visa.flag}</span>
+                    <ReactCountryFlag
+                      countryCode={visa.isoCode}
+                      svg
+                      style={{ width: "2.2rem", height: "2.2rem", borderRadius: "6px", objectFit: "cover" }}
+                      title={visa.country}
+                    />
                     <div>
                       <h3 className="text-sm font-semibold text-gray-800">
                         {visa.country}

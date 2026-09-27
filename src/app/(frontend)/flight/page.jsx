@@ -1,12 +1,13 @@
 import Container from "@/components/common/Container/Container";
 import Image from "next/image";
 import Link from "next/link";
+import ReactCountryFlag from "react-country-flag";
 
 const flights = [
   {
     id: 1,
     airline: "Biman Bangladesh Airlines",
-    logo: "🇧🇩",
+    isoCode: "BD",
     from: "Dhaka (DAC)",
     to: "Dubai (DXB)",
     departure: "10:30",
@@ -20,7 +21,7 @@ const flights = [
   {
     id: 2,
     airline: "Emirates",
-    logo: "🇦🇪",
+    isoCode: "AE",
     from: "Dhaka (DAC)",
     to: "London (LHR)",
     departure: "02:15",
@@ -34,7 +35,7 @@ const flights = [
   {
     id: 3,
     airline: "IndiGo",
-    logo: "🇮🇳",
+    isoCode: "IN",
     from: "Dhaka (DAC)",
     to: "Kolkata (CCU)",
     departure: "08:00",
@@ -48,7 +49,7 @@ const flights = [
   {
     id: 4,
     airline: "Air Arabia",
-    logo: "🇦🇪",
+    isoCode: "AE",
     from: "Dhaka (DAC)",
     to: "Sharjah (SHJ)",
     departure: "23:55",
@@ -62,7 +63,7 @@ const flights = [
   {
     id: 5,
     airline: "Qatar Airways",
-    logo: "🇶🇦",
+    isoCode: "QA",
     from: "Dhaka (DAC)",
     to: "Doha (DOH)",
     departure: "16:40",
@@ -76,7 +77,7 @@ const flights = [
   {
     id: 6,
     airline: "Singapore Airlines",
-    logo: "🇸🇬",
+    isoCode: "SG",
     from: "Dhaka (DAC)",
     to: "Singapore (SIN)",
     departure: "00:30",
@@ -145,7 +146,12 @@ const FlightPage = () => {
                 <div className="flex flex-wrap items-center justify-between gap-4">
                   {/* Airline */}
                   <div className="flex items-center gap-3 min-w-[160px]">
-                    <span className="text-3xl">{flight.logo}</span>
+                    <ReactCountryFlag
+                      countryCode={flight.isoCode}
+                      svg
+                      style={{ width: "2.5rem", height: "2.5rem", borderRadius: "6px", objectFit: "cover" }}
+                      title={flight.airline}
+                    />
                     <div>
                       <p className="text-sm font-semibold text-gray-800">
                         {flight.airline}
