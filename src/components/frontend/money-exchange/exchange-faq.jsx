@@ -8,24 +8,24 @@ export default function ExchangeFaq() {
 
   const faqs = [
     {
-      q: "মুদ্রা বিনিময়ের জন্য পাসপোর্টে কি এনডোর্সমেন্ট বাধ্যতামূলক?",
-      a: "হ্যাঁ, বাংলাদেশ ব্যাংক এবং কাস্টমস বিধি অনুযায়ী বিদেশে যাত্রার সময় ক্যাশ বৈদেশিক মুদ্রা বহনের জন্য পাসপোর্টে অফিসিয়াল এনডোর্সমেন্ট থাকা প্রয়োজন। আমরা অনুমোদিত সিল ও রসিদ প্রদান করে থাকি যা বিমানবন্দরে সম্পূর্ণ বৈধ।",
+      q: "Is passport endorsement mandatory for foreign currency exchange?",
+      a: "Yes. Under Bangladesh Bank and Customs regulations, any foreign currency taken overseas must be endorsed on your valid passport. We provide authorized endorsement seals and compliant transaction receipts recognized at all international border checkpoints.",
     },
     {
-      q: "হযরত শাহজালাল বিমানবন্দরে কীভাবে ক্যাশ সংগ্রহ করব?",
-      a: "অনলাইনে বুকিং রিকোয়েস্ট দেওয়ার সময় 'Airport Booth' সিলেক্ট করুন এবং আপনার ফ্লাইটের তারিখ ও সময় উল্লেখ করুন। আপনার ফ্লাইট ছাড়ার ২ থেকে ৩ ঘণ্টা পূর্বে আমাদের দায়িত্বপ্রাপ্ত অফিসার টার্মিনালের নির্ধারিত গেটে উপস্থিত হয়ে আপনার সাথে দেখা করবেন।",
+      q: "How do I collect foreign currency at Hazrat Shahjalal International Airport (DAC)?",
+      a: "Simply choose 'Airport Booth' as your collection method when submitting your request and provide your flight date and time. Our dedicated airport representative will meet you at Terminal 1 or Terminal 2 departure area 2 to 3 hours before your scheduled flight check-in.",
     },
     {
-      q: "অনলাইনে রিকোয়েস্ট পাঠানোর পর রেট পরিবর্তনের কোনো ঝুঁকি আছে কি?",
-      a: "না, কোনো ঝুঁকি নেই। আপনি যে রেটে বুকিং সাবমিট করবেন, বাজারে রেট বৃদ্ধি পেলেও পরবর্তী ২৪ ঘণ্টার জন্য আপনার কোটেড রেট সম্পূর্ণ লক ও সুরক্ষিত থাকবে।",
+      q: "Is my exchange rate protected against market fluctuations?",
+      a: "Yes. The indicative rate quoted at the time of your booking is locked in for 24 hours. Even if global or local market rates increase before you collect your currency, your approved rate remains fully honored.",
     },
     {
-      q: "একজন যাত্রী একবারে সর্বোচ্চ কত পরিমাণ বৈদেশিক মুদ্রা নিতে পারেন?",
-      a: "বাংলাদেশ ব্যাংকের বর্তমান ভ্রমণ কোটা অনুযায়ী একজন প্রাপ্তবয়স্ক বাংলাদেশি নাগরিক এক ক্যালেন্ডার বছরে সর্বোচ্চ ১২,০০০ মার্কিন ডলার (বা সমমানের যেকোনো অনুমোদিত বৈদেশিক মুদ্রা) পাসপোর্টে এনডোর্স করাতে পারেন।",
+      q: "What is the maximum foreign currency quota per traveler?",
+      a: "Under current Bangladesh Bank travel quota guidelines, adult Bangladeshi citizens are entitled to an annual travel quota of up to USD 12,000 (or its equivalent in any convertible foreign currency) per calendar year.",
     },
     {
-      q: "মুদ্রা ক্রয়ের ক্ষেত্রে কী কী ডকুমেন্ট প্রয়োজন?",
-      a: "মূল পাসপোর্ট, বৈধ এয়ার টিকিট এবং জাতীয় পরিচয়পত্র (NID)-এর কপি প্রয়োজন হয়। ওমরাহ যাত্রীদের ক্ষেত্রে ভিসা কপি সাথে রাখতে হবে।",
+      q: "What documents are required for currency purchase?",
+      a: "You will need to present your original Passport, confirmed Flight Ticket / E-ticket, and a copy of your National ID (NID). For Umrah or Hajj travelers, a valid visa copy is also recommended.",
     },
   ];
 
@@ -37,10 +37,10 @@ export default function ExchangeFaq() {
           Frequently Asked Questions
         </span>
         <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-1">
-          সাধারণ জিজ্ঞাসা ও উত্তর
+          Common Questions & Answers
         </h3>
         <p className="text-xs sm:text-sm text-gray-500 mt-1">
-          মানি এক্সচেঞ্জ ও কারেন্সি বুকিং সম্পর্কে প্রয়োজনীয় তথ্যসমূহ।
+          Everything you need to know about our travel currency exchange and airport delivery services.
         </p>
       </div>
 

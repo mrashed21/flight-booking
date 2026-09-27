@@ -6,10 +6,9 @@ import {
   TrendingUp,
   TrendingDown,
   ArrowRight,
-  Filter,
-  Check,
   Sparkles,
 } from "lucide-react";
+import FlagSvg from "@/components/ui/flag-svg";
 import { CURRENCIES } from "./currencies-data";
 
 export default function LiveRatesTable({ onSelectCurrency }) {
@@ -52,13 +51,13 @@ export default function LiveRatesTable({ onSelectCurrency }) {
         <div>
           <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary">
             <Sparkles className="h-3.5 w-3.5 text-amber-500" />
-            Live Market Rates (প্রতিদিনের মুদ্রা বিনিময় হার)
+            Live Market Rates
           </span>
           <h3 className="text-xl sm:text-2xl font-extrabold text-gray-900 mt-1">
-            দৈনিক মুদ্রা ক্রয়-বিক্রয় রেট তালিকা
+            Daily Foreign Currency Buy & Sell Rates
           </h3>
           <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
-            বাংলাদেশ ব্যাংক অনুমোদিত মানি এক্সচেঞ্জ রেট চার্ট। রিয়েল-টাইমে আপডেট করা হয়।
+            Real-time exchange rates synced with global interbank feeds and central bank compliance.
           </p>
         </div>
 
@@ -98,8 +97,8 @@ export default function LiveRatesTable({ onSelectCurrency }) {
           <thead>
             <tr className="border-b border-gray-100 text-xs font-bold uppercase tracking-wider text-gray-400">
               <th className="py-3.5 px-3">Currency</th>
-              <th className="py-3.5 px-3">We Buy (ক্যাশ ক্রয়)</th>
-              <th className="py-3.5 px-3">We Sell (ক্যাশ বিক্রয়)</th>
+              <th className="py-3.5 px-3">We Buy (Cash)</th>
+              <th className="py-3.5 px-3">We Sell (Cash)</th>
               <th className="py-3.5 px-3 hidden sm:table-cell">Mid-Market Rate</th>
               <th className="py-3.5 px-3">24h Change</th>
               <th className="py-3.5 px-3 text-right">Action</th>
@@ -116,7 +115,7 @@ export default function LiveRatesTable({ onSelectCurrency }) {
                   {/* Currency Name & Flag */}
                   <td className="py-3.5 px-3">
                     <div className="flex items-center gap-3">
-                      <span className="text-2xl leading-none">{c.flag}</span>
+                      <FlagSvg countryCode={c.countryCode} title={c.country} style={{ width: "2rem", height: "1.45rem" }} />
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="font-extrabold text-gray-900 group-hover:text-primary transition">
@@ -187,8 +186,8 @@ export default function LiveRatesTable({ onSelectCurrency }) {
 
         {filteredCurrencies.length === 0 && (
           <div className="py-12 text-center text-gray-500">
-            <p className="text-sm font-semibold">কোনো মুদ্রা খুঁজে পাওয়া যায়নি।</p>
-            <p className="text-xs text-gray-400 mt-1">অনুগ্রহ করে অন্য নাম বা কারেন্সি কোড দিয়ে সার্চ করুন।</p>
+            <p className="text-sm font-semibold">No currencies found matching your search.</p>
+            <p className="text-xs text-gray-400 mt-1">Please try searching by currency code (e.g., USD, EUR, SAR) or country name.</p>
           </div>
         )}
       </div>
@@ -196,10 +195,10 @@ export default function LiveRatesTable({ onSelectCurrency }) {
       {/* Table Footer Note */}
       <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-gray-100 pt-4 text-[11px] text-gray-400">
         <div>
-          * উল্লিখিত রেটসমূহ বাজার অনুযায়ী পরিবর্তনশীল। বুকিং সাবমিট করলে পরবর্তী ২৪ ঘণ্টার জন্য রেট লক থাকবে।
+          * Rates are indicative and subject to market conditions. Submitting an online request guarantees your rate lock for 24 hours.
         </div>
         <div>
-          বাংলাদেশ ব্যাংক সার্কুলার মোতাবেক প্রতি ভ্রমণকারীকে বার্ষিক ১২,০০০ ইউএসডি পর্যন্ত এনডোর্সমেন্ট সুবিধা দেওয়া হয়।
+          Per Bangladesh Bank travel quota, each adult traveler is entitled to up to USD 12,000 passport endorsement per calendar year.
         </div>
       </div>
     </div>

@@ -4,54 +4,53 @@ import {
   Clock,
   Banknote,
   FileCheck,
-  CheckCircle,
   Headphones,
 } from "lucide-react";
 
 export default function ExchangeBenefits() {
   const steps = [
     {
-      step: "০১",
-      title: "মুদ্রা ও পরিমাণ নির্বাচন",
-      desc: "আমাদের লাইভ রেট কনভার্টারে আপনি যে মুদ্রা দিতে এবং নিতে চান তা নির্বাচন করে পরিমাণ দিন।",
+      step: "01",
+      title: "Select Currency & Amount",
+      desc: "Use our live converter to choose your source and target currencies, and enter your desired exchange amount.",
     },
     {
-      step: "০২",
-      title: "অনলাইনে রিকোয়েস্ট পাঠান",
-      desc: "আপনার নাম, ফোন নম্বর এবং বিমানবন্দর বা ব্রাঞ্চ পিকআপ লোকেশন সিলেক্ট করে বুকিং কনফার্ম করুন।",
+      step: "02",
+      title: "Submit Online Request",
+      desc: "Provide your contact details and select whether you prefer airport booth delivery or city branch collection.",
     },
     {
-      step: "০৩",
-      title: "১৫ মিনিটে কনফার্মেশন",
-      desc: "আমাদের ফরেক্স এক্সিকিউটিভ কল করে ২৪ ঘণ্টার জন্য রেট লক করে আপনার অর্ডারটি প্রস্তুত রাখবেন।",
+      step: "03",
+      title: "15-Minute Confirmation",
+      desc: "Our forex officer contacts you to confirm your schedule and immediately lock in your rate for 24 hours.",
     },
     {
-      step: "০৪",
-      title: "ক্যাশ বুঝে নিন",
-      desc: "ফ্লাইটের দিনে বিমানবন্দরে অথবা আমাদের নিকটস্থ ব্রাঞ্চে এসে পাসপোর্ট দেখিয়ে ক্যাশ গ্রহণ করুন।",
+      step: "04",
+      title: "Collect Your Cash",
+      desc: "Pick up verified crisp banknotes with official passport endorsement seals right before your flight or at our branch.",
     },
   ];
 
   const features = [
     {
       icon: Banknote,
-      title: "১০০% খাঁটি ও নতুন নোট",
-      desc: "প্রতিটি কারেন্সি নোট আল্ট্রা-ভায়োলেট ও ম্যাগনেটিক ডিটেক্টর দ্বারা স্ক্যানকৃত এবং বিশ্বমানের নিখুঁত নোটের নিশ্চয়তা।",
+      title: "100% Genuine Banknotes",
+      desc: "Every note is electronically authenticated with multi-spectrum UV and magnetic sensors to ensure pristine condition.",
     },
     {
       icon: Plane,
-      title: "বিমানবন্দরে সরাসরি পিকআপ",
-      desc: "হযরত শাহজালাল আন্তর্জাতিক বিমানবন্দরের ডিপার্চার গেটে ফ্লাইট ছাড়ার পূর্বেই ক্যাশ আপনার হাতে পৌঁছে দেওয়া হবে।",
+      title: "Airport Fast-Track Delivery",
+      desc: "Convenient cash collection at Hazrat Shahjalal International Airport (DAC Terminal 1 & 2) prior to flight check-in.",
     },
     {
       icon: Clock,
-      title: "২৪ ঘণ্টা রেট লক গ্যারান্টি",
-      desc: "অনলাইনে একবার রিকোয়েস্ট পাঠালে বাজারে রেট বাড়লেও আপনার জন্য পূর্বের নির্ধারিত সেরা রেট বজায় থাকবে।",
+      title: "24-Hour Rate Lock Guarantee",
+      desc: "Once your request is submitted, your exchange rate is protected against market volatility for a full 24 hours.",
     },
     {
       icon: FileCheck,
-      title: "অফিসিয়াল পাসপোর্ট এনডোর্সমেন্ট",
-      desc: "বাংলাদেশ ব্যাংকের অনুমোদিত নিয়ম অনুযায়ী পাসপোর্টে বৈধ মুদ্রা এনডোর্সমেন্ট সিল ও রসিদ প্রদান করা হয়।",
+      title: "Official Passport Endorsement",
+      desc: "Full legal compliance with Bangladesh Bank regulations, complete with authorized endorsement seals and tax receipts.",
     },
   ];
 
@@ -64,10 +63,10 @@ export default function ExchangeBenefits() {
             Easy 4-Step Process
           </span>
           <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-1">
-            যেভাবে মুদ্রা বিনিময় করবেন
+            How It Works
           </h3>
           <p className="text-xs sm:text-sm text-gray-500 mt-2">
-            ঝামেলাহীন ও দ্রুত প্রক্রিয়ায় আপনার ভ্রমণের প্রয়োজনীয় বৈদেশিক মুদ্রা নিশ্চিত করুন।
+            Secure, hassle-free foreign currency exchange tailored for international travelers and pilgrims.
           </p>
         </div>
 
@@ -99,10 +98,10 @@ export default function ExchangeBenefits() {
             Security & Reliability
           </span>
           <h3 className="text-2xl sm:text-3xl font-extrabold mt-2">
-            কেন বরকত ট্রাভেলস থেকে কারেন্সি নিবেন?
+            Why Choose Borkot Travels Money Exchange?
           </h3>
           <p className="text-xs sm:text-sm text-blue-100 mt-2">
-            নিরাপদ লেনদেন, কোনো গোপন চার্জ নেই এবং বিমানবন্দর ডেলিভারির নিশ্চয়তা।
+            Transparent pricing, zero hidden markups, and guaranteed airport delivery.
           </p>
         </div>
 
@@ -136,10 +135,10 @@ export default function ExchangeBenefits() {
             </div>
             <div>
               <div className="text-sm font-bold text-white">
-                জরুরি মুদ্রা প্রয়োজন বা বিশেষ কারেন্সি রিকোয়েস্ট?
+                Need urgent foreign currency or bulk travel orders?
               </div>
               <div className="text-xs text-blue-200">
-                আমাদের ২৪/৭ ফরেক্স হেল্পলাইন: +৮৮০১৭১২-৩৪৫৬৭৮
+                24/7 Dedicated Forex Helpline: +880 1712-345678
               </div>
             </div>
           </div>
@@ -147,7 +146,7 @@ export default function ExchangeBenefits() {
             href="tel:+8801712345678"
             className="flex-shrink-0 rounded-xl bg-amber-400 hover:bg-amber-300 text-gray-900 px-5 py-2.5 text-xs sm:text-sm font-bold shadow-md transition active:scale-95"
           >
-            সরাসরি কল করুন
+            Call Helpline Now
           </a>
         </div>
       </div>

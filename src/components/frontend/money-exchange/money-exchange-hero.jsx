@@ -11,6 +11,7 @@ import {
   Clock,
 } from "lucide-react";
 import Container from "@/components/common/container/container";
+import FlagSvg from "@/components/ui/flag-svg";
 import { CURRENCIES } from "./currencies-data";
 
 export default function MoneyExchangeHero({ onSelectCurrency }) {
@@ -32,7 +33,7 @@ export default function MoneyExchangeHero({ onSelectCurrency }) {
 
   return (
     <div className="relative overflow-hidden bg-gradient-to-b from-[#0b568e] via-[#1c74c0] to-[#0e4877] text-white">
-      {/* Background Decorative Rings / Glow */}
+      {/* Background Decorative Glow */}
       <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 -left-20 h-80 w-80 rounded-full bg-[#e59a12]/20 blur-3xl" />
 
@@ -42,15 +43,15 @@ export default function MoneyExchangeHero({ onSelectCurrency }) {
           <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
             <span className="h-2 w-2 animate-ping rounded-full bg-emerald-400" />
             <span className="h-2 w-2 rounded-full bg-emerald-400 -ml-3.5" />
-            Live Google / Interbank Feed
+            Live Google & Interbank Feed
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-[#e59a12]/25 border border-[#e59a12]/40 px-3 py-1 text-xs font-semibold text-amber-200">
             <Zap className="h-3.5 w-3.5 text-[#e59a12]" />
-            Best Travel Forex Rate in Bangladesh
+            Best Travel Forex Rate Guarantee
           </span>
           <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs text-blue-100">
             <ShieldCheck className="h-3.5 w-3.5 text-blue-200" />
-            Govt. Licensed Money Changer
+            Licensed Money Changer
           </span>
         </div>
 
@@ -63,8 +64,8 @@ export default function MoneyExchangeHero({ onSelectCurrency }) {
             </span>
           </h1>
           <p className="mt-3 text-sm text-blue-100 sm:text-base md:text-lg leading-relaxed max-w-2xl">
-            আন্তর্জাতিক ভ্রমণ, ওমরাহ ও চিকিৎসার জন্য সেরা রেটে যেকোনো দেশের মুদ্রা কনভার্ট করার রিকোয়েস্ট পাঠান।
-            হযরত শাহজালাল আন্তর্জাতিক বিমানবন্দর বা আমাদের ব্রাঞ্চ থেকে সরাসরি ক্যাশ সংগ্রহ করুন।
+            Convert and request international travel currencies at competitive live rates.
+            Enjoy fast-track cash pickup at Hazrat Shahjalal International Airport (DAC) or any of our city branches.
           </p>
         </div>
 
@@ -84,7 +85,7 @@ export default function MoneyExchangeHero({ onSelectCurrency }) {
               </span>
               <button
                 onClick={handleRefresh}
-                title="Refresh rates"
+                title="Refresh live rates"
                 className="flex items-center gap-1.5 rounded-lg bg-white/15 hover:bg-white/25 px-2.5 py-1 text-xs font-medium text-white transition active:scale-95"
               >
                 <RefreshCw className={`h-3 w-3 ${isRefreshing ? "animate-spin" : ""}`} />
@@ -103,7 +104,7 @@ export default function MoneyExchangeHero({ onSelectCurrency }) {
                   onClick={() => onSelectCurrency && onSelectCurrency(c.code)}
                   className="group flex flex-shrink-0 items-center gap-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 hover:border-amber-300/40 p-2 sm:px-3 sm:py-2 text-left transition hover:shadow-lg active:scale-98"
                 >
-                  <span className="text-xl sm:text-2xl leading-none">{c.flag}</span>
+                  <FlagSvg countryCode={c.countryCode} title={c.country} />
                   <div>
                     <div className="flex items-center gap-1.5">
                       <span className="text-xs font-bold text-white group-hover:text-amber-200 transition">

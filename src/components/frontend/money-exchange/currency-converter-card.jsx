@@ -1,11 +1,9 @@
 "use client";
 
-import { useState, useId } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   ArrowUpDown,
   CheckCircle2,
-  ShieldAlert,
-  ShieldCheck,
   Building2,
   Plane,
   CreditCard,
@@ -15,10 +13,102 @@ import {
   PhoneCall,
   Calendar,
   User,
-  Info,
   ChevronDown,
+  Search,
+  Check,
 } from "lucide-react";
+import FlagSvg from "@/components/ui/flag-svg";
 import { CURRENCIES, getCurrencyByCode, calculateExchange } from "./currencies-data";
+
+// Custom Accessible Currency Selector Dropdown with SVG flags
+function CurrencySelector({ value, onChange, label }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const dropdownRef = useRef(null);
+  const selectedObj = getCurrencyByCode(value);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const filtered = CURRENCIES.filter(
+    (c) =>
+      c.code.toLowerCase().includes(search.toLowerCase()) ||
+      c.name.toLowerCase().includes(search.toLowerCase()) ||
+      c.country.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <div className="relative flex-shrink-0" ref={dropdownRef}>
+      <button
+        type="button"
+        onClick={() => {
+          setIsOpen(!isOpen);
+          setSearch("");
+        }}
+        className="flex items-center gap-2 rounded-xl bg-white border border-gray-200 hover:border-primary/60 px-3 py-2 text-sm font-bold text-gray-800 shadow-sm transition outline-none active:scale-98"
+      >
+        <FlagSvg countryCode={selectedObj.countryCode} title={selectedObj.country} />
+        <span>{selectedObj.code}</span>
+        <ChevronDown className={`h-4 w-4 text-gray-400 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+      </button>
+
+      {isOpen && (
+        <div className="absolute right-0 top-full mt-1.5 z-50 w-72 rounded-2xl bg-white p-2 shadow-2xl border border-gray-100 animate-in fade-in zoom-in-95">
+          {/* Search bar inside dropdown */}
+          <div className="relative mb-2 px-1">
+            <input
+              type="text"
+              autoFocus
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search currency or country..."
+              className="w-full rounded-lg bg-gray-50 border border-gray-200 py-1.5 pl-8 pr-3 text-xs text-gray-800 outline-none focus:border-primary focus:bg-white transition"
+            />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-400" />
+          </div>
+
+          {/* Currency list */}
+          <div className="max-h-60 overflow-y-auto space-y-0.5 scrollbar-thin">
+            {filtered.map((c) => {
+              const isSelected = c.code === value;
+              return (
+                <button
+                  key={c.code}
+                  type="button"
+                  onClick={() => {
+                    onChange(c.code);
+                    setIsOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between gap-2.5 rounded-xl px-2.5 py-2 text-left text-xs transition ${
+                    isSelected
+                      ? "bg-primary text-white font-bold"
+                      : "hover:bg-blue-50 text-gray-700"
+                  }`}
+                >
+                  <div className="flex items-center gap-2 truncate">
+                    <FlagSvg countryCode={c.countryCode} title={c.country} />
+                    <span className="font-extrabold">{c.code}</span>
+                    <span className={`text-[11px] truncate ${isSelected ? "text-blue-100" : "text-gray-400"}`}>
+                      {c.name}
+                    </span>
+                  </div>
+                  {isSelected && <Check className="h-3.5 w-3.5 flex-shrink-0" />}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function CurrencyConverterCard({
   fromCurrency = "USD",
@@ -33,12 +123,21 @@ export default function CurrencyConverterCard({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Sync external changes
+  useEffect(() => {
+    if (fromCurrency) setFromCode(fromCurrency);
+  }, [fromCurrency]);
+
+  useEffect(() => {
+    if (toCurrency) setToCode(toCurrency);
+  }, [toCurrency]);
+
   // Form states
   const [formData, setFormData] = useState({
     fullName: "",
     phone: "",
     email: "",
-    collectionMethod: "airport", // 'airport' | 'branch' | 'bank'
+    collectionMethod: "airport",
     pickupDate: "",
     branchLocation: "dhaka-motijheel",
     ticketPnr: "",
@@ -117,22 +216,22 @@ export default function CurrencyConverterCard({
               Live Currency Calculator
             </span>
             <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mt-0.5">
-              মুদ্রা রূপান্তর ও বুকিং রিকোয়েস্ট
+              Currency Converter & Exchange Booking
             </h2>
           </div>
           <div className="flex items-center gap-2 rounded-xl bg-amber-50 border border-amber-200/60 px-3 py-1.5 text-xs font-medium text-amber-800">
             <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>Guaranteed 24H Rate Lock</span>
+            <span>Guaranteed 24-Hour Rate Lock</span>
           </div>
         </div>
 
         {/* Input Blocks Grid */}
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
-          {/* Source Currency (You Send / Have) */}
+          {/* Source Currency (You Send / Initial Balance) */}
           <div className="rounded-2xl border-2 border-gray-200 hover:border-primary/60 bg-gray-50/60 p-4 transition focus-within:border-primary focus-within:bg-white focus-within:shadow-md">
             <div className="mb-2 flex items-center justify-between text-xs font-semibold text-gray-500">
-              <span>You Have / আপনি দিচ্ছেন</span>
-              <span className="text-gray-400">Balance Amount</span>
+              <span>You Send (Initial Amount)</span>
+              <span className="text-gray-400">Source Balance</span>
             </div>
 
             <div className="flex items-center justify-between gap-3">
@@ -146,21 +245,12 @@ export default function CurrencyConverterCard({
                 className="w-full bg-transparent text-2xl sm:text-3xl font-extrabold text-gray-900 outline-none placeholder:text-gray-300"
               />
 
-              {/* Currency Selector */}
-              <div className="relative flex-shrink-0">
-                <select
-                  value={fromCode}
-                  onChange={(e) => handleFromSelect(e.target.value)}
-                  className="appearance-none cursor-pointer rounded-xl bg-white border border-gray-200 hover:border-primary/60 py-2.5 pl-3 pr-8 text-sm font-bold text-gray-800 shadow-sm transition outline-none"
-                >
-                  {CURRENCIES.map((c) => (
-                    <option key={c.code} value={c.code}>
-                      {c.flag} {c.code} - {c.name}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-              </div>
+              {/* Currency Selector with SVG Flag */}
+              <CurrencySelector
+                value={fromCode}
+                onChange={handleFromSelect}
+                label="From"
+              />
             </div>
 
             {/* Quick Amount Chips */}
@@ -196,10 +286,10 @@ export default function CurrencyConverterCard({
             </button>
           </div>
 
-          {/* Target Currency (You Receive) */}
+          {/* Target Currency (You Receive / Guaranteed Payout) */}
           <div className="rounded-2xl border-2 border-primary/30 bg-primary-soft/30 p-4 transition">
             <div className="mb-2 flex items-center justify-between text-xs font-semibold text-primary">
-              <span>You Receive / আপনি পাচ্ছেন</span>
+              <span>You Receive (Guaranteed Payout)</span>
               <span className="rounded-full bg-emerald-100 text-emerald-700 px-2 py-0.5 text-[10px] font-bold">
                 0% Fee
               </span>
@@ -210,26 +300,17 @@ export default function CurrencyConverterCard({
                 {toObj.symbol} {convertedAmount ? convertedAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "0.00"}
               </div>
 
-              {/* Currency Selector */}
-              <div className="relative flex-shrink-0">
-                <select
-                  value={toCode}
-                  onChange={(e) => handleToSelect(e.target.value)}
-                  className="appearance-none cursor-pointer rounded-xl bg-white border border-primary/30 py-2.5 pl-3 pr-8 text-sm font-bold text-gray-800 shadow-sm transition outline-none hover:border-primary"
-                >
-                  {CURRENCIES.map((c) => (
-                    <option key={c.code} value={c.code}>
-                      {c.flag} {c.code} - {c.name}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-              </div>
+              {/* Currency Selector with SVG Flag */}
+              <CurrencySelector
+                value={toCode}
+                onChange={handleToSelect}
+                label="To"
+              />
             </div>
 
             {/* Target Note / Subtitle */}
             <div className="mt-3 flex items-center justify-between text-xs text-muted pt-2 border-t border-primary/10">
-              <span>{toObj.country} Official Currency</span>
+              <span>{toObj.country} Currency</span>
               <span className="font-semibold text-primary">
                 1 {fromCode} = {exchangeRate.toFixed(4)} {toCode}
               </span>
@@ -252,12 +333,12 @@ export default function CurrencyConverterCard({
             <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500">
               <span className="flex items-center gap-1 text-emerald-600 font-medium">
                 <CheckCircle2 className="h-3.5 w-3.5" />
-                Service Charge: ৳০ (সম্পূর্ণ ফ্রি)
+                Service Charge: 0.00 (Zero Hidden Markup)
               </span>
               <span>•</span>
               <span className="flex items-center gap-1">
                 <Building2 className="h-3.5 w-3.5 text-primary" />
-                Pickup: বিমানবন্দর বা ব্রাঞ্চ থেকে সরাসরি
+                Collection: Airport Booth or Branch Pickup
               </span>
             </div>
           </div>
@@ -267,7 +348,7 @@ export default function CurrencyConverterCard({
             onClick={() => setIsModalOpen(true)}
             className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-[#08426e] text-white px-6 py-3.5 text-sm sm:text-base font-bold shadow-lg shadow-primary/25 transition hover:shadow-xl active:scale-98"
           >
-            <span>বিনিময় রিকোয়েস্ট পাঠান</span>
+            <span>Request Currency Exchange</span>
             <Send className="h-4 w-4" />
           </button>
         </div>
@@ -294,32 +375,38 @@ export default function CurrencyConverterCard({
                     Currency Exchange Request
                   </div>
                   <h3 className="text-xl sm:text-2xl font-extrabold text-gray-900">
-                    মুদ্রা বুকিং ও ডেলিভারি তথ্য
+                    Booking & Collection Details
                   </h3>
                   <p className="text-xs sm:text-sm text-gray-500 mt-1">
-                    অনলাইনে রিকোয়েস্ট পাঠালে আমাদের ফরেক্স অফিসার ১৫ মিনিটের মধ্যে কনফার্মেশনের জন্য কল করবেন।
+                    Submit your request online. Our forex officer will contact you within 15 minutes to confirm your rate lock.
                   </p>
                 </div>
 
-                {/* Conversion Summary Preview */}
+                {/* Conversion Summary Preview with SVG Flags */}
                 <div className="mb-6 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50/50 border border-blue-100 p-4">
-                  <div className="flex items-center justify-between text-xs text-gray-500 mb-1">
-                    <span>বিনিময় পরিমাণ (Estimated Conversion)</span>
+                  <div className="flex items-center justify-between text-xs text-gray-500 mb-2">
+                    <span>Estimated Conversion Summary</span>
                     <span className="font-semibold text-primary">24h Rate Lock Guaranteed</span>
                   </div>
-                  <div className="flex items-center justify-between gap-2">
-                    <div>
-                      <div className="text-lg font-black text-gray-900">
-                        {fromObj.symbol} {amount ? Number(amount).toLocaleString() : 0} {fromCode}
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-2.5">
+                      <FlagSvg countryCode={fromObj.countryCode} title={fromObj.country} style={{ width: "2.2rem", height: "1.6rem" }} />
+                      <div>
+                        <div className="text-base sm:text-lg font-black text-gray-900">
+                          {fromObj.symbol} {amount ? Number(amount).toLocaleString() : 0} {fromCode}
+                        </div>
+                        <div className="text-xs text-gray-500">{fromObj.name}</div>
                       </div>
-                      <div className="text-xs text-gray-500">{fromObj.name}</div>
                     </div>
                     <div className="text-gray-400 font-bold">➔</div>
-                    <div className="text-right">
-                      <div className="text-lg font-black text-primary">
-                        {toObj.symbol} {convertedAmount ? convertedAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "0.00"} {toCode}
+                    <div className="flex items-center gap-2.5 text-right">
+                      <div>
+                        <div className="text-base sm:text-lg font-black text-primary">
+                          {toObj.symbol} {convertedAmount ? convertedAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "0.00"} {toCode}
+                        </div>
+                        <div className="text-xs text-gray-500">{toObj.name}</div>
                       </div>
-                      <div className="text-xs text-gray-500">{toObj.name}</div>
+                      <FlagSvg countryCode={toObj.countryCode} title={toObj.country} style={{ width: "2.2rem", height: "1.6rem" }} />
                     </div>
                   </div>
                 </div>
@@ -328,7 +415,7 @@ export default function CurrencyConverterCard({
                 <form onSubmit={handleSubmitRequest} className="space-y-4">
                   <div>
                     <label className="block text-xs font-bold text-gray-700 mb-1.5">
-                      আপনার নাম (Full Name) *
+                      Full Name (as per Passport) *
                     </label>
                     <div className="relative">
                       <input
@@ -336,7 +423,7 @@ export default function CurrencyConverterCard({
                         required
                         value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                        placeholder="যেমন: মোঃ রফিকুল ইসলাম"
+                        placeholder="e.g. John Doe"
                         className="w-full rounded-xl border border-gray-200 p-3 pl-10 text-sm text-gray-900 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition"
                       />
                       <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -346,7 +433,7 @@ export default function CurrencyConverterCard({
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
                       <label className="block text-xs font-bold text-gray-700 mb-1.5">
-                        মোবাইল / WhatsApp নম্বর *
+                        Phone / WhatsApp Number *
                       </label>
                       <div className="relative">
                         <input
@@ -354,7 +441,7 @@ export default function CurrencyConverterCard({
                           required
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          placeholder="01XXXXXXXXX"
+                          placeholder="+880 1XXXXXXXXX"
                           className="w-full rounded-xl border border-gray-200 p-3 pl-10 text-sm text-gray-900 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition"
                         />
                         <PhoneCall className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -363,7 +450,7 @@ export default function CurrencyConverterCard({
 
                     <div>
                       <label className="block text-xs font-bold text-gray-700 mb-1.5">
-                        প্রত্যাশিত তারিখ (Pickup Date) *
+                        Preferred Pickup Date *
                       </label>
                       <div className="relative">
                         <input
@@ -381,7 +468,7 @@ export default function CurrencyConverterCard({
                   {/* Delivery / Collection Mode Selection */}
                   <div>
                     <label className="block text-xs font-bold text-gray-700 mb-1.5">
-                      মুদ্রা সংগ্রহের মাধ্যম (Collection Method) *
+                      Collection Method *
                     </label>
                     <div className="grid grid-cols-3 gap-2">
                       <button
@@ -428,24 +515,24 @@ export default function CurrencyConverterCard({
                   {/* Conditional Location Note */}
                   {formData.collectionMethod === "airport" && (
                     <div className="rounded-xl bg-amber-50 border border-amber-200 p-3 text-xs text-amber-800">
-                      ✈️ <strong>শাহজালাল আন্তর্জাতিক বিমানবন্দর (Terminal 1 & 2):</strong> আপনার ফ্লাইট ছাড়ার ২ ঘণ্টা আগে আমাদের প্রতিনিধি আপনার হাতে ক্যাশ পৌঁছে দেবেন।
+                      ✈️ <strong>Hazrat Shahjalal Int&apos;l Airport (Terminal 1 & 2):</strong> Our authorized airport representative will hand over your foreign currency 2 hours prior to flight check-in.
                     </div>
                   )}
 
                   {formData.collectionMethod === "branch" && (
                     <div>
                       <label className="block text-xs font-bold text-gray-700 mb-1.5">
-                        ব্রাঞ্চ নির্বাচন করুন (Select Branch)
+                        Select Branch Location
                       </label>
                       <select
                         value={formData.branchLocation}
                         onChange={(e) => setFormData({ ...formData, branchLocation: e.target.value })}
                         className="w-full rounded-xl border border-gray-200 p-3 text-sm text-gray-900 outline-none focus:border-primary"
                       >
-                        <option value="dhaka-motijheel">ঢাকা হেড অফিস (মতিঝিল বাণিজ্যিক এলাকা)</option>
-                        <option value="dhaka-banani">বনানী ব্রাঞ্চ (রোড ১১, ব্লক ডি)</option>
-                        <option value="chattogram-agrabad">চট্টগ্রাম ব্রাঞ্চ (আগ্রাবাদ সি/এ)</option>
-                        <option value="sylhet-zindabazar">সিলেট ব্রাঞ্চ (জিন্দাবাজার)</option>
+                        <option value="dhaka-motijheel">Dhaka Head Office (Motijheel Commercial Area)</option>
+                        <option value="dhaka-banani">Banani Branch (Road 11, Block D)</option>
+                        <option value="chattogram-agrabad">Chattogram Branch (Agrabad C/A)</option>
+                        <option value="sylhet-zindabazar">Sylhet Branch (Zindabazar)</option>
                       </select>
                     </div>
                   )}
@@ -453,13 +540,13 @@ export default function CurrencyConverterCard({
                   {/* Flight PNR / Additional Notes */}
                   <div>
                     <label className="block text-xs font-bold text-gray-700 mb-1.5">
-                      ফ্লাইট PNR / পাসপোর্ট নম্বর (ঐচ্ছিক)
+                      Flight PNR / Passport No (Optional)
                     </label>
                     <input
                       type="text"
                       value={formData.ticketPnr}
                       onChange={(e) => setFormData({ ...formData, ticketPnr: e.target.value })}
-                      placeholder="যেমন: BK-8492 অথবা Passport No"
+                      placeholder="e.g. BK-8492 or Passport Number"
                       className="w-full rounded-xl border border-gray-200 p-3 text-sm text-gray-900 outline-none focus:border-primary"
                     />
                   </div>
@@ -472,16 +559,16 @@ export default function CurrencyConverterCard({
                       className="w-full flex items-center justify-center gap-2 rounded-xl bg-primary hover:bg-primary-dark text-white p-3.5 text-base font-bold shadow-lg shadow-primary/20 transition disabled:opacity-70"
                     >
                       {isSubmitting ? (
-                        <span>অনুরোধ জমা দেওয়া হচ্ছে...</span>
+                        <span>Submitting Request...</span>
                       ) : (
                         <>
-                          <span>অনুরোধ নিশ্চিত করুন</span>
+                          <span>Confirm Exchange Request</span>
                           <CheckCircle2 className="h-5 w-5" />
                         </>
                       )}
                     </button>
                     <p className="text-center text-[11px] text-gray-400 mt-2">
-                      🔒 আপনার তথ্য সম্পূর্ণ নিরাপদ। বাংলাদেশ ব্যাংক নির্দেশিকা অনুযায়ী ক্যাশ এনডোর্সমেন্ট সম্পন্ন করা হয়।
+                      🔒 100% Secure & Compliant with Bangladesh Bank foreign exchange guidelines.
                     </p>
                   </div>
                 </form>
@@ -496,33 +583,33 @@ export default function CurrencyConverterCard({
                   Booking Request Submitted
                 </span>
                 <h3 className="text-2xl font-black text-gray-900">
-                  আপনার রিকোয়েস্ট সফলভাবে গ্রহণ করা হয়েছে!
+                  Your Exchange Request Has Been Received!
                 </h3>
                 <div className="my-4 rounded-2xl bg-gray-50 border border-gray-200 p-4 text-left space-y-2 text-xs text-gray-600">
                   <div className="flex justify-between">
-                    <span className="text-gray-500">বুকিং রেফারেন্স আইডি:</span>
+                    <span className="text-gray-500">Booking Reference ID:</span>
                     <strong className="text-primary font-mono text-sm">#BX-84921</strong>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">বিনিময় পরিমাণ:</span>
+                    <span className="text-gray-500">Conversion Amount:</span>
                     <strong className="text-gray-900 font-bold">
                       {fromObj.symbol}{amount ? Number(amount).toLocaleString() : 0} {fromCode} ➔ {toObj.symbol}{convertedAmount ? convertedAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 0} {toCode}
                     </strong>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">সংগ্রহের মাধ্যম:</span>
+                    <span className="text-gray-500">Collection Method:</span>
                     <strong className="capitalize text-gray-900 font-medium">
-                      {formData.collectionMethod === "airport" ? "Hazrat Shahjalal Airport" : formData.collectionMethod === "branch" ? "City Branch" : "Bank Transfer"}
+                      {formData.collectionMethod === "airport" ? "Hazrat Shahjalal Airport Booth" : formData.collectionMethod === "branch" ? "City Branch Pickup" : "Bank Transfer"}
                     </strong>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">গ্রাহকের নাম ও ফোন:</span>
+                    <span className="text-gray-500">Customer Name & Contact:</span>
                     <span className="text-gray-800">{formData.fullName} ({formData.phone})</span>
                   </div>
                 </div>
 
                 <p className="text-xs text-gray-500 mb-6 leading-relaxed">
-                  আমাদের বৈদেশিক মুদ্রা বিশেষজ্ঞ দল ১৫ মিনিটের মধ্যে আপনার নম্বরে যোগাযোগ করে পিকআপের সময় ও ভেরিফিকেশন কনফার্ম করবেন।
+                  Our foreign exchange team will contact you within 15 minutes to confirm the exact delivery schedule and lock in your exchange rate.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -530,7 +617,7 @@ export default function CurrencyConverterCard({
                     onClick={resetModal}
                     className="rounded-xl bg-primary text-white px-6 py-2.5 text-sm font-bold shadow hover:bg-primary-dark transition"
                   >
-                    নতুন রিকোয়েস্ট করুন
+                    Make Another Request
                   </button>
                   <a
                     href="https://wa.me/8801700000000"
@@ -538,7 +625,7 @@ export default function CurrencyConverterCard({
                     rel="noopener noreferrer"
                     className="rounded-xl border border-gray-200 bg-white text-gray-700 px-6 py-2.5 text-sm font-semibold hover:bg-gray-50 transition"
                   >
-                    WhatsApp-এ কথা বলুন
+                    Chat on WhatsApp
                   </a>
                 </div>
               </div>
