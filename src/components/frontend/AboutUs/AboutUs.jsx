@@ -38,7 +38,7 @@ const AboutUs = () => {
               </h2>
 
               <p className="text-muted mb-8 max-w-xl">
-                SkyWings has been helping Bangladeshi travelers explore the
+                Borkot Travels has been helping Bangladeshi travelers explore the
                 world since 2018. From budget flights to luxury tour packages
                 and hassle-free visa processing — we handle it all so you can
                 focus on your journey.

@@ -5,6 +5,7 @@ import DateSelect2 from "@/components/UI/DateSelect2";
 import { BDPhoneInput } from "bd-number-validator";
 import "bd-number-validator/react/style.css";
 import { ScanQrCode } from "lucide-react";
+import Link from "next/link";
 import { Controller } from "react-hook-form";
 
 const PassengerInfo = ({ countries, form }) => {
@@ -44,8 +45,8 @@ const PassengerInfo = ({ countries, form }) => {
             <label className="form-label">First Name</label>
             <input
               {...register("firstName", { required: true })}
-              placeholder="Enter first "
-              className="form-input name outline:none"
+              placeholder="Enter first name"
+              className="form-input"
             />
           </div>
 
@@ -148,7 +149,7 @@ const PassengerInfo = ({ countries, form }) => {
             <label className="form-label"> Email</label>
             <input
               className="form-input"
-              placeholder="Enter you email"
+              placeholder="Enter your email"
               type="text"
             />
           </div>
@@ -167,9 +168,11 @@ const PassengerInfo = ({ countries, form }) => {
           </div>
         </div>
         <div className="mt-5 flex items-center justify-end">
-          <CommonButton className="px-5! py-1.5! lg:px-10! lg:py-2!">
-            Continue
-          </CommonButton>
+          <Link href="/checkout">
+            <CommonButton className="px-5! py-1.5! lg:px-10! lg:py-2!">
+              Continue
+            </CommonButton>
+          </Link>
         </div>
       </div>
     </>

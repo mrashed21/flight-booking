@@ -45,7 +45,7 @@ const useGsapCollapse = (isOpen, options = {}) => {
         ease: easeClose,
       });
     }
-  }, [isOpen]);
+  }, [isOpen, openDuration, closeDuration, easeOpen, easeClose, y]);
 
   return ref;
 };

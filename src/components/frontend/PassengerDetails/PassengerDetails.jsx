@@ -43,7 +43,6 @@ const PassengerDetails = () => {
     name: "Bangladesh",
     isoCode: "BD",
   });
-  console.log(selected);
   return (
     <>
       {/* header section */}
@@ -116,7 +115,7 @@ const PassengerDetails = () => {
                   <p className="text-xs font-medium lg:text-sm">
                     Dhaka (Dac) - Cox's Bazar (CXB)
                   </p>
-                  <p className="ttext-muted text-[10px] lg:text-xs">
+                  <p className="text-muted text-[10px] lg:text-xs">
                     07 Dec 2025 | 08:30AM - 09:30AM
                   </p>
                 </div>

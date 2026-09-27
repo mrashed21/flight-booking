@@ -19,8 +19,8 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "Borkot Travels",
-  description: "developed by classict it",
+  title: "Borkot Travels - Flight, Tour & Visa Booking",
+  description: "Borkot Travels - Reliable Flight Booking, Tour Packages & Visa Processing in Bangladesh.",
 };
 
 export default function RootLayout({ children }) {

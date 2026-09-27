@@ -31,9 +31,13 @@ const stats = [
 ];
 
 const AirLineDetails = () => {
-  const titleRef = useRef(null);
+  const titleRef1 = useRef(null);
+  const titleRef2 = useRef(null);
+  const titleRef3 = useRef(null);
 
-  useFadeUpOnView(titleRef);
+  useFadeUpOnView(titleRef1);
+  useFadeUpOnView(titleRef2);
+  useFadeUpOnView(titleRef3);
   return (
     <>
       {/* air line image */}
@@ -60,7 +64,7 @@ const AirLineDetails = () => {
           {/* Title */}
 
           <h2
-            ref={titleRef}
+            ref={titleRef1}
             className="my-10 text-center text-3xl font-bold text-gray-800 lg:text-4xl"
           >
             Airlines Popularity
@@ -95,7 +99,7 @@ const AirLineDetails = () => {
           {/* replace with dengeras html */}
           <div className="">
             <h2
-              ref={titleRef}
+              ref={titleRef2}
               className="my-10 text-center text-3xl font-bold text-gray-800 lg:text-4xl"
             >
               About Biman Bangladesh Airlines
@@ -150,7 +154,7 @@ const AirLineDetails = () => {
           {/* popular routes */}
           <PopularAirlines className="bg-surface!" />
           {/* faq */}
-          <FaqAccordion titleRef={titleRef} />
+          <FaqAccordion titleRef={titleRef3} />
         </div>
       </Container>
     </>

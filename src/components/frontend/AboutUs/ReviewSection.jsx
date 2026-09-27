@@ -11,7 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 const reviews = [
   {
-    text: "SkyWings made my Dubai trip booking incredibly smooth. Got the visa approved within 3 days and the flight tickets were cheaper than anywhere else. Highly recommended!",
+    text: "Borkot Travels made my Dubai trip booking incredibly smooth. Got the visa approved within 3 days and the flight tickets were cheaper than anywhere else. Highly recommended!",
     name: "Rahim Uddin",
     role: "Frequent Traveler",
     rating: 5,

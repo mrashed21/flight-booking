@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 const PaymentForm = () => {
   return (
     <div className="space-y-6">
@@ -144,9 +146,11 @@ const PaymentForm = () => {
       </div>
 
       {/* Submit Button */}
-      <button className="common-btn w-full text-center">
-        <span>Confirm & Pay — BDT 32,200</span>
-      </button>
+      <Link href="/user/order" className="block w-full">
+        <button type="button" className="common-btn w-full text-center">
+          <span>Confirm & Pay — BDT 32,200</span>
+        </button>
+      </Link>
     </div>
   );
 };

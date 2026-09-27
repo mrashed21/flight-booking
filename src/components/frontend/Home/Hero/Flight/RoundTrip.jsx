@@ -1,3 +1,4 @@
+"use client";
 import AirPortSelect from "@/components/UI/AirPortSelect";
 import CommonButton from "@/components/UI/CommonButton";
 import DepartureDateSelect from "@/components/UI/DateSelect";
@@ -12,9 +13,6 @@ import { useRef, useState } from "react";
 const RoundTrip = ({ options }) => {
   const [departureDate, setDepartureDate] = useState(null);
   const [returnDate, setReturnDate] = useState(null);
-
-  console.log("departureDate :", departureDate);
-  console.log("returnDate :", returnDate);
 
   const fromWrapRef = useRef(null);
   const toWrapRef = useRef(null);

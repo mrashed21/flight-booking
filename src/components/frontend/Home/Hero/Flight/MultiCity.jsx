@@ -1,3 +1,4 @@
+"use client";
 import AirPortSelect from "@/components/UI/AirPortSelect";
 import CommonButton from "@/components/UI/CommonButton";
 import DepartureDateSelect from "@/components/UI/DateSelect";
@@ -11,7 +12,6 @@ import { useRef, useState } from "react";
 const MultiCity = ({ options }) => {
   const [departureTime, setDepartureTime] = useState();
 
-  console.log("departureTime :", departureTime);
   const fromWrapRef = useRef(null);
   const toWrapRef = useRef(null);
   const containerRef = useRef(null);

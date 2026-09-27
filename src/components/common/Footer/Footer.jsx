@@ -1,28 +1,29 @@
 import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import Container from "../Container/Container";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: "Home", href: "#" },
-    { name: "Tour Package", href: "#" },
-    { name: "Visa", href: "#" },
+    { name: "Home", href: "/" },
+    { name: "Tour Package", href: "/tour-package" },
+    { name: "Visa", href: "/visa" },
   ];
 
   const moreLinks = [
-    { name: "About Us", href: "#" },
-    { name: "Destinations", href: "#" },
+    { name: "About Us", href: "/about-us" },
+    { name: "Destinations", href: "/" },
     { name: "Blogs", href: "#" },
-    { name: "Contact Us", href: "#" },
+    { name: "Contact Us", href: "/contact-us" },
   ];
 
   const services = [
-    { name: "Customer Support", href: "#" },
-    { name: "Visa Information", href: "#" },
-    { name: "Flight service", href: "#" },
-    { name: "Tour Booking", href: "#" },
+    { name: "Customer Support", href: "/contact-us" },
+    { name: "Visa Information", href: "/visa" },
+    { name: "Flight service", href: "/flight" },
+    { name: "Tour Booking", href: "/tour-package" },
   ];
 
   const socialLinks = [
@@ -65,12 +66,12 @@ const Footer = () => {
             <ul className="space-y-2 md:space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-muted hover:text-primary text-sm transition-colors md:text-base"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -84,12 +85,12 @@ const Footer = () => {
             <ul className="space-y-2 md:space-y-3">
               {moreLinks.map((link, index) => (
                 <li key={index}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-muted hover:text-primary text-sm transition-colors md:text-base"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -103,12 +104,12 @@ const Footer = () => {
             <ul className="space-y-2 md:space-y-3">
               {services.map((link, index) => (
                 <li key={index}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-muted hover:text-primary text-sm transition-colors md:text-base"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -132,20 +132,20 @@ const ProfileMenu = ({ open, offsetTop }) => {
           >
             <div className="flex flex-col pl-4">
               <Link
-                href="/user/bookings/flights"
-                className="hover:hover:bg-muted/20 block rounded px-2 py-2 text-sm"
+                href="/user/order"
+                className="hover:bg-muted/20 block rounded px-2 py-2 text-sm"
               >
                 Flight Bookings
               </Link>
               <Link
-                href="/user/bookings/tours"
-                className="hover:hover:bg-muted/20 block rounded px-2 py-2 text-sm"
+                href="/user/order"
+                className="hover:bg-muted/20 block rounded px-2 py-2 text-sm"
               >
                 Tour Bookings
               </Link>
               <Link
-                href="/user/bookings/visa"
-                className="hover:hover:bg-muted/20 block rounded px-2 py-2 text-sm"
+                href="/user/order"
+                className="hover:bg-muted/20 block rounded px-2 py-2 text-sm"
               >
                 Visa Applications
               </Link>
@@ -154,8 +154,8 @@ const ProfileMenu = ({ open, offsetTop }) => {
         </div>
 
         <Link
-          href="/user/settings"
-          className="hover:hover:bg-muted/20 block rounded px-2 py-2"
+          href="/user/profile"
+          className="hover:bg-muted/20 block rounded px-2 py-2"
         >
           Settings
         </Link>

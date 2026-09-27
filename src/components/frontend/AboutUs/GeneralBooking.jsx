@@ -1,9 +1,9 @@
 "use client";
 
 import useFadeUpOnView from "@/helpers/gsapAnimation/useFadeUpOnView";
-import gsap from "gsap";
-import { useEffect, useRef } from "react";
-import { Plane, Search, CreditCard, CheckCircle2 } from "lucide-react";
+import useFadeUpStagger from "@/helpers/gsapAnimation/useFadeUpStagger";
+import { CheckCircle2, CreditCard, Plane, Search } from "lucide-react";
+import { useRef } from "react";
 
 const steps = [
   {
@@ -37,27 +37,7 @@ const GeneralBooking = () => {
   const cardRefs = useRef([]);
 
   useFadeUpOnView(titleRef);
-
-  useEffect(() => {
-    cardRefs.current.forEach((el, i) => {
-      if (!el) return;
-      gsap.fromTo(
-        el,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          delay: i * 0.12,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-          },
-        },
-      );
-    });
-  }, []);
+  useFadeUpStagger(cardRefs, { y: 30, duration: 0.6, stagger: 0.12 });
 
   return (
     <section className="bg-primary-soft rounded-xl px-4 py-16 sm:px-8 sm:py-20">

@@ -12,7 +12,6 @@ import { useRef, useState } from "react";
 const OneWay = ({ options }) => {
   const [departureTime, setDepartureTime] = useState();
 
-  console.log("departureTime :", departureTime);
   const fromWrapRef = useRef(null);
   const toWrapRef = useRef(null);
   const containerRef = useRef(null);
