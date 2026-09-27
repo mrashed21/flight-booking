@@ -3,12 +3,14 @@
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Container from "../container/container";
 import MobileDrawer from "./mobile-drawer";
 import ProfileMenu from "./profile-menu";
 
 const Navbar = () => {
+  const pathname = usePathname();
   const user = false;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
@@ -109,24 +111,33 @@ const Navbar = () => {
         <Container className={"relative"}>
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
-            <Image
-              width={200}
-              height={200}
-              src="https://i.ibb.co.com/7xSTpscQ/FAST-FLIGHT-2.png"
-              alt="logo"
-            />
+            <Link href="/" className="inline-block">
+              <Image
+                width={200}
+                height={200}
+                src="https://i.ibb.co.com/7xSTpscQ/FAST-FLIGHT-2.png"
+                alt="logo"
+              />
+            </Link>
 
             {/* Desktop Nav */}
             <div className="hidden gap-6 lg:flex">
-              {navItems.map((item) => (
-                <Link
-                  key={item.link}
-                  href={item.link}
-                  className="hover:text-primary transition-colors"
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const isActive = pathname === item.link;
+                return (
+                  <Link
+                    key={item.link}
+                    href={item.link}
+                    className={`transition-colors text-sm font-medium ${
+                      isActive
+                        ? "text-primary font-bold"
+                        : "text-gray-700 hover:text-primary"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
             </div>
 
             {/* Right */}

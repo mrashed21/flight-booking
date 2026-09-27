@@ -2,9 +2,11 @@
 
 import gsap from "gsap";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const MobileDrawer = ({ open, navItems, offsetTop, user, onClose }) => {
+  const pathname = usePathname();
   const containerRef = useRef(null);
   const itemsRef = useRef([]);
   const [render, setRender] = useState(open);
@@ -69,17 +71,22 @@ const MobileDrawer = ({ open, navItems, offsetTop, user, onClose }) => {
       className="fixed right-0 z-50 h-[110vh] w-72 overflow-hidden bg-white/90 p-6 shadow-xl backdrop-blur-xl"
     >
       <nav className="flex flex-col gap-4">
-        {navItems.map((item, index) => (
-          <Link
-            key={item.link}
-            href={item.link}
-            onClick={onClose}
-            ref={(el) => (itemsRef.current[index] = el)}
-            className="transition-colors hover:text-blue-600"
-          >
-            {item.name}
-          </Link>
-        ))}
+        {navItems.map((item, index) => {
+          const isActive = pathname === item.link;
+          return (
+            <Link
+              key={item.link}
+              href={item.link}
+              onClick={onClose}
+              ref={(el) => (itemsRef.current[index] = el)}
+              className={`transition-colors text-base font-medium ${
+                isActive ? "text-primary font-bold" : "text-gray-700 hover:text-primary"
+              }`}
+            >
+              {item.name}
+            </Link>
+          );
+        })}
 
         {!user && (
           <div

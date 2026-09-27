@@ -42,14 +42,14 @@ const Footer = () => {
           <div className="md:col-span-2 lg:col-span-1">
             {/* Logo */}
             <div className="mb-4 flex items-center gap-2 md:mb-6">
-              <div>
+              <Link href="/" className="inline-block">
                 <Image
                   width={200}
                   height={200}
                   src="https://i.ibb.co.com/Q317RSjR/Group-1597883383.png"
                   alt="logo"
                 />
-              </div>
+              </Link>
             </div>
 
             {/* Description */}
