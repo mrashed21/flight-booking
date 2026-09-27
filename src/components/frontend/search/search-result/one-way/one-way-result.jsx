@@ -1,7 +1,7 @@
 "use client";
-import CommonButton from "@/components/UI/CommonButton";
-import LineWithDots from "@/components/UI/LineWithDots";
-import useGsapCollapse from "@/helpers/gsapAnimation/useGsapCollapse";
+import CommonButton from "@/components/ui/common-button";
+import LineWithDots from "@/components/ui/line-with-dots";
+import useGsapCollapse from "@/helpers/gsap-animation/use-gsap-collapse";
 import { ChevronDown, Clock, MapPin, Plane } from "lucide-react";
 import Image from "next/image";
 

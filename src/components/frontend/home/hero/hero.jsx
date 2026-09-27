@@ -1,11 +1,11 @@
 "use client";
-import Container from "@/components/common/Container/Container";
-import HeroButton from "@/components/UI/HeroButton";
+import Container from "@/components/common/container/container";
+import HeroButton from "@/components/ui/hero-button";
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
-import FlightContent from "./Flight/FlightContent";
-import TourContent from "./Tour/TourContent";
-import VisaContent from "./Visa/VisaContent";
+import FlightContent from "./flight/flight-content";
+import TourContent from "./tour/tour-content";
+import VisaContent from "./visa/visa-content";
 
 const Hero = () => {
   const [selectedService, setSelectedService] = useState("Flight");

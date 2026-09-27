@@ -1,5 +1,5 @@
-import Container from "@/components/common/Container/Container";
-import Search from "@/components/frontend/Search/Search";
+import Container from "@/components/common/container/container";
+import Search from "@/components/frontend/search/search";
 
 const SearchPage = () => {
   return (

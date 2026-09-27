@@ -1,10 +1,10 @@
 "use client";
 
-import CommonButton from "@/components/UI/CommonButton";
-import CountrySelect from "@/components/UI/CountrySelect";
-import DepartureDateSelect from "@/components/UI/DateSelect";
-import PillButton from "@/components/UI/PillButton";
-import Select from "@/components/UI/Select";
+import CommonButton from "@/components/ui/common-button";
+import CountrySelect from "@/components/ui/country-select";
+import DepartureDateSelect from "@/components/ui/date-select";
+import PillButton from "@/components/ui/pill-button";
+import Select from "@/components/ui/select";
 import { Country } from "country-state-city";
 import gsap from "gsap";
 import Link from "next/link";

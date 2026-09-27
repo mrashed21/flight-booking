@@ -1,7 +1,7 @@
 import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import Container from "../Container/Container";
+import Container from "../container/container";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

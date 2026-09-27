@@ -1,22 +1,22 @@
 "use client";
 
-import PillButton from "@/components/UI/PillButton";
-import { airPortsData } from "@/demo/data/AirPorts";
-import { CLASS_OPTIONS } from "@/demo/data/ClassType";
-import { swapGhostAnimation } from "@/helpers/gsapAnimation/swapGhostAnimation";
-import { swapHoverAnimation } from "@/helpers/gsapAnimation/swapHoverAnimation";
-import { setSearchData } from "@/store/slices/flightSearchSlice";
+import PillButton from "@/components/ui/pill-button";
+import { airPortsData } from "@/demo/data/airports";
+import { CLASS_OPTIONS } from "@/demo/data/class-type";
+import { swapGhostAnimation } from "@/helpers/gsap-animation/swap-ghost-animation";
+import { swapHoverAnimation } from "@/helpers/gsap-animation/swap-hover-animation";
+import { setSearchData } from "@/store/slices/flight-search-slice";
 import gsap from "gsap";
 import { ChevronLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import SearchContent from "./SearchContent/SearchContent";
-import SearchSidebar from "./SearchContent/SearchSidebar";
-import SearchModal from "./SearchModal/SearchModal";
-import SearchMultiCity from "./SearchType/SearchMultiCity";
-import SearchOneWay from "./SearchType/SearchOneWay";
-import SearchRoundTrip from "./SearchType/SearchRoundTrip";
+import SearchContent from "./search-content/search-content";
+import SearchSidebar from "./search-content/search-sidebar";
+import SearchModal from "./search-modal/search-modal";
+import SearchMultiCity from "./search-type/search-multi-city";
+import SearchOneWay from "./search-type/search-one-way";
+import SearchRoundTrip from "./search-type/search-round-trip";
 
 const Search = () => {
   const dispatch = useDispatch();

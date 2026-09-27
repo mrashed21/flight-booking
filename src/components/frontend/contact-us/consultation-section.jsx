@@ -1,7 +1,7 @@
 "use client";
 
-import Container from "@/components/common/Container/Container";
-import CommonButton from "@/components/UI/CommonButton";
+import Container from "@/components/common/container/container";
+import CommonButton from "@/components/ui/common-button";
 
 const ConsultationSection = () => {
   return (

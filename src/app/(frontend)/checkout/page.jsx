@@ -1,6 +1,6 @@
-import Container from "@/components/common/Container/Container";
-import CheckoutSummary from "@/components/frontend/Checkout/CheckoutSummary";
-import PaymentForm from "@/components/frontend/Checkout/PaymentForm";
+import Container from "@/components/common/container/container";
+import CheckoutSummary from "@/components/frontend/checkout/checkout-summary";
+import PaymentForm from "@/components/frontend/checkout/payment-form";
 
 const CheckoutPage = () => {
   return (

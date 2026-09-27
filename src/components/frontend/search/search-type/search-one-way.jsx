@@ -1,6 +1,6 @@
-import AirPortSelect from "@/components/UI/AirPortSelect";
-import DepartureDateSelect from "@/components/UI/DateSelect";
-import Select from "@/components/UI/Select";
+import AirPortSelect from "@/components/ui/airport-select";
+import DepartureDateSelect from "@/components/ui/date-select";
+import Select from "@/components/ui/select";
 import { ArrowRightLeft } from "lucide-react";
 
 const SearchOneWay = ({

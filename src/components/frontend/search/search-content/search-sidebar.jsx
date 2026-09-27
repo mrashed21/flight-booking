@@ -1,6 +1,6 @@
 "use client";
 
-import RemainingTime from "@/components/UI/RemainingTime";
+import RemainingTime from "@/components/ui/remaining-time";
 import gsap from "gsap";
 import { X } from "lucide-react";
 import Image from "next/image";

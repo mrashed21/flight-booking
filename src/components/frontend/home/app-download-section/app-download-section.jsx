@@ -1,6 +1,6 @@
 "use client";
-import Container from "@/components/common/Container/Container";
-import LiveClock from "@/helpers/LiveClock";
+import Container from "@/components/common/container/container";
+import LiveClock from "@/helpers/live-clock";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {

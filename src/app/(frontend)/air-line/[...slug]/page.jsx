@@ -1,4 +1,4 @@
-import AirLineDetails from "@/components/frontend/AirLineDetails/AirLineDetails";
+import AirLineDetails from "@/components/frontend/airline-details/airline-details";
 
 const AirLinesPage = () => {
   return (

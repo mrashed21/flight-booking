@@ -1,6 +1,6 @@
 "use client";
 
-import useFadeUpOnView from "@/helpers/gsapAnimation/useFadeUpOnView";
+import useFadeUpOnView from "@/helpers/gsap-animation/use-fade-up-on-view";
 import Image from "next/image";
 import { useRef } from "react";
 import { Star } from "lucide-react";

@@ -1,5 +1,5 @@
 "use client";
-import LineWithDots from "@/components/UI/LineWithDots";
+import LineWithDots from "@/components/ui/line-with-dots";
 import { ChevronDown, Clock, MapPin, Plane } from "lucide-react";
 import Image from "next/image";
 

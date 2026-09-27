@@ -1,9 +1,9 @@
-import AirPortSelect from "@/components/UI/AirPortSelect";
-import DepartureDateSelect from "@/components/UI/DateSelect";
-import ReturnDateSelect from "@/components/UI/ReturnDateSelect";
-import Select from "@/components/UI/Select";
-import { swapGhostAnimation } from "@/helpers/gsapAnimation/swapGhostAnimation";
-import { swapHoverAnimation } from "@/helpers/gsapAnimation/swapHoverAnimation";
+import AirPortSelect from "@/components/ui/airport-select";
+import DepartureDateSelect from "@/components/ui/date-select";
+import ReturnDateSelect from "@/components/ui/return-date-select";
+import Select from "@/components/ui/select";
+import { swapGhostAnimation } from "@/helpers/gsap-animation/swap-ghost-animation";
+import { swapHoverAnimation } from "@/helpers/gsap-animation/swap-hover-animation";
 import { ArrowRightLeft } from "lucide-react";
 import { useRef, useState } from "react";
 

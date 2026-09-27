@@ -1,6 +1,6 @@
 "use client";
 
-import Container from "@/components/common/Container/Container";
+import Container from "@/components/common/container/container";
 import Image from "next/image";
 import Link from "next/link";
 import "swiper/css";

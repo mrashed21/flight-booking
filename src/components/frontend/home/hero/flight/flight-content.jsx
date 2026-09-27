@@ -1,13 +1,13 @@
 "use client";
 
-import PillButton from "@/components/UI/PillButton";
+import PillButton from "@/components/ui/pill-button";
 
-import { airPortsData } from "@/demo/data/AirPorts";
+import { airPortsData } from "@/demo/data/airports";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
-import MultiCity from "./MultiCity";
-import OneWay from "./OneWay";
-import RoundTrip from "./RoundTrip";
+import MultiCity from "./multi-city";
+import OneWay from "./one-way";
+import RoundTrip from "./round-trip";
 
 const FlightContent = () => {
   const [selectedType, setSelectedType] = useState("One Way");

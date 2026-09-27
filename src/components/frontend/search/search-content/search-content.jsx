@@ -1,16 +1,16 @@
 "use client";
 
-import RemainingTime from "@/components/UI/RemainingTime";
+import RemainingTime from "@/components/ui/remaining-time";
 import gsap from "gsap";
 import { Settings2 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import MultiCityResult from "../SearchResult/MultiCity/MultiCityResult";
-import OneWayResult from "../SearchResult/OneWay/OneWayResult";
-import RoundTripResult from "../SearchResult/RoundTrip/RoundTripResult";
-import { flights } from "./flightdata";
+import MultiCityResult from "../search-result/multi-city/multi-city-result";
+import OneWayResult from "../search-result/one-way/one-way-result";
+import RoundTripResult from "../search-result/round-trip/round-trip-result";
+import { flights } from "./flight-data";
 
-import PillButton from "@/components/UI/PillButton";
+import PillButton from "@/components/ui/pill-button";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);

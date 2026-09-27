@@ -1,11 +1,11 @@
 "use client";
-import Container from "@/components/common/Container/Container";
-import useFadeUpOnView from "@/helpers/gsapAnimation/useFadeUpOnView";
+import Container from "@/components/common/container/container";
+import useFadeUpOnView from "@/helpers/gsap-animation/use-fade-up-on-view";
 import { BadgeDollarSign, BarChart3, MapPin, Plane } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
-import PopularAirlines from "../Home/PopularAirlines/PopularAirlines";
-import FaqAccordion from "../Offer/FaqAccordion";
+import PopularAirlines from "../home/popular-airlines/popular-airlines";
+import FaqAccordion from "../offer/faq-accordion";
 
 const stats = [
   {

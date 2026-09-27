@@ -1,7 +1,7 @@
 "use client";
-import CommonButton from "@/components/UI/CommonButton";
-import CountrySelect from "@/components/UI/CountrySelect";
-import DateSelect2 from "@/components/UI/DateSelect2";
+import CommonButton from "@/components/ui/common-button";
+import CountrySelect from "@/components/ui/country-select";
+import DateSelect2 from "@/components/ui/date-select-2";
 import { BDPhoneInput } from "bd-number-validator";
 import "bd-number-validator/react/style.css";
 import { ScanQrCode } from "lucide-react";

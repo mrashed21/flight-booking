@@ -1,8 +1,8 @@
 "use client";
 
-import Container from "@/components/common/Container/Container";
-import useFadeUpOnView from "@/helpers/gsapAnimation/useFadeUpOnView";
-import useFadeUpStagger from "@/helpers/gsapAnimation/useFadeUpStagger";
+import Container from "@/components/common/container/container";
+import useFadeUpOnView from "@/helpers/gsap-animation/use-fade-up-on-view";
+import useFadeUpStagger from "@/helpers/gsap-animation/use-fade-up-stagger";
 import { CalendarDays, FileText, Plane } from "lucide-react";
 import { useRef } from "react";
 

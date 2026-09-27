@@ -1,9 +1,9 @@
-import Container from "@/components/common/Container/Container";
+import Container from "@/components/common/container/container";
 import { CheckCircle } from "lucide-react";
 import Image from "next/image";
-import GeneralBooking from "./GeneralBooking";
-import ReviewSection from "./ReviewSection";
-import StatsSection from "./StatsSection";
+import GeneralBooking from "./general-booking";
+import ReviewSection from "./review-section";
+import StatsSection from "./stats-section";
 
 const AboutUs = () => {
   return (

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import CommonButton from "@/components/UI/CommonButton";
+import CommonButton from "@/components/ui/common-button";
 import { PlaneTakeoff } from "lucide-react";
 import "swiper/css";
 import "swiper/css/pagination";

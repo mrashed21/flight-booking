@@ -1,10 +1,10 @@
 "use client";
-import AirPortSelect from "@/components/UI/AirPortSelect";
-import CommonButton from "@/components/UI/CommonButton";
-import DepartureDateSelect from "@/components/UI/DateSelect";
-import ReturnDateSelect from "@/components/UI/ReturnDateSelect";
-import { swapGhostAnimation } from "@/helpers/gsapAnimation/swapGhostAnimation";
-import { swapHoverAnimation } from "@/helpers/gsapAnimation/swapHoverAnimation";
+import AirPortSelect from "@/components/ui/airport-select";
+import CommonButton from "@/components/ui/common-button";
+import DepartureDateSelect from "@/components/ui/date-select";
+import ReturnDateSelect from "@/components/ui/return-date-select";
+import { swapGhostAnimation } from "@/helpers/gsap-animation/swap-ghost-animation";
+import { swapHoverAnimation } from "@/helpers/gsap-animation/swap-hover-animation";
 
 import { ArrowRightLeft } from "lucide-react";
 import Link from "next/link";

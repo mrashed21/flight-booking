@@ -3,7 +3,7 @@
 import { gsap } from "gsap";
 import { CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import Portal from "./Portal";
+import Portal from "./portal";
 
 const formatDate = (date) =>
   date.toLocaleDateString("en-GB", {

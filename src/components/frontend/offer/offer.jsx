@@ -1,13 +1,13 @@
 "use client";
-import Container from "@/components/common/Container/Container";
+import Container from "@/components/common/container/container";
 import Image from "next/image";
 
-import useFadeUpOnView from "@/helpers/gsapAnimation/useFadeUpOnView";
+import useFadeUpOnView from "@/helpers/gsap-animation/use-fade-up-on-view";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
-import FaqAccordion from "./FaqAccordion";
-import TermsSwiper from "./TermsSwiper";
+import FaqAccordion from "./faq-accordion";
+import TermsSwiper from "./terms-swiper";
 
 gsap.registerPlugin(ScrollTrigger);
 

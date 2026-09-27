@@ -4,9 +4,9 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import Container from "../Container/Container";
-import MobileDrawer from "./MobileDrower";
-import ProfileMenu from "./ProfileMenu";
+import Container from "../container/container";
+import MobileDrawer from "./mobile-drawer";
+import ProfileMenu from "./profile-menu";
 
 const Navbar = () => {
   const user = false;

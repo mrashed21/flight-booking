@@ -1,15 +1,15 @@
 "use client";
-import Container from "@/components/common/Container/Container";
-import RemainingTime from "@/components/UI/RemainingTime";
-import useGsapCollapse from "@/helpers/gsapAnimation/useGsapCollapse";
+import Container from "@/components/common/container/container";
+import RemainingTime from "@/components/ui/remaining-time";
+import useGsapCollapse from "@/helpers/gsap-animation/use-gsap-collapse";
 import { Country } from "country-state-city";
 import { ChevronRight, CircleCheck } from "lucide-react";
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
-import { flights } from "../Search/SearchContent/flightdata";
-import OneWayDetails from "./OneWayDetails";
-import PassengerInfo from "./PassengerInfo";
+import { flights } from "../search/search-content/flight-data";
+import OneWayDetails from "./one-way-details";
+import PassengerInfo from "./passenger-info";
 
 const PassengerDetails = () => {
   const [openFlightDetails, setOpenFlightDetails] = useState(null);

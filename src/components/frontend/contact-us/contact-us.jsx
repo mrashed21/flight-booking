@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ConsultationSection from "./ConsultationSection";
+import ConsultationSection from "./consultation-section";
 
 const ContactUs = () => {
   return (

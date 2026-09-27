@@ -1,7 +1,7 @@
 "use client";
 
-import useFadeUpOnView from "@/helpers/gsapAnimation/useFadeUpOnView";
-import useFadeUpStagger from "@/helpers/gsapAnimation/useFadeUpStagger";
+import useFadeUpOnView from "@/helpers/gsap-animation/use-fade-up-on-view";
+import useFadeUpStagger from "@/helpers/gsap-animation/use-fade-up-stagger";
 import { CheckCircle2, CreditCard, Plane, Search } from "lucide-react";
 import { useRef } from "react";
 

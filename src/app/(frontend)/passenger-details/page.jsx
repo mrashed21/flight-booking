@@ -1,4 +1,4 @@
-import PassengerDetails from "@/components/frontend/PassengerDetails/PassengerDetails";
+import PassengerDetails from "@/components/frontend/passenger-details/passenger-details";
 
 const PassengerDetailsPage = () => {
   return (

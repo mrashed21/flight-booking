@@ -1,12 +1,12 @@
 "use client";
 
-import CommonButton from "@/components/UI/CommonButton";
-import PillButton from "@/components/UI/PillButton";
+import CommonButton from "@/components/ui/common-button";
+import PillButton from "@/components/ui/pill-button";
 import { X } from "lucide-react";
 import { useEffect, useRef } from "react";
-import MultiCityModify from "./MultiCityModify";
-import OneWayModify from "./OneWayModify";
-import RoundTripModify from "./RoundTripModify";
+import MultiCityModify from "./multi-city-modify";
+import OneWayModify from "./one-way-modify";
+import RoundTripModify from "./round-trip-modify";
 
 const SearchModal = ({
   options,
